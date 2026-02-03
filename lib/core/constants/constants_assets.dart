@@ -1,0 +1,3 @@
+class ConstantAssetImages {}
+
+class ConstantAssetIcons {}

@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:telemedicine/core/routes/app_routes.dart';
+import 'package:telemedicine/core/theme/app_theme.dart';
+import 'package:telemedicine/features/home/presentation/screens/home_screen.dart';
 
 void main() {
   runApp(const Telemedicine());
@@ -9,6 +12,11 @@ class Telemedicine extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(home: Scaffold(appBar: AppBar()));
+    return MaterialApp(
+      theme: AppTheme.theme,
+      debugShowCheckedModeBanner: false,
+      routes: AppRoutes.routes,
+      initialRoute: HomeScreen.routeName,
+    );
   }
 }
