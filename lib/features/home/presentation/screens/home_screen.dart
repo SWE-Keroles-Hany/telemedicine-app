@@ -7,16 +7,17 @@ import 'package:telemedicine/features/home/presentation/widgets/home_label.dart'
 import 'package:telemedicine/features/home/presentation/widgets/our_services.dart';
 import 'package:telemedicine/features/home/presentation/widgets/top_doctors.dart';
 
+import '../widgets/top_doctors_and_view_all_row.dart';
+
 class HomeScreen extends StatelessWidget {
   static const String routeName = "HomeScreen";
   const HomeScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
-    final textTheme = Theme.of(context).textTheme;
-
     return SafeArea(
       child: Scaffold(
+        backgroundColor: AppTheme.backGroundColor,
         appBar: PreferredSize(
           preferredSize: Size.fromHeight(56.h),
           child: const HomeAppBar(),
@@ -28,24 +29,8 @@ class HomeScreen extends StatelessWidget {
             SizedBox(height: 10.h),
             SizedBox(height: 300.h, child: OurServices()),
             SizedBox(height: 15.h),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                const HomeLabel(label: ConstantsText.topDoctors),
-                InkWell(
-                  onTap: () {},
-                  child: Text(
-                    ConstantsText.viewAll,
-                    style: textTheme.titleMedium!.copyWith(
-                      color: AppTheme.aquaMint,
-                    ),
-                  ),
-                ),
-              ],
-            ),
+            TopDoctorsAndViewAllRow(),
             SizedBox(height: 10.h),
-
-            /// Top Doctors List
             SizedBox(height: 210.h, child: TopDoctors()),
           ],
         ),

@@ -35,8 +35,8 @@ class OurServices extends StatelessWidget {
         itemCount: 4,
         gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
           crossAxisCount: 2,
-          crossAxisSpacing: 6.w,
-          mainAxisSpacing: 6.h,
+          crossAxisSpacing: 10.w,
+          mainAxisSpacing: 10.h,
         ),
         itemBuilder: (context, index) => CustomServiceItem(
           icon: services[index].icon,

@@ -1,8 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:telemedicine/core/helper/validations/app_validations.dart';
+import 'package:telemedicine/core/theme/app_theme.dart';
 import 'package:telemedicine/features/auth/presentation/screens/login_screen.dart';
 import 'package:telemedicine/features/auth/presentation/widgets/custom_button.dart';
 import 'package:telemedicine/features/auth/presentation/widgets/custom_input_field.dart';
+import 'package:telemedicine/features/home/presentation/screens/home_screen.dart';
 
 class SignUpScreen extends StatelessWidget {
   static const String routeName = "SignUpScreen";
@@ -18,9 +21,9 @@ class SignUpScreen extends StatelessWidget {
     final textTheme = Theme.of(context).textTheme;
     return SafeArea(
       child: Scaffold(
-        backgroundColor: const Color.fromARGB(255, 246, 245, 245),
+        backgroundColor: AppTheme.backGroundColor,
         body: Padding(
-          padding: const EdgeInsets.all(18),
+          padding: EdgeInsets.all(18.r),
           child: SingleChildScrollView(
             child: Form(
               key: globalKey,
@@ -28,72 +31,70 @@ class SignUpScreen extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.center,
                 crossAxisAlignment: CrossAxisAlignment.stretch,
                 children: [
-                  SizedBox(height: 30),
-
-                  // SizedBox(height: height * 0.1),
+                  SizedBox(height: 25.h),
                   Image.asset(
-                    height: 120,
-                    width: 100,
-                    // fit: BoxFit.fitWidth,
+                    height: 100.h,
+                    width: 100.w,
                     "assets/icons/telemedicine.png",
                   ),
-
-                  SizedBox(height: 30),
+                  SizedBox(height: 25.h),
                   Text(
                     textAlign: TextAlign.center,
-                    "Register",
-                    style: TextStyle(
-                      fontWeight: FontWeight.bold,
-                      color: Colors.black,
-                      fontSize: 22,
+                    "Create Account",
+                    style: textTheme.titleLarge!.copyWith(
+                      fontSize: 26.sp,
+                      color: AppTheme.white,
                     ),
                   ),
-                  SizedBox(height: 15),
-
+                  SizedBox(height: 25.h),
                   CustomInputField(
                     title: "Enter Your Name",
                     controller: nameController,
                     validator: (name) => AppValidations.nameValidator(name),
                   ),
-                  SizedBox(height: 15),
+                  SizedBox(height: 15.h),
 
                   CustomInputField(
                     title: "Enter Your E-mail",
                     controller: emailController,
                     validator: (email) => AppValidations.emailValidator(email),
                   ),
-                  SizedBox(height: 15),
+                  SizedBox(height: 15.h),
                   CustomInputField(
+                    isPasswordField: true,
                     title: "Enter Your Password",
                     controller: passwordController,
                     validator: (password) =>
                         AppValidations.passwordValidator(value: password),
                   ),
-                  SizedBox(height: 15),
+                  SizedBox(height: 15.h),
                   CustomInputField(
                     title: "Enter Your Address",
                     controller: addressController,
                     validator: (address) =>
                         AppValidations.addressValidator(address),
                   ),
-                  SizedBox(height: 15),
+                  SizedBox(height: 15.h),
                   CustomButton(
                     onPressed: () {
-                      if (globalKey.currentState!.validate()) {}
+                      if (globalKey.currentState!.validate()) {
+                        Navigator.of(
+                          context,
+                        ).pushReplacementNamed(HomeScreen.routeName);
+                      }
                     },
                     title: "SignUp",
-                    titleColor: Colors.black,
-                    bgColor: Colors.green,
+                    titleColor: AppTheme.black,
+                    bgColor: AppTheme.aquaMint,
                     width: double.infinity,
                   ),
 
                   Row(
                     children: [
                       Text(
-                        "Do Have an Account ?",
+                        "Do you Have an Account ?",
                         style: textTheme.titleLarge!.copyWith(
-                          fontSize: 22,
-                          fontWeight: FontWeight.normal,
+                          color: AppTheme.grayF0,
                         ),
                       ),
                       TextButton(
@@ -102,7 +103,12 @@ class SignUpScreen extends StatelessWidget {
                             context,
                           ).pushReplacementNamed(LoginScreen.routeName);
                         },
-                        child: Text("Login", style: textTheme.titleLarge),
+                        child: Text(
+                          "Login",
+                          style: textTheme.titleLarge!.copyWith(
+                            color: AppTheme.aquaMint,
+                          ),
+                        ),
                       ),
                     ],
                   ),

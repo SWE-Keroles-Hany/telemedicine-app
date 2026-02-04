@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:telemedicine/core/theme/app_theme.dart';
 
 class CustomInputField extends StatefulWidget {
@@ -24,13 +25,14 @@ class _CustomInputFieldState extends State<CustomInputField> {
   Widget build(BuildContext context) {
     final TextTheme textTheme = Theme.of(context).textTheme;
     return TextFormField(
+      style: TextStyle(color: AppTheme.white),
       autovalidateMode: AutovalidateMode.onUserInteraction,
       validator: widget.validator,
       controller: widget.controller,
       obscureText: showPassword,
       decoration: InputDecoration(
         errorStyle: textTheme.labelMedium!.copyWith(
-          fontSize: 16,
+          fontSize: 16.sp,
           fontWeight: FontWeight.w500,
           color: AppTheme.red,
         ),
@@ -38,7 +40,7 @@ class _CustomInputFieldState extends State<CustomInputField> {
             ? IconButton(
                 icon: Icon(
                   showPassword ? Icons.visibility_off : Icons.visibility,
-                  color: Colors.red,
+                  color: AppTheme.red,
                 ),
                 onPressed: () {
                   setState(() {
@@ -52,7 +54,7 @@ class _CustomInputFieldState extends State<CustomInputField> {
           style: textTheme.titleMedium!.copyWith(color: AppTheme.mediumGray),
         ),
         filled: true,
-        fillColor: Colors.white,
+        fillColor: AppTheme.darkTealGreen,
         border: border(),
         enabled: true,
         enabledBorder: border(),
@@ -63,14 +65,14 @@ class _CustomInputFieldState extends State<CustomInputField> {
 
   OutlineInputBorder border() {
     return OutlineInputBorder(
-      borderSide: BorderSide(color: Colors.grey, width: 2),
+      borderSide: BorderSide(color: Colors.grey, width: 1.5),
       borderRadius: BorderRadius.circular(8),
     );
   }
 
   OutlineInputBorder errorBorder() {
     return OutlineInputBorder(
-      borderSide: BorderSide(color: AppTheme.red, width: 2),
+      borderSide: BorderSide(color: AppTheme.red, width: 1.5),
       borderRadius: BorderRadius.circular(8),
     );
   }

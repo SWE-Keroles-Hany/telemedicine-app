@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:telemedicine/core/helper/validations/app_validations.dart';
 import 'package:telemedicine/core/theme/app_theme.dart';
 import 'package:telemedicine/features/auth/presentation/screens/signup_screen.dart';
 import 'package:telemedicine/features/auth/presentation/widgets/custom_button.dart';
 import 'package:telemedicine/features/auth/presentation/widgets/custom_input_field.dart';
+import 'package:telemedicine/features/home/presentation/screens/home_screen.dart';
 
 class LoginScreen extends StatelessWidget {
   static const String routeName = "LoginScreen";
@@ -16,7 +18,6 @@ class LoginScreen extends StatelessWidget {
     final textTheme = Theme.of(context).textTheme;
     final height = MediaQuery.of(context).size.height;
     final globalKey = GlobalKey<FormState>();
-
     return SafeArea(
       child: Scaffold(
         backgroundColor: AppTheme.backGroundColor,
@@ -29,66 +30,77 @@ class LoginScreen extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.center,
                 crossAxisAlignment: CrossAxisAlignment.stretch,
                 children: [
-                  SizedBox(height: height * 0.1),
+                  SizedBox(height: height * 0.05),
                   Image.asset(
-                    height: 120,
-                    width: 100,
+                    height: 120.h,
+                    width: 100.w,
                     "assets/icons/telemedicine.png",
                   ),
-                  SizedBox(height: 20),
+                  SizedBox(height: 20.h),
                   Text(
                     textAlign: TextAlign.center,
                     "Welcome Back!",
-                    style: TextStyle(
-                      fontWeight: FontWeight.bold,
-                      color: Colors.black,
-                      fontSize: 27,
+                    style: textTheme.titleLarge!.copyWith(
+                      color: AppTheme.white,
+                      fontSize: 27.sp,
                     ),
                   ),
-                  SizedBox(height: 20),
+                  SizedBox(height: 20.h),
 
-                  //! ==
                   Text(
                     textAlign: TextAlign.center,
                     "Login To Your Account to Continue",
-                    style: TextStyle(
-                      fontWeight: FontWeight.bold,
-                      color: Colors.black,
-                      fontSize: 18,
+                    style: textTheme.titleMedium!.copyWith(
+                      color: AppTheme.white,
                     ),
                   ),
-                  SizedBox(height: 20),
+                  SizedBox(height: 20.h),
 
                   CustomInputField(
                     title: "Enter Your E-mail",
                     controller: emailController,
                     validator: (name) => AppValidations.nameValidator(name),
                   ),
-                  SizedBox(height: 20),
+                  SizedBox(height: 20.h),
                   CustomInputField(
+                    isPasswordField: true,
                     title: "Enter Your Password",
                     controller: passwordController,
                     validator: (password) =>
                         AppValidations.nameValidator(password),
                   ),
-                  SizedBox(height: 20),
+                  SizedBox(height: 5.h),
+                  GestureDetector(
+                    onTap: () {},
+                    child: Text(
+                      textAlign: TextAlign.end,
+                      "Forgot Password ?",
+                      style: textTheme.titleMedium!.copyWith(
+                        color: AppTheme.aquaMint,
+                      ),
+                    ),
+                  ),
+                  SizedBox(height: 20.h),
                   CustomButton(
                     onPressed: () {
-                      if (globalKey.currentState!.validate()) {}
+                      if (globalKey.currentState!.validate()) {
+                        Navigator.of(
+                          context,
+                        ).pushReplacementNamed(HomeScreen.routeName);
+                      }
                     },
                     title: "Login",
-                    titleColor: Colors.black,
-                    bgColor: Colors.green,
+                    titleColor: AppTheme.black,
+                    bgColor: AppTheme.aquaMint,
                     width: double.infinity,
                   ),
+                  SizedBox(height: 8.h),
                   Row(
                     children: [
                       Text(
                         "Don't Have an Account ?",
                         style: textTheme.titleLarge!.copyWith(
-                          fontSize: 22,
-
-                          fontWeight: FontWeight.normal,
+                          color: AppTheme.grayF0,
                         ),
                       ),
                       TextButton(
@@ -97,7 +109,12 @@ class LoginScreen extends StatelessWidget {
                             context,
                           ).pushReplacementNamed(SignUpScreen.routeName);
                         },
-                        child: Text("SignUp", style: textTheme.titleLarge),
+                        child: Text(
+                          "SignUp",
+                          style: textTheme.titleLarge!.copyWith(
+                            color: AppTheme.aquaMint,
+                          ),
+                        ),
                       ),
                     ],
                   ),

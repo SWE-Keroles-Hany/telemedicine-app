@@ -10,6 +10,7 @@ class HomeAppBar extends StatelessWidget {
     final TextTheme textTheme = Theme.of(context).textTheme;
     return AppBar(
       backgroundColor: AppTheme.backGroundColor,
+
       actionsPadding: EdgeInsets.only(top: 4.h, right: 16.w),
       actions: [
         Icon(Icons.notifications, size: 28, color: AppTheme.white),
