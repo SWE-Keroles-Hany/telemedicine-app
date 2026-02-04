@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class AppTheme {
-  static const backGroundColor = Color(0xffF9FAFB);
+  static const backGroundColor = Color(0xff112120);
   static const white = Colors.white;
   static const black = Colors.black;
   static const yellow = Colors.yellow;
@@ -10,6 +11,13 @@ class AppTheme {
   static const Color mediumGray = Color(0xFF6A6A6A);
   static const Color lightGray = Color(0xFFF3F4F6);
   static const Color grayF0 = Color.fromARGB(255, 226, 219, 219);
+  static const Color teal_400 = Color(0xff2DD4BF);
+  static const Color aquaMint = Color(0xff19E6D4);
+  static const Color darkTeal = Color(0xFF133533);
+  static const Color sageGreen = Color(0xFF9DB8B6);
+  static const Color blueGray = Color(0xFF627188);
+  static const Color charcoalBlack = Color(0xFF1B1E1E);
+  static const Color darkGray = Color(0xFF272727);
 
   static ThemeData theme = ThemeData(
     appBarTheme: AppBarTheme(backgroundColor: backGroundColor),
@@ -21,32 +29,32 @@ class AppTheme {
     textTheme: TextTheme(
       labelSmall: TextStyle(
         color: white,
-        fontSize: 11,
+        fontSize: 11.sp,
         fontWeight: FontWeight.bold,
       ),
       labelMedium: TextStyle(
         color: mediumGray,
-        fontSize: 12,
+        fontSize: 12.sp,
         fontWeight: FontWeight.bold,
       ),
       labelLarge: TextStyle(
-        color: mediumGray,
-        fontSize: 14,
+        color: blueGray,
+        fontSize: 14.sp,
         fontWeight: FontWeight.bold,
       ),
       titleSmall: TextStyle(
         color: black,
-        fontSize: 14,
+        fontSize: 14.sp,
         fontWeight: FontWeight.bold,
       ),
       titleMedium: TextStyle(
         color: black,
-        fontSize: 16,
+        fontSize: 16.sp,
         fontWeight: FontWeight.bold,
       ),
       titleLarge: TextStyle(
         color: black,
-        fontSize: 22,
+        fontSize: 22.sp,
         fontWeight: FontWeight.bold,
       ),
     ),
