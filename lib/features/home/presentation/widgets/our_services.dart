@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:telemedicine/features/check%20ur%20self/presentation/screens/check_your_self_screen.dart';
 import 'package:telemedicine/features/home/presentation/widgets/custom_service_item.dart';
 
 class OurServices extends StatelessWidget {
@@ -38,10 +39,17 @@ class OurServices extends StatelessWidget {
           crossAxisSpacing: 10.w,
           mainAxisSpacing: 10.h,
         ),
-        itemBuilder: (context, index) => CustomServiceItem(
-          icon: services[index].icon,
-          serviceDescription: services[index].serviceTitle,
-          serviceTitle: services[index].serviceDescription,
+        itemBuilder: (context, index) => GestureDetector(
+          onTap: () {
+            if (index == 0) {
+              Navigator.of(context).pushNamed(CheckYourSelfScreen.routeName);
+            }
+          },
+          child: CustomServiceItem(
+            icon: services[index].icon,
+            serviceDescription: services[index].serviceTitle,
+            serviceTitle: services[index].serviceDescription,
+          ),
         ),
       ),
     );

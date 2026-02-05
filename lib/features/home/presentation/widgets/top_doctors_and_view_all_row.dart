@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:telemedicine/core/constants/constants_text.dart';
 import 'package:telemedicine/core/theme/app_theme.dart';
-import 'package:telemedicine/features/home/presentation/widgets/home_label.dart';
+import 'package:telemedicine/core/widgets/custom_app_label.dart';
 
 class TopDoctorsAndViewAllRow extends StatelessWidget {
   const TopDoctorsAndViewAllRow({super.key});
@@ -12,7 +12,7 @@ class TopDoctorsAndViewAllRow extends StatelessWidget {
     return Row(
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: [
-        HomeLabel(label: ConstantsText.topDoctors),
+        CustomAppLabel(label: ConstantsText.topDoctors),
         InkWell(
           onTap: () {},
           child: Text(

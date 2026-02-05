@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:telemedicine/core/constants/constants_text.dart';
 import 'package:telemedicine/core/theme/app_theme.dart';
+import 'package:telemedicine/core/widgets/custom_app_label.dart';
 import 'package:telemedicine/features/home/presentation/widgets/home_app_bar.dart';
-import 'package:telemedicine/features/home/presentation/widgets/home_label.dart';
 import 'package:telemedicine/features/home/presentation/widgets/our_services.dart';
 import 'package:telemedicine/features/home/presentation/widgets/top_doctors.dart';
 
@@ -25,7 +25,7 @@ class HomeScreen extends StatelessWidget {
         body: ListView(
           padding: EdgeInsets.all(16.r),
           children: [
-            HomeLabel(label: ConstantsText.ourServices),
+            CustomAppLabel(label: ConstantsText.ourServices),
             SizedBox(height: 10.h),
             SizedBox(height: 300.h, child: OurServices()),
             SizedBox(height: 15.h),

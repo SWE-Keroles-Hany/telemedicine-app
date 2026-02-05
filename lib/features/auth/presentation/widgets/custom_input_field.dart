@@ -9,12 +9,13 @@ class CustomInputField extends StatefulWidget {
     required this.title,
     required this.controller,
     required this.validator,
+    this.maxLines = 1,
   });
   final TextEditingController controller;
   final bool isPasswordField;
   final String title;
   final String? Function(String?)? validator;
-
+  final int maxLines;
   @override
   State<CustomInputField> createState() => _CustomInputFieldState();
 }
@@ -25,6 +26,7 @@ class _CustomInputFieldState extends State<CustomInputField> {
   Widget build(BuildContext context) {
     final TextTheme textTheme = Theme.of(context).textTheme;
     return TextFormField(
+      maxLines: widget.maxLines,
       style: TextStyle(color: AppTheme.white),
       autovalidateMode: AutovalidateMode.onUserInteraction,
       validator: widget.validator,
@@ -56,6 +58,7 @@ class _CustomInputFieldState extends State<CustomInputField> {
         filled: true,
         fillColor: AppTheme.darkTealGreen,
         border: border(),
+        focusedBorder: focusedBorder(),
         enabled: true,
         enabledBorder: border(),
         errorBorder: errorBorder(),
@@ -66,6 +69,13 @@ class _CustomInputFieldState extends State<CustomInputField> {
   OutlineInputBorder border() {
     return OutlineInputBorder(
       borderSide: BorderSide(color: Colors.grey, width: 1.5),
+      borderRadius: BorderRadius.circular(8),
+    );
+  }
+
+  OutlineInputBorder focusedBorder() {
+    return OutlineInputBorder(
+      borderSide: BorderSide(color: AppTheme.aquaMint, width: 1.5),
       borderRadius: BorderRadius.circular(8),
     );
   }

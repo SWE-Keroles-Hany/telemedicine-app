@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:telemedicine/core/routes/app_routes.dart';
 import 'package:telemedicine/core/theme/app_theme.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:telemedicine/features/auth/presentation/screens/login_screen.dart';
+import 'package:telemedicine/features/home/presentation/screens/home_screen.dart';
 
 void main() {
   runApp(const Telemedicine());
@@ -20,7 +20,7 @@ class Telemedicine extends StatelessWidget {
         theme: AppTheme.theme,
         debugShowCheckedModeBanner: false,
         routes: AppRoutes.routes,
-        initialRoute: LoginScreen.routeName,
+        initialRoute: HomeScreen.routeName,
       ),
     );
   }

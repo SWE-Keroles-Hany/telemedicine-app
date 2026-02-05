@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:telemedicine/core/theme/app_theme.dart';
 
-class HomeLabel extends StatelessWidget {
-  const HomeLabel({super.key, required this.label});
+class CustomAppLabel extends StatelessWidget {
+  const CustomAppLabel({super.key, required this.label});
   final String label;
 
   @override

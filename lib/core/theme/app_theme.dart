@@ -3,6 +3,8 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class AppTheme {
   static const backGroundColor = Color(0xff0E1817);
+  static const Color midnightTeal = Color(0xFF192424);
+  static const Color deepTealGreen = Color(0xFF133532);
 
   static const white = Colors.white;
   static const black = Colors.black;
