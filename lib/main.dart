@@ -1,11 +1,26 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:telemedicine/core/routes/app_routes.dart';
 import 'package:telemedicine/core/theme/app_theme.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:telemedicine/features/home/presentation/screens/home_screen.dart';
+import 'package:telemedicine/features/auth/presentation/cubit/auth_cubit.dart';
+import 'package:telemedicine/features/auth/presentation/screens/login_screen.dart';
+import 'package:firebase_core/firebase_core.dart';
+import 'package:telemedicine/firebase_options.dart';
+import 'package:telemedicine/core/si/service_locator.dart';
+import 'package:toastification/toastification.dart';
 
-void main() {
-  runApp(const Telemedicine());
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  init();
+  await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform);
+
+  runApp(
+    MultiBlocProvider(
+      providers: [BlocProvider(create: (context) => sl<AuthCubit>())],
+      child: const Telemedicine(),
+    ),
+  );
 }
 
 class Telemedicine extends StatelessWidget {
@@ -16,11 +31,13 @@ class Telemedicine extends StatelessWidget {
       designSize: Size(360, 690),
       minTextAdapt: true,
       splitScreenMode: true,
-      builder: (_, _) => MaterialApp(
-        theme: AppTheme.theme,
-        debugShowCheckedModeBanner: false,
-        routes: AppRoutes.routes,
-        initialRoute: HomeScreen.routeName,
+      builder: (_, _) => ToastificationWrapper(
+        child: MaterialApp(
+          theme: AppTheme.theme,
+          debugShowCheckedModeBanner: false,
+          routes: AppRoutes.routes,
+          initialRoute: LoginScreen.routeName,
+        ),
       ),
     );
   }

@@ -30,26 +30,24 @@ class OurServices extends StatelessWidget {
   ];
   @override
   Widget build(BuildContext context) {
-    return Expanded(
-      child: GridView.builder(
-        physics: NeverScrollableScrollPhysics(),
-        itemCount: 4,
-        gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-          crossAxisCount: 2,
-          crossAxisSpacing: 10.w,
-          mainAxisSpacing: 10.h,
-        ),
-        itemBuilder: (context, index) => GestureDetector(
-          onTap: () {
-            if (index == 0) {
-              Navigator.of(context).pushNamed(CheckYourSelfScreen.routeName);
-            }
-          },
-          child: CustomServiceItem(
-            icon: services[index].icon,
-            serviceDescription: services[index].serviceTitle,
-            serviceTitle: services[index].serviceDescription,
-          ),
+    return GridView.builder(
+      physics: NeverScrollableScrollPhysics(),
+      itemCount: 4,
+      gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+        crossAxisCount: 2,
+        crossAxisSpacing: 10.w,
+        mainAxisSpacing: 10.h,
+      ),
+      itemBuilder: (context, index) => GestureDetector(
+        onTap: () {
+          if (index == 0) {
+            Navigator.of(context).pushNamed(CheckYourSelfScreen.routeName);
+          }
+        },
+        child: CustomServiceItem(
+          icon: services[index].icon,
+          serviceDescription: services[index].serviceTitle,
+          serviceTitle: services[index].serviceDescription,
         ),
       ),
     );

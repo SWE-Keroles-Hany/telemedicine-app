@@ -26,7 +26,10 @@ class _CustomInputFieldState extends State<CustomInputField> {
   Widget build(BuildContext context) {
     final TextTheme textTheme = Theme.of(context).textTheme;
     return TextFormField(
+      // autofocus: true,
+      canRequestFocus: true,
       maxLines: widget.maxLines,
+      focusNode: FocusNode(descendantsAreTraversable: true),
       style: TextStyle(color: AppTheme.white),
       autovalidateMode: AutovalidateMode.onUserInteraction,
       validator: widget.validator,
