@@ -1,7 +1,6 @@
 // presentation/cubit/auth_cubit.dart
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:dartz/dartz.dart';
-import 'package:telemedicine/core/error/auth_failure.dart';
+
 import 'package:telemedicine/features/auth/domain/use_cases/login.dart';
 import 'package:telemedicine/features/auth/domain/use_cases/register.dart';
 import 'package:telemedicine/features/auth/presentation/cubit/auth_states.dart';
@@ -19,29 +18,23 @@ class AuthCubit extends Cubit<AuthState> {
   Future<void> login(String email, String password) async {
     emit(LoginLoading());
 
-    final Either<AuthFailure, UserEntity> result = await loginUseCase(
-      email: email,
-      password: password,
-    );
+    final result = await loginUseCase(email: email, password: password);
 
     result.fold(
       (failure) => emit(LoginError(failure.message)),
-      (user) => emit(LoginSuccess(user)),
+      (_) => emit(LoginSuccess()),
     );
   }
 
   //! REGISTER
-  Future<void> register(String email, String password) async {
+  Future<void> register({required UserEntity user}) async {
     emit(RegisterLoading());
 
-    final Either<AuthFailure, UserEntity> result = await registerUseCase(
-      email: email,
-      password: password,
-    );
+    final result = await registerUseCase(user: user);
 
     result.fold(
       (failure) => emit(RegisterError(failure.message)),
-      (user) => emit(RegisterSuccess(user)),
+      (user) => emit(RegisterSuccess()),
     );
   }
 }

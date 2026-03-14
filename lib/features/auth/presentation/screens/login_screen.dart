@@ -6,7 +6,6 @@ import 'package:telemedicine/core/theme/app_theme.dart';
 import 'package:telemedicine/core/utils/ui_utils.dart';
 import 'package:telemedicine/features/auth/presentation/cubit/auth_cubit.dart';
 import 'package:telemedicine/features/auth/presentation/cubit/auth_states.dart';
-import 'package:telemedicine/features/auth/presentation/screens/login_screen.dart';
 import 'package:telemedicine/features/auth/presentation/screens/signup_screen.dart';
 import 'package:telemedicine/features/auth/presentation/widgets/custom_button.dart';
 import 'package:telemedicine/features/auth/presentation/widgets/custom_input_field.dart';

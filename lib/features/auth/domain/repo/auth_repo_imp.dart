@@ -1,7 +1,6 @@
 // data/repositories/auth_repository_impl.dart
 import 'package:dartz/dartz.dart';
-import 'package:telemedicine/core/error/auth_failure.dart';
-import 'package:telemedicine/core/error/firbase_errors.dart';
+import 'package:telemedicine/core/error/failure.dart';
 import 'package:telemedicine/features/auth/data/data_source/auth_remote_data_source.dart';
 import 'package:telemedicine/features/auth/data/mapper/user_model_mapper.dart';
 import 'package:telemedicine/features/auth/data/repo/auth_repo.dart';
@@ -13,36 +12,25 @@ class AuthRepositoryImpl implements AuthRepository {
   AuthRepositoryImpl(this.remoteDataSource);
 
   @override
-  Future<Either<AuthFailure, UserEntity>> login({
+  Future<Either<Failure, void>> login({
     required String email,
     required String password,
   }) async {
     try {
-      final userModel = await remoteDataSource.login(
-        email: email,
-        password: password,
-      );
-      return Right(userModel.toEntity());
+      await remoteDataSource.login(email: email, password: password);
+      return Right(null);
     } catch (e) {
-      final error = FirebaseAuthErrors.getMessage(e.toString());
-
-      return Left(AuthFailure(error));
+      return Left(Failure(message: e.toString()));
     }
   }
 
   @override
-  Future<Either<AuthFailure, UserEntity>> register({
-    required String email,
-    required String password,
-  }) async {
+  Future<Either<Failure, void>> register({required UserEntity user}) async {
     try {
-      final userModel = await remoteDataSource.register(
-        email: email,
-        password: password,
-      );
-      return Right(userModel.toEntity());
+      await remoteDataSource.register(user: user.toModel());
+      return Right(null);
     } catch (e) {
-      return Left(AuthFailure(e.toString()));
+      return Left(Failure(message: e.toString()));
     }
   }
 }

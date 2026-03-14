@@ -11,6 +11,8 @@ import 'package:telemedicine/features/auth/presentation/widgets/custom_button.da
 import 'package:telemedicine/features/auth/presentation/widgets/custom_input_field.dart';
 import 'package:telemedicine/features/home/presentation/screens/home_screen.dart';
 
+import '../../domain/entities/user_entity.dart';
+
 class SignUpScreen extends StatelessWidget {
   static const String routeName = "SignUpScreen";
   SignUpScreen({super.key});
@@ -104,8 +106,17 @@ class SignUpScreen extends StatelessWidget {
                         onPressed: () async {
                           if (globalKey.currentState!.validate()) {
                             await context.read<AuthCubit>().register(
-                              emailController.text,
-                              passwordController.text,
+                              user: UserEntity(
+                                address: "",
+                                allergies: "",
+                                bloodType: "",
+                                email: "",
+                                existingConditions: "",
+                                fullName: "",
+                                gender: "",
+                                password: "",
+                                phoneNumber: "",
+                              ),
                             );
                           }
                         },

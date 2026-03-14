@@ -3,54 +3,50 @@
 import 'dart:developer';
 
 import 'package:firebase_auth/firebase_auth.dart';
-import '../../../../core/error/firbase_errors.dart';
+import 'package:telemedicine/core/error/failure.dart';
+import 'package:telemedicine/core/network/api_constants.dart';
+import 'package:telemedicine/core/network/api_services.dart';
 import '../models/user_model.dart';
 import 'auth_remote_data_source.dart';
 
-class AuthFirebaseDataSource implements AuthRemoteDataSource {
-  final FirebaseAuth _firebaseAuth;
+class AuthAPIDataSource implements AuthRemoteDataSource {
+  final APIServices ApiServices;
 
-  AuthFirebaseDataSource(this._firebaseAuth);
+  AuthAPIDataSource(this.ApiServices);
 
   @override
-  Future<UserModel> login({
-    required String email,
-    required String password,
-  }) async {
+  Future<void> login({required String email, required String password}) async {
     try {
-      final result = await _firebaseAuth.signInWithEmailAndPassword(
-        email: email,
-        password: password,
+      await ApiServices.post(
+        endPoint: APICONSTANTS.login,
+        queryParams: {"email": email, "password": password},
       );
-
-      final user = result.user!;
-      return UserModel(uid: user.uid, email: user.email ?? '');
-    } on FirebaseAuthException catch (e) {
-      log(e.toString());
-      throw Exception('Login failed: ${e.message}');
     } catch (e) {
-      log(e.toString());
-      throw Exception('Login failed: ${e.toString()}');
+      throw Failure(message: e.toString());
     }
   }
 
   @override
-  Future<UserModel> register({
-    required String email,
-    required String password,
-  }) async {
+  Future<void> register({required UserModel user}) async {
     try {
-      final result = await _firebaseAuth.createUserWithEmailAndPassword(
-        email: email,
-        password: password,
+      await ApiServices.post(
+        endPoint: APICONSTANTS.login,
+        queryParams: {
+          "email": user.email,
+          "password": user.password,
+          "address": user.address,
+          "allergies": user.allergies,
+          "existingConditions": user.existingConditions,
+          "phoneNumber": user.phoneNumber,
+          "gender": user.gender,
+          "fullName": user.fullName,
+          "bloodType": user.bloodType,
+        },
       );
-
-      final user = result.user!;
-      return UserModel(uid: user.uid, email: user.email ?? '');
-    } on FirebaseAuthException catch (errorCode) {
-      throw Exception(errorCode.code);
-    } catch (errorCode) {
-      throw Exception(errorCode.toString());
+    } on Failure catch (error) {
+      throw Failure(message: error.message);
+    } catch (_) {
+      throw Failure(message: "Some Thing Went Wrong");
     }
   }
 }

@@ -1,6 +1,23 @@
 class UserModel {
-  final String uid;
+  final String fullName;
   final String email;
+  final String password;
+  final String phoneNumber;
+  final String gender;
+  final String address;
+  final String bloodType;
+  final String allergies;
+  final String existingConditions;
 
-  UserModel({required this.uid, required this.email});
+  UserModel({
+    required this.email,
+    required this.fullName,
+    required this.password,
+    required this.phoneNumber,
+    required this.gender,
+    required this.address,
+    required this.bloodType,
+    required this.allergies,
+    required this.existingConditions,
+  });
 }

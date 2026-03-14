@@ -41,6 +41,9 @@ dependencies:
   flutter_bloc: ^9.1.1
   get_it: ^9.2.0
   toastification: ^3.0.3
+  flutter_launcher_icons: ^0.14.4
+  dio: ^5.9.2
+  shared_preferences: ^2.5.4
 
 dev_dependencies:
   flutter_test:

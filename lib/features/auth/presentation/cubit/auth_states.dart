@@ -11,9 +11,7 @@ class LoginInitial extends LoginState {}
 class LoginLoading extends LoginState {}
 
 class LoginSuccess extends LoginState {
-  final UserEntity user;
-
-  LoginSuccess(this.user);
+  LoginSuccess();
 }
 
 class LoginError extends LoginState {
@@ -30,9 +28,7 @@ class RegisterInitial extends RegisterState {}
 class RegisterLoading extends RegisterState {}
 
 class RegisterSuccess extends RegisterState {
-  final UserEntity user;
-
-  RegisterSuccess(this.user);
+  RegisterSuccess();
 }
 
 class RegisterError extends RegisterState {

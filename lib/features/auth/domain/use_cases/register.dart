@@ -1,7 +1,8 @@
 // domain/usecases/register_usecase.dart
 import 'package:dartz/dartz.dart';
-import 'package:telemedicine/core/error/auth_failure.dart';
+import 'package:telemedicine/core/error/failure.dart';
 import 'package:telemedicine/features/auth/data/repo/auth_repo.dart';
+
 import '../entities/user_entity.dart';
 
 class RegisterUseCase {
@@ -9,14 +10,11 @@ class RegisterUseCase {
 
   RegisterUseCase(this.repository);
 
-  Future<Either<AuthFailure, UserEntity>> call({
-    required String email,
-    required String password,
-  }) async {
+  Future<Either<Failure, void>> call({required UserEntity user}) async {
     try {
-      return await repository.register(email: email, password: password);
+      return await repository.register(user: user);
     } catch (e) {
-      return Left(AuthFailure(e.toString()));
+      return Left(Failure(message: e.toString()));
     }
   }
 }

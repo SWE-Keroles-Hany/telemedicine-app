@@ -25,9 +25,7 @@ Future<void> init() async {
   sl.registerLazySingleton<AuthRepository>(() => AuthRepositoryImpl(sl()));
 
   //! ------------------ Data Source ------------------
-  sl.registerLazySingleton<AuthRemoteDataSource>(
-    () => AuthFirebaseDataSource(sl()),
-  );
+  sl.registerLazySingleton<AuthRemoteDataSource>(() => AuthAPIDataSource(sl()));
 
   //! ------------------ Firebase Auth ------------------
   sl.registerLazySingleton(() => FirebaseAuth.instance);
