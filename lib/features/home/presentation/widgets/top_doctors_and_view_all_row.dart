@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:telemedicine/core/constants/constants_text.dart';
-import 'package:telemedicine/core/theme/app_theme.dart';
+import 'package:telemedicine/core/theme/color_manger.dart';
 import 'package:telemedicine/core/widgets/custom_app_label.dart';
 
 class TopDoctorsAndViewAllRow extends StatelessWidget {
@@ -17,7 +17,7 @@ class TopDoctorsAndViewAllRow extends StatelessWidget {
           onTap: () {},
           child: Text(
             ConstantsText.viewAll,
-            style: textTheme.titleMedium!.copyWith(color: AppTheme.aquaMint),
+            style: textTheme.titleMedium!.copyWith(color: ColorManger.aquaMint),
           ),
         ),
       ],

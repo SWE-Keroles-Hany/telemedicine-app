@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:telemedicine/core/helper/validations/app_validations.dart';
-import 'package:telemedicine/core/theme/app_theme.dart';
+import 'package:telemedicine/core/theme/color_manger.dart';
 import 'package:telemedicine/core/widgets/custom_app_label.dart';
 import 'package:telemedicine/features/auth/presentation/widgets/custom_button.dart';
 import 'package:telemedicine/features/auth/presentation/widgets/custom_input_field.dart';
@@ -26,11 +26,11 @@ class _CheckYourSelfScreenState extends State<CheckYourSelfScreen> {
     return SafeArea(
       child: Scaffold(
         appBar: AppBar(
-          foregroundColor: AppTheme.white,
+          foregroundColor: ColorManger.white,
           centerTitle: true,
           title: Text(
             "Check Yourself",
-            style: textTheme.titleLarge!.copyWith(color: AppTheme.white),
+            style: textTheme.titleLarge!.copyWith(color: ColorManger.white),
           ),
         ),
         body: Padding(
@@ -52,7 +52,7 @@ class _CheckYourSelfScreenState extends State<CheckYourSelfScreen> {
                   Text(
                     "4 Selected",
                     style: textTheme.titleMedium!.copyWith(
-                      color: AppTheme.aquaMint,
+                      color: ColorManger.aquaMint,
                     ),
                   ),
                 ],
@@ -76,8 +76,8 @@ class _CheckYourSelfScreenState extends State<CheckYourSelfScreen> {
               CustomButton(
                 onPressed: () {},
                 title: "Analyze Symptoms",
-                titleColor: AppTheme.black,
-                bgColor: AppTheme.aquaMint,
+                titleColor: ColorManger.black,
+                bgColor: ColorManger.aquaMint,
                 width: double.infinity,
               ),
             ],

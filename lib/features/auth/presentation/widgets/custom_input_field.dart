@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:telemedicine/core/theme/app_theme.dart';
+import 'package:telemedicine/core/theme/color_manger.dart';
 
 class CustomInputField extends StatefulWidget {
   const CustomInputField({
@@ -30,7 +30,7 @@ class _CustomInputFieldState extends State<CustomInputField> {
       canRequestFocus: true,
       maxLines: widget.maxLines,
       focusNode: FocusNode(descendantsAreTraversable: true),
-      style: TextStyle(color: AppTheme.white),
+      style: TextStyle(color: ColorManger.white),
       autovalidateMode: AutovalidateMode.onUserInteraction,
       validator: widget.validator,
       controller: widget.controller,
@@ -39,13 +39,13 @@ class _CustomInputFieldState extends State<CustomInputField> {
         errorStyle: textTheme.labelMedium!.copyWith(
           fontSize: 16.sp,
           fontWeight: FontWeight.w500,
-          color: AppTheme.red,
+          color: ColorManger.red,
         ),
         suffixIcon: widget.isPasswordField
             ? IconButton(
                 icon: Icon(
                   showPassword ? Icons.visibility_off : Icons.visibility,
-                  color: AppTheme.red,
+                  color: ColorManger.red,
                 ),
                 onPressed: () {
                   setState(() {
@@ -56,10 +56,10 @@ class _CustomInputFieldState extends State<CustomInputField> {
             : null,
         hint: Text(
           widget.title,
-          style: textTheme.titleMedium!.copyWith(color: AppTheme.mediumGray),
+          style: textTheme.titleMedium!.copyWith(color: ColorManger.mediumGray),
         ),
         filled: true,
-        fillColor: AppTheme.darkTealGreen,
+        fillColor: ColorManger.darkTealGreen,
         border: border(),
         focusedBorder: focusedBorder(),
         enabled: true,
@@ -78,14 +78,14 @@ class _CustomInputFieldState extends State<CustomInputField> {
 
   OutlineInputBorder focusedBorder() {
     return OutlineInputBorder(
-      borderSide: BorderSide(color: AppTheme.aquaMint, width: 1.5),
+      borderSide: BorderSide(color: ColorManger.aquaMint, width: 1.5),
       borderRadius: BorderRadius.circular(8),
     );
   }
 
   OutlineInputBorder errorBorder() {
     return OutlineInputBorder(
-      borderSide: BorderSide(color: AppTheme.red, width: 1.5),
+      borderSide: BorderSide(color: ColorManger.red, width: 1.5),
       borderRadius: BorderRadius.circular(8),
     );
   }

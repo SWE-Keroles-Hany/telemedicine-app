@@ -2,32 +2,51 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:telemedicine/core/helper/validations/app_validations.dart';
-import 'package:telemedicine/core/theme/app_theme.dart';
+import 'package:telemedicine/core/theme/color_manger.dart';
 import 'package:telemedicine/core/utils/ui_utils.dart';
 import 'package:telemedicine/features/auth/presentation/cubit/auth_cubit.dart';
 import 'package:telemedicine/features/auth/presentation/cubit/auth_states.dart';
 import 'package:telemedicine/features/auth/presentation/screens/login_screen.dart';
+import 'package:telemedicine/features/auth/presentation/widgets/blood_type_dropdown.dart';
 import 'package:telemedicine/features/auth/presentation/widgets/custom_button.dart';
 import 'package:telemedicine/features/auth/presentation/widgets/custom_input_field.dart';
 import 'package:telemedicine/features/home/presentation/screens/home_screen.dart';
 
 import '../../domain/entities/user_entity.dart';
 
-class SignUpScreen extends StatelessWidget {
+class SignUpScreen extends StatefulWidget {
   static const String routeName = "SignUpScreen";
-  SignUpScreen({super.key});
+  const SignUpScreen({super.key});
+
+  @override
+  State<SignUpScreen> createState() => _SignUpScreenState();
+}
+
+class _SignUpScreenState extends State<SignUpScreen> {
   final TextEditingController emailController = TextEditingController();
   final TextEditingController nameController = TextEditingController();
   final TextEditingController phoneController = TextEditingController();
   final TextEditingController addressController = TextEditingController();
   final TextEditingController passwordController = TextEditingController();
   final globalKey = GlobalKey<FormState>();
+  String? selectedBloodType;
+
+  @override
+  void dispose() {
+    emailController.dispose();
+    nameController.dispose();
+    phoneController.dispose();
+    addressController.dispose();
+    passwordController.dispose();
+    super.dispose();
+  }
+
   @override
   Widget build(BuildContext context) {
     final textTheme = Theme.of(context).textTheme;
     return SafeArea(
       child: Scaffold(
-        backgroundColor: AppTheme.backGroundColor,
+        backgroundColor: ColorManger.backGroundColor,
         body: Padding(
           padding: EdgeInsets.all(18.r),
           child: SingleChildScrollView(
@@ -37,14 +56,12 @@ class SignUpScreen extends StatelessWidget {
                 listener: (context, state) {
                   if (state is RegisterError) {
                     UiUtils.hideLoading(context);
-
                     UiUtils.showMessage(
                       message: "Some Thing Went Wrong, Try Again",
                       isErrorMessage: true,
                     );
                   } else if (state is RegisterSuccess) {
                     UiUtils.hideLoading(context);
-
                     Navigator.of(
                       context,
                     ).pushReplacementNamed(HomeScreen.routeName);
@@ -69,7 +86,7 @@ class SignUpScreen extends StatelessWidget {
                         "Create Account",
                         style: textTheme.titleLarge!.copyWith(
                           fontSize: 26.sp,
-                          color: AppTheme.white,
+                          color: ColorManger.white,
                         ),
                       ),
                       SizedBox(height: 25.h),
@@ -102,27 +119,35 @@ class SignUpScreen extends StatelessWidget {
                             AppValidations.addressValidator(address),
                       ),
                       SizedBox(height: 15.h),
+                      BloodTypeDropdown(
+                        key: ValueKey(selectedBloodType),
+                        value: selectedBloodType,
+                        onChanged: (value) {
+                          setState(() => selectedBloodType = value);
+                        },
+                      ),
+                      SizedBox(height: 15.h),
                       CustomButton(
                         onPressed: () async {
                           if (globalKey.currentState!.validate()) {
                             await context.read<AuthCubit>().register(
                               user: UserEntity(
-                                address: "",
+                                address: addressController.text.trim(),
                                 allergies: "",
-                                bloodType: "",
-                                email: "",
+                                bloodType: selectedBloodType ?? "",
+                                email: emailController.text.trim(),
                                 existingConditions: "",
-                                fullName: "",
+                                fullName: nameController.text.trim(),
                                 gender: "",
-                                password: "",
-                                phoneNumber: "",
+                                password: passwordController.text.trim(),
+                                phoneNumber: phoneController.text.trim(),
                               ),
                             );
                           }
                         },
                         title: "SignUp",
-                        titleColor: AppTheme.black,
-                        bgColor: AppTheme.aquaMint,
+                        titleColor: ColorManger.black,
+                        bgColor: ColorManger.aquaMint,
                         width: double.infinity,
                       ),
 
@@ -131,7 +156,7 @@ class SignUpScreen extends StatelessWidget {
                           Text(
                             "Do you Have an Account ?",
                             style: textTheme.titleLarge!.copyWith(
-                              color: AppTheme.grayF0,
+                              color: ColorManger.grayF0,
                             ),
                           ),
                           TextButton(
@@ -143,7 +168,7 @@ class SignUpScreen extends StatelessWidget {
                             child: Text(
                               "Login",
                               style: textTheme.titleLarge!.copyWith(
-                                color: AppTheme.aquaMint,
+                                color: ColorManger.aquaMint,
                               ),
                             ),
                           ),

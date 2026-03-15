@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:telemedicine/core/helper/validations/app_validations.dart';
-import 'package:telemedicine/core/theme/app_theme.dart';
+import 'package:telemedicine/core/theme/color_manger.dart';
 import 'package:telemedicine/core/utils/ui_utils.dart';
 import 'package:telemedicine/features/auth/presentation/cubit/auth_cubit.dart';
 import 'package:telemedicine/features/auth/presentation/cubit/auth_states.dart';
@@ -23,7 +23,7 @@ class LoginScreen extends StatelessWidget {
     final height = MediaQuery.sizeOf(context).height;
     return SafeArea(
       child: Scaffold(
-        backgroundColor: AppTheme.backGroundColor,
+        backgroundColor: ColorManger.backGroundColor,
         body: Padding(
           padding: EdgeInsets.all(18.r),
           child: SingleChildScrollView(
@@ -64,7 +64,7 @@ class LoginScreen extends StatelessWidget {
                         textAlign: TextAlign.center,
                         "Welcome Back!",
                         style: textTheme.titleLarge!.copyWith(
-                          color: AppTheme.white,
+                          color: ColorManger.white,
                           fontSize: 27.sp,
                         ),
                       ),
@@ -74,7 +74,7 @@ class LoginScreen extends StatelessWidget {
                         textAlign: TextAlign.center,
                         "Login To Your Account to Continue",
                         style: textTheme.titleMedium!.copyWith(
-                          color: AppTheme.white,
+                          color: ColorManger.white,
                         ),
                       ),
                       SizedBox(height: 20.h),
@@ -103,8 +103,8 @@ class LoginScreen extends StatelessWidget {
                           }
                         },
                         title: "Login",
-                        titleColor: AppTheme.black,
-                        bgColor: AppTheme.aquaMint,
+                        titleColor: ColorManger.black,
+                        bgColor: ColorManger.aquaMint,
                         width: double.infinity,
                       ),
                       SizedBox(height: 20.h),
@@ -115,7 +115,7 @@ class LoginScreen extends StatelessWidget {
                             "Don't Have an Account ?",
                             style: textTheme.titleLarge!.copyWith(
                               fontSize: 20.sp,
-                              color: AppTheme.grayF0,
+                              color: ColorManger.grayF0,
                             ),
                           ),
                           TextButton(
@@ -127,7 +127,7 @@ class LoginScreen extends StatelessWidget {
                             child: Text(
                               "SingUp",
                               style: textTheme.titleLarge!.copyWith(
-                                color: AppTheme.aquaMint,
+                                color: ColorManger.aquaMint,
                                 fontSize: 20.sp,
                               ),
                             ),

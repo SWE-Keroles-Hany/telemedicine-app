@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:telemedicine/core/theme/app_theme.dart';
+import 'package:telemedicine/core/theme/color_manger.dart';
 
 class DoctorCard extends StatelessWidget {
   const DoctorCard({
@@ -22,9 +22,9 @@ class DoctorCard extends StatelessWidget {
       width: MediaQuery.sizeOf(context).width * 0.45,
       padding: EdgeInsets.all(16),
       decoration: BoxDecoration(
-        border: Border.all(color: AppTheme.darkGray),
+        border: Border.all(color: ColorManger.darkGray),
         borderRadius: BorderRadius.circular(32.r),
-        color: AppTheme.charcoalBlack,
+        color: ColorManger.charcoalBlack,
       ),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
@@ -42,14 +42,14 @@ class DoctorCard extends StatelessWidget {
 
           Text(
             "Dr.$doctorName",
-            style: textTheme.titleMedium!.copyWith(color: AppTheme.white),
+            style: textTheme.titleMedium!.copyWith(color: ColorManger.white),
           ),
 
           SizedBox(height: 4.h),
           Text(
             doctorField,
             style: textTheme.titleMedium!.copyWith(
-              color: AppTheme.mediumGray,
+              color: ColorManger.mediumGray,
               fontWeight: FontWeight.normal,
             ),
           ),
@@ -59,11 +59,13 @@ class DoctorCard extends StatelessWidget {
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              Icon(Icons.star, color: AppTheme.yellow),
+              Icon(Icons.star, color: ColorManger.yellow),
               SizedBox(width: 8.w),
               Text(
                 "$doctorRate",
-                style: textTheme.titleMedium!.copyWith(color: AppTheme.white),
+                style: textTheme.titleMedium!.copyWith(
+                  color: ColorManger.white,
+                ),
               ),
             ],
           ),

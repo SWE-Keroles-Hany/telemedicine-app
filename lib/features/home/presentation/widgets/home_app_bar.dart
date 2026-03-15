@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:telemedicine/core/theme/app_theme.dart';
+import 'package:telemedicine/core/theme/color_manger.dart';
 
 class HomeAppBar extends StatelessWidget {
   const HomeAppBar({super.key});
@@ -9,13 +9,13 @@ class HomeAppBar extends StatelessWidget {
   Widget build(BuildContext context) {
     final TextTheme textTheme = Theme.of(context).textTheme;
     return AppBar(
-      backgroundColor: AppTheme.backGroundColor,
+      backgroundColor: ColorManger.backGroundColor,
 
       actionsPadding: EdgeInsets.only(top: 4.h, right: 16.w),
       actions: [
-        Icon(Icons.notifications, size: 28, color: AppTheme.white),
+        Icon(Icons.notifications, size: 28, color: ColorManger.white),
         SizedBox(width: 16),
-        Icon(Icons.settings, size: 28.r, color: AppTheme.white),
+        Icon(Icons.settings, size: 28.r, color: ColorManger.white),
       ],
       title: Padding(
         padding: EdgeInsets.only(top: 4.h),
@@ -24,11 +24,13 @@ class HomeAppBar extends StatelessWidget {
           children: [
             Text(
               "GOOD MORNING",
-              style: textTheme.labelLarge!.copyWith(color: AppTheme.aquaMint),
+              style: textTheme.labelLarge!.copyWith(
+                color: ColorManger.aquaMint,
+              ),
             ),
             Text(
               "Keroles",
-              style: textTheme.labelLarge!.copyWith(color: AppTheme.white),
+              style: textTheme.labelLarge!.copyWith(color: ColorManger.white),
             ),
           ],
         ),

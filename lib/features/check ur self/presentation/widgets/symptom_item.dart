@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:telemedicine/core/theme/app_theme.dart';
+import 'package:telemedicine/core/theme/color_manger.dart';
 
 class SymptomItem extends StatelessWidget {
   const SymptomItem({
@@ -18,10 +18,12 @@ class SymptomItem extends StatelessWidget {
     final TextTheme textTheme = Theme.of(context).textTheme;
     return Container(
       decoration: BoxDecoration(
-        color: isSelected ? AppTheme.deepTealGreen : AppTheme.midnightTeal,
+        color: isSelected
+            ? ColorManger.deepTealGreen
+            : ColorManger.midnightTeal,
         borderRadius: BorderRadius.circular(16.r),
         border: Border.all(
-          color: isSelected ? AppTheme.aquaMint : AppTheme.blueGray,
+          color: isSelected ? ColorManger.aquaMint : ColorManger.blueGray,
           width: 1.5,
         ),
       ),
@@ -37,7 +39,7 @@ class SymptomItem extends StatelessWidget {
           SizedBox(width: 15.w),
           Text(
             title,
-            style: textTheme.titleMedium!.copyWith(color: AppTheme.white),
+            style: textTheme.titleMedium!.copyWith(color: ColorManger.white),
           ),
         ],
       ),

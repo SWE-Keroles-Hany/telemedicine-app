@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:telemedicine/core/theme/app_theme.dart';
+import 'package:telemedicine/core/theme/color_manger.dart';
 
 class CustomServiceItem extends StatelessWidget {
   const CustomServiceItem({
@@ -19,20 +19,20 @@ class CustomServiceItem extends StatelessWidget {
     return Container(
       padding: EdgeInsets.all(16),
       decoration: BoxDecoration(
-        border: Border.all(color: AppTheme.darkGray),
+        border: Border.all(color: ColorManger.darkGray),
         borderRadius: BorderRadius.circular(32),
-        color: AppTheme.charcoalBlack,
+        color: ColorManger.charcoalBlack,
       ),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [
-          Icon(icon, color: AppTheme.aquaMint, size: 40),
+          Icon(icon, color: ColorManger.aquaMint, size: 40),
           SizedBox(height: 20),
           Text(
             textAlign: TextAlign.center,
             serviceTitle,
             style: textTheme.titleLarge!.copyWith(
-              color: AppTheme.white,
+              color: ColorManger.white,
               fontSize: 18,
             ),
           ),
@@ -40,7 +40,7 @@ class CustomServiceItem extends StatelessWidget {
 
           Text(
             serviceDescription,
-            style: textTheme.titleSmall!.copyWith(color: AppTheme.blueGray),
+            style: textTheme.titleSmall!.copyWith(color: ColorManger.blueGray),
           ),
         ],
       ),

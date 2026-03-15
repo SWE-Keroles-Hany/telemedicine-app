@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:telemedicine/core/theme/app_theme.dart';
+import 'package:telemedicine/core/theme/color_manger.dart';
 import 'package:toastification/toastification.dart';
 
 class UiUtils {
@@ -14,7 +14,7 @@ class UiUtils {
       autoCloseDuration: const Duration(seconds: 3),
       title: Text(
         message,
-        style: TextStyle(color: AppTheme.white, fontSize: 18.sp),
+        style: TextStyle(color: ColorManger.white, fontSize: 18.sp),
       ),
       // progressBarTheme: true,
       alignment: Alignment.topRight,
@@ -23,11 +23,11 @@ class UiUtils {
       icon: Icon(
         isErrorMessage ? Icons.error : Icons.check_circle,
         size: 28,
-        color: isErrorMessage ? AppTheme.yellow : AppTheme.white,
+        color: isErrorMessage ? ColorManger.yellow : ColorManger.white,
       ),
       showIcon: true,
       // primaryColor: Colors.amberAccent,
-      backgroundColor: isErrorMessage ? AppTheme.red : AppTheme.black,
+      backgroundColor: isErrorMessage ? ColorManger.red : ColorManger.black,
       // foregroundColor: Colors.black,
       padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 16),
       margin: const EdgeInsets.symmetric(horizontal: 12, vertical: 8),
@@ -58,28 +58,6 @@ class UiUtils {
     );
   }
 
-  // static Widget showLoaidng() {
-  //   return Card(
-  //     elevation: 5.0,
-  //     child: Padding(
-  //       padding: const EdgeInsets.all(8.0),
-  //       child: CircularWidgetLoading(
-  //         // appearingDuration: Duration(seconds: 5),
-  //         dotColor: AppTheme.w,
-  //         dotCount: 100,
-  //         animating: true,
-  //         sizeCurve: Curves.ease,
-
-  //         loading: true,
-  //         child: Padding(
-  //           padding: EdgeInsetsGeometry.all(20),
-  //           child: ListTile(leading: Text('Counter')),
-  //         ),
-  //       ),
-  //     ),
-  //   );
-  // }
-
   static Future<dynamic> showLoadingIndicator(BuildContext context) {
     return showDialog(
       context: context,
@@ -91,7 +69,7 @@ class UiUtils {
               backgroundColor: Colors.transparent,
               content: Center(
                 child: CircularProgressIndicator(
-                  color: AppTheme.aquaMint,
+                  color: ColorManger.aquaMint,
 
                   // value: 5,
                 ),

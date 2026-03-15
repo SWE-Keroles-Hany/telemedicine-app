@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:telemedicine/core/constants/constants_text.dart';
-import 'package:telemedicine/core/theme/app_theme.dart';
+import 'package:telemedicine/core/theme/color_manger.dart';
 import 'package:telemedicine/core/widgets/custom_app_label.dart';
 import 'package:telemedicine/features/home/presentation/widgets/home_app_bar.dart';
 import 'package:telemedicine/features/home/presentation/widgets/our_services.dart';
@@ -17,7 +17,7 @@ class HomeScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return SafeArea(
       child: Scaffold(
-        backgroundColor: AppTheme.backGroundColor,
+        backgroundColor: ColorManger.backGroundColor,
         appBar: PreferredSize(
           preferredSize: Size.fromHeight(56.h),
           child: const HomeAppBar(),

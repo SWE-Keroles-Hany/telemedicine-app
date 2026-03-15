@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:telemedicine/core/theme/app_theme.dart';
+import 'package:telemedicine/core/theme/color_manger.dart';
 
 class CustomAppLabel extends StatelessWidget {
   const CustomAppLabel({super.key, required this.label});
@@ -10,7 +10,7 @@ class CustomAppLabel extends StatelessWidget {
     final TextTheme textTheme = Theme.of(context).textTheme;
     return Text(
       label,
-      style: textTheme.titleLarge!.copyWith(color: AppTheme.sageGreen),
+      style: textTheme.titleLarge!.copyWith(color: ColorManger.sageGreen),
     );
   }
 }

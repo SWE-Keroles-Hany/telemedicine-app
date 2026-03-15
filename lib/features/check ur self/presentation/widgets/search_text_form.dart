@@ -1,7 +1,7 @@
 // ignore: must_be_immutable
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:telemedicine/core/theme/app_theme.dart';
+import 'package:telemedicine/core/theme/color_manger.dart';
 
 class SearchTextForm extends StatelessWidget {
   SearchTextForm({
@@ -15,13 +15,13 @@ class SearchTextForm extends StatelessWidget {
   final Function(String)? onSearch;
   List<BoxShadow>? boxShadow = [
     BoxShadow(
-      color: AppTheme.black.withAlpha((0.15 * 255).toInt()), // 0.15 opacity
+      color: ColorManger.black.withAlpha((0.15 * 255).toInt()), // 0.15 opacity
       spreadRadius: 1,
       blurRadius: 12,
       offset: Offset(0, 6),
     ),
     BoxShadow(
-      color: AppTheme.black.withAlpha((0.05 * 255).toInt()), // 0.05 opacity
+      color: ColorManger.black.withAlpha((0.05 * 255).toInt()), // 0.05 opacity
       spreadRadius: 1,
       blurRadius: 4,
       offset: Offset(0, 2),
@@ -34,22 +34,22 @@ class SearchTextForm extends StatelessWidget {
     return Container(
       decoration: BoxDecoration(boxShadow: boxShadow),
       child: TextField(
-        style: TextStyle(color: AppTheme.white),
+        style: TextStyle(color: ColorManger.white),
         onChanged: onSearch,
         controller: controller,
-        cursorColor: AppTheme.white,
+        cursorColor: ColorManger.white,
         cursorRadius: Radius.circular(2.r),
         decoration: InputDecoration(
           contentPadding: EdgeInsets.symmetric(vertical: 14.h),
-          fillColor: AppTheme.midnightTeal,
+          fillColor: ColorManger.midnightTeal,
           filled: true,
           hint: Text(
             searchHint,
-            style: textTheme.titleMedium!.copyWith(color: AppTheme.blueGray),
+            style: textTheme.titleMedium!.copyWith(color: ColorManger.blueGray),
           ),
           prefixIcon: Padding(
             padding: EdgeInsets.only(left: 8.w, right: 6.w),
-            child: Icon(Icons.search, size: 30.r, color: AppTheme.blueGray),
+            child: Icon(Icons.search, size: 30.r, color: ColorManger.blueGray),
           ),
           border: border(),
           focusedBorder: border(),
@@ -60,7 +60,7 @@ class SearchTextForm extends StatelessWidget {
 
   OutlineInputBorder border() {
     return OutlineInputBorder(
-      borderSide: BorderSide(color: AppTheme.blueGray, width: 2),
+      borderSide: BorderSide(color: ColorManger.blueGray, width: 2),
       borderRadius: BorderRadius.circular(18.r),
     );
   }

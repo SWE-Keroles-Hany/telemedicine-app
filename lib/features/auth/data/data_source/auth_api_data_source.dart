@@ -1,23 +1,21 @@
 // data/datasources/auth_remote_data_source.dart
 
-import 'dart:developer';
 
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:telemedicine/core/error/failure.dart';
 import 'package:telemedicine/core/network/api_constants.dart';
-import 'package:telemedicine/core/network/api_services.dart';
+import '../../../../core/network/dio_services.dart';
 import '../models/user_model.dart';
 import 'auth_remote_data_source.dart';
 
 class AuthAPIDataSource implements AuthRemoteDataSource {
-  final APIServices ApiServices;
+  final DioServices dioServices;
 
-  AuthAPIDataSource(this.ApiServices);
+  AuthAPIDataSource(this.dioServices);
 
   @override
   Future<void> login({required String email, required String password}) async {
     try {
-      await ApiServices.post(
+      await dioServices.post(
         endPoint: APICONSTANTS.login,
         queryParams: {"email": email, "password": password},
       );
@@ -29,7 +27,7 @@ class AuthAPIDataSource implements AuthRemoteDataSource {
   @override
   Future<void> register({required UserModel user}) async {
     try {
-      await ApiServices.post(
+      await dioServices.post(
         endPoint: APICONSTANTS.login,
         queryParams: {
           "email": user.email,

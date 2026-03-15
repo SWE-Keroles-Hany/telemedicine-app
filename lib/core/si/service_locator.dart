@@ -1,32 +1,38 @@
-// core/di/service_locator.dart
+import 'package:dio/dio.dart';
 import 'package:get_it/get_it.dart';
-import 'package:firebase_auth/firebase_auth.dart';
-import 'package:telemedicine/features/auth/data/data_source/auth_firebase_data_source.dart';
-import 'package:telemedicine/features/auth/data/data_source/auth_remote_data_source.dart';
-import 'package:telemedicine/features/auth/data/repo/auth_repo.dart';
-import 'package:telemedicine/features/auth/domain/repo/auth_repo_imp.dart';
-import 'package:telemedicine/features/auth/domain/use_cases/login.dart';
-import 'package:telemedicine/features/auth/domain/use_cases/register.dart';
-import 'package:telemedicine/features/auth/presentation/cubit/auth_cubit.dart';
 
-final sl = GetIt.instance; // Service Locator
+import '../../features/auth/data/data_source/auth_api_data_source.dart';
+import '../../features/auth/data/data_source/auth_remote_data_source.dart';
+import '../../features/auth/data/repo/auth_repo.dart';
+import '../../features/auth/domain/repo/auth_repo_imp.dart';
+import '../../features/auth/domain/use_cases/login.dart';
+import '../../features/auth/domain/use_cases/register.dart';
+import '../../features/auth/presentation/cubit/auth_cubit.dart';
+import '../network/api_services.dart';
+import '../network/dio_services.dart';
 
+final sl = GetIt.instance;
 Future<void> init() async {
-  //! ------------------ Cubit ------------------
-  sl.registerFactory(
-    () => AuthCubit(loginUseCase: sl(), registerUseCase: sl()),
+  //! Core
+  sl.registerSingleton<Dio>(Dio());
+  sl.registerSingleton<DioServices>(DioServices(sl<Dio>()));
+  sl.registerSingleton<APIServices>(sl<DioServices>());
+
+  //! Data Source
+  sl.registerSingleton<AuthRemoteDataSource>(AuthAPIDataSource(sl<DioServices>()));
+
+  //! Repository
+  sl.registerSingleton<AuthRepository>(AuthRepositoryImpl(sl<AuthRemoteDataSource>()));
+
+  //! UseCases
+  sl.registerSingleton<LoginUseCase>(LoginUseCase(sl<AuthRepository>()));
+  sl.registerSingleton<RegisterUseCase>(RegisterUseCase(sl<AuthRepository>()));
+
+  //! Cubit
+  sl.registerFactory<AuthCubit>(
+    () => AuthCubit(
+      loginUseCase: sl<LoginUseCase>(),
+      registerUseCase: sl<RegisterUseCase>(),
+    ),
   );
-
-  //! ------------------ Use Cases ------------------
-  sl.registerLazySingleton(() => LoginUseCase(sl()));
-  sl.registerLazySingleton(() => RegisterUseCase(sl()));
-
-  //! ------------------ Repository ------------------
-  sl.registerLazySingleton<AuthRepository>(() => AuthRepositoryImpl(sl()));
-
-  //! ------------------ Data Source ------------------
-  sl.registerLazySingleton<AuthRemoteDataSource>(() => AuthAPIDataSource(sl()));
-
-  //! ------------------ Firebase Auth ------------------
-  sl.registerLazySingleton(() => FirebaseAuth.instance);
 }
