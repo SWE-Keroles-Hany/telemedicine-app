@@ -66,6 +66,57 @@ class AppTextStyles {
     letterSpacing: 0.8,
   );
 
+  // ── Profile screen additions ──────────────────────────────────────
+
+  static TextStyle get s22bold => const TextStyle(
+    color: ColorManager.white,
+    fontSize: 22,
+    fontWeight: FontWeight.bold,
+  );
+
+  static TextStyle get s18bold => const TextStyle(
+    color: ColorManager.white,
+    fontSize: 18,
+    fontWeight: FontWeight.bold,
+  );
+
+  static TextStyle get s18boldTeal => const TextStyle(
+    color: ColorManager.teal,
+    fontSize: 18,
+    fontWeight: FontWeight.bold,
+  );
+
+  static TextStyle get s16medium => const TextStyle(
+    color: ColorManager.white,
+    fontSize: 16,
+    fontWeight: FontWeight.w500,
+  );
+
+  static TextStyle get s15regular => const TextStyle(
+    color: ColorManager.white,
+    fontSize: 15,
+    fontWeight: FontWeight.w400,
+  );
+
+  static TextStyle get s13teal => const TextStyle(
+    color: ColorManager.teal,
+    fontSize: 13,
+    fontWeight: FontWeight.w500,
+  );
+
+  static TextStyle get s9capsLabel => const TextStyle(
+    color: ColorManager.textSecondary,
+    fontSize: 9,
+    fontWeight: FontWeight.w600,
+    letterSpacing: 1.2,
+  );
+
+  static TextStyle get s16logoutRed => const TextStyle(
+    color: ColorManager.logoutText,
+    fontSize: 16,
+    fontWeight: FontWeight.w600,
+  );
+
   // ── State-dependent styles ────────────────────────────────────────
 
   static TextStyle s12medium({required bool selected}) => TextStyle(
