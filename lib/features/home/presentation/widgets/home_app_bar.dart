@@ -9,13 +9,13 @@ class HomeAppBar extends StatelessWidget {
   Widget build(BuildContext context) {
     final TextTheme textTheme = Theme.of(context).textTheme;
     return AppBar(
-      backgroundColor: ColorManger.backGroundColor,
+      backgroundColor: ColorManager.backGroundColor,
 
       actionsPadding: EdgeInsets.only(top: 4.h, right: 16.w),
       actions: [
-        Icon(Icons.notifications, size: 28, color: ColorManger.white),
+        Icon(Icons.notifications, size: 28, color: ColorManager.white),
         SizedBox(width: 16),
-        Icon(Icons.settings, size: 28.r, color: ColorManger.white),
+        Icon(Icons.settings, size: 28.r, color: ColorManager.white),
       ],
       title: Padding(
         padding: EdgeInsets.only(top: 4.h),
@@ -25,12 +25,12 @@ class HomeAppBar extends StatelessWidget {
             Text(
               "GOOD MORNING",
               style: textTheme.labelLarge!.copyWith(
-                color: ColorManger.aquaMint,
+                color: ColorManager.aquaMint,
               ),
             ),
             Text(
               "Keroles",
-              style: textTheme.labelLarge!.copyWith(color: ColorManger.white),
+              style: textTheme.labelLarge!.copyWith(color: ColorManager.white),
             ),
           ],
         ),

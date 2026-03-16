@@ -22,9 +22,9 @@ class DoctorCard extends StatelessWidget {
       width: MediaQuery.sizeOf(context).width * 0.45,
       padding: EdgeInsets.all(16),
       decoration: BoxDecoration(
-        border: Border.all(color: ColorManger.darkGray),
+        border: Border.all(color: ColorManager.darkGray),
         borderRadius: BorderRadius.circular(32.r),
-        color: ColorManger.charcoalBlack,
+        color: ColorManager.charcoalBlack,
       ),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
@@ -42,14 +42,14 @@ class DoctorCard extends StatelessWidget {
 
           Text(
             "Dr.$doctorName",
-            style: textTheme.titleMedium!.copyWith(color: ColorManger.white),
+            style: textTheme.titleMedium!.copyWith(color: ColorManager.white),
           ),
 
           SizedBox(height: 4.h),
           Text(
             doctorField,
             style: textTheme.titleMedium!.copyWith(
-              color: ColorManger.mediumGray,
+              color: ColorManager.mediumGray,
               fontWeight: FontWeight.normal,
             ),
           ),
@@ -59,12 +59,12 @@ class DoctorCard extends StatelessWidget {
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              Icon(Icons.star, color: ColorManger.yellow),
+              Icon(Icons.star, color: ColorManager.yellow),
               SizedBox(width: 8.w),
               Text(
                 "$doctorRate",
                 style: textTheme.titleMedium!.copyWith(
-                  color: ColorManger.white,
+                  color: ColorManager.white,
                 ),
               ),
             ],

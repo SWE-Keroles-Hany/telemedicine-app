@@ -46,7 +46,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
     final textTheme = Theme.of(context).textTheme;
     return SafeArea(
       child: Scaffold(
-        backgroundColor: ColorManger.backGroundColor,
+        backgroundColor: ColorManager.backGroundColor,
         body: Padding(
           padding: EdgeInsets.all(18.r),
           child: SingleChildScrollView(
@@ -86,7 +86,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                         "Create Account",
                         style: textTheme.titleLarge!.copyWith(
                           fontSize: 26.sp,
-                          color: ColorManger.white,
+                          color: ColorManager.white,
                         ),
                       ),
                       SizedBox(height: 25.h),
@@ -146,8 +146,8 @@ class _SignUpScreenState extends State<SignUpScreen> {
                           }
                         },
                         title: "SignUp",
-                        titleColor: ColorManger.black,
-                        bgColor: ColorManger.aquaMint,
+                        titleColor: ColorManager.black,
+                        bgColor: ColorManager.aquaMint,
                         width: double.infinity,
                       ),
 
@@ -156,7 +156,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                           Text(
                             "Do you Have an Account ?",
                             style: textTheme.titleLarge!.copyWith(
-                              color: ColorManger.grayF0,
+                              color: ColorManager.grayF0,
                             ),
                           ),
                           TextButton(
@@ -168,7 +168,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                             child: Text(
                               "Login",
                               style: textTheme.titleLarge!.copyWith(
-                                color: ColorManger.aquaMint,
+                                color: ColorManager.aquaMint,
                               ),
                             ),
                           ),

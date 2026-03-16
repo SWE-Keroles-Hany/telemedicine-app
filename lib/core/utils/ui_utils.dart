@@ -14,7 +14,7 @@ class UiUtils {
       autoCloseDuration: const Duration(seconds: 3),
       title: Text(
         message,
-        style: TextStyle(color: ColorManger.white, fontSize: 18.sp),
+        style: TextStyle(color: ColorManager.white, fontSize: 18.sp),
       ),
       // progressBarTheme: true,
       alignment: Alignment.topRight,
@@ -23,11 +23,11 @@ class UiUtils {
       icon: Icon(
         isErrorMessage ? Icons.error : Icons.check_circle,
         size: 28,
-        color: isErrorMessage ? ColorManger.yellow : ColorManger.white,
+        color: isErrorMessage ? ColorManager.yellow : ColorManager.white,
       ),
       showIcon: true,
       // primaryColor: Colors.amberAccent,
-      backgroundColor: isErrorMessage ? ColorManger.red : ColorManger.black,
+      backgroundColor: isErrorMessage ? ColorManager.red : ColorManager.black,
       // foregroundColor: Colors.black,
       padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 16),
       margin: const EdgeInsets.symmetric(horizontal: 12, vertical: 8),
@@ -69,7 +69,7 @@ class UiUtils {
               backgroundColor: Colors.transparent,
               content: Center(
                 child: CircularProgressIndicator(
-                  color: ColorManger.aquaMint,
+                  color: ColorManager.aquaMint,
 
                   // value: 5,
                 ),

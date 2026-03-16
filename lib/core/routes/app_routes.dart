@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:telemedicine/features/doctors/presentation/screens/doctor_profile_screen.dart';
 
 import '../../features/auth/presentation/screens/login_screen.dart';
 import '../../features/auth/presentation/screens/signup_screen.dart';
@@ -11,5 +12,6 @@ class AppRoutes {
     SignUpScreen.routeName: (context) => SignUpScreen(),
     HomeScreen.routeName: (context) => HomeScreen(),
     CheckYourSelfScreen.routeName: (context) => CheckYourSelfScreen(),
+    DoctorProfileScreen.routeName: (context) => DoctorProfileScreen(),
   };
 }

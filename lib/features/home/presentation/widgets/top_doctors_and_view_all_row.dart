@@ -17,7 +17,9 @@ class TopDoctorsAndViewAllRow extends StatelessWidget {
           onTap: () {},
           child: Text(
             ConstantsText.viewAll,
-            style: textTheme.titleMedium!.copyWith(color: ColorManger.aquaMint),
+            style: textTheme.titleMedium!.copyWith(
+              color: ColorManager.aquaMint,
+            ),
           ),
         ),
       ],

@@ -45,25 +45,25 @@ class BloodTypeDropdown extends StatelessWidget {
               width: 250.w,
               initialSelection: fieldState.value,
               textStyle: textTheme.titleMedium!.copyWith(
-                color: ColorManger.white,
+                color: ColorManager.white,
               ),
               hintText: "Choose your blood type",
               inputDecorationTheme: InputDecorationTheme(
                 filled: true,
-                fillColor: ColorManger.darkTealGreen,
+                fillColor: ColorManager.darkTealGreen,
                 border: border(Colors.grey),
                 enabledBorder: border(Colors.grey),
-                focusedBorder: border(ColorManger.aquaMint),
+                focusedBorder: border(ColorManager.aquaMint),
                 hintStyle: textTheme.titleMedium!.copyWith(
-                  color: ColorManger.mediumGray,
+                  color: ColorManager.mediumGray,
                 ),
               ),
               menuStyle: MenuStyle(
-                backgroundColor: WidgetStatePropertyAll(ColorManger.white)  ,
+                backgroundColor: WidgetStatePropertyAll(ColorManager.white),
               ),
               trailingIcon: const Icon(
                 Icons.arrow_drop_down,
-                color: ColorManger.white,
+                color: ColorManager.white,
               ),
               dropdownMenuEntries: bloodTypes
                   .map(
@@ -84,7 +84,7 @@ class BloodTypeDropdown extends StatelessWidget {
                 child: Text(
                   fieldState.errorText ?? "",
                   style: textTheme.labelMedium!.copyWith(
-                    color: ColorManger.red,
+                    color: ColorManager.red,
                     fontSize: 14.sp,
                   ),
                 ),

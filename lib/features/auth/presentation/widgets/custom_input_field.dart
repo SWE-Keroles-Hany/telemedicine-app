@@ -30,7 +30,7 @@ class _CustomInputFieldState extends State<CustomInputField> {
       canRequestFocus: true,
       maxLines: widget.maxLines,
       focusNode: FocusNode(descendantsAreTraversable: true),
-      style: TextStyle(color: ColorManger.white),
+      style: TextStyle(color: ColorManager.white),
       autovalidateMode: AutovalidateMode.onUserInteraction,
       validator: widget.validator,
       controller: widget.controller,
@@ -39,13 +39,13 @@ class _CustomInputFieldState extends State<CustomInputField> {
         errorStyle: textTheme.labelMedium!.copyWith(
           fontSize: 16.sp,
           fontWeight: FontWeight.w500,
-          color: ColorManger.red,
+          color: ColorManager.red,
         ),
         suffixIcon: widget.isPasswordField
             ? IconButton(
                 icon: Icon(
                   showPassword ? Icons.visibility_off : Icons.visibility,
-                  color: ColorManger.red,
+                  color: ColorManager.red,
                 ),
                 onPressed: () {
                   setState(() {
@@ -56,10 +56,10 @@ class _CustomInputFieldState extends State<CustomInputField> {
             : null,
         hint: Text(
           widget.title,
-          style: textTheme.titleMedium!.copyWith(color: ColorManger.mediumGray),
+          style: textTheme.titleMedium!.copyWith(color: ColorManager.mediumGray),
         ),
         filled: true,
-        fillColor: ColorManger.darkTealGreen,
+        fillColor: ColorManager.darkTealGreen,
         border: border(),
         focusedBorder: focusedBorder(),
         enabled: true,
@@ -78,14 +78,14 @@ class _CustomInputFieldState extends State<CustomInputField> {
 
   OutlineInputBorder focusedBorder() {
     return OutlineInputBorder(
-      borderSide: BorderSide(color: ColorManger.aquaMint, width: 1.5),
+      borderSide: BorderSide(color: ColorManager.aquaMint, width: 1.5),
       borderRadius: BorderRadius.circular(8),
     );
   }
 
   OutlineInputBorder errorBorder() {
     return OutlineInputBorder(
-      borderSide: BorderSide(color: ColorManger.red, width: 1.5),
+      borderSide: BorderSide(color: ColorManager.red, width: 1.5),
       borderRadius: BorderRadius.circular(8),
     );
   }

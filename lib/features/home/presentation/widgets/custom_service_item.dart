@@ -19,20 +19,20 @@ class CustomServiceItem extends StatelessWidget {
     return Container(
       padding: EdgeInsets.all(16),
       decoration: BoxDecoration(
-        border: Border.all(color: ColorManger.darkGray),
+        border: Border.all(color: ColorManager.darkGray),
         borderRadius: BorderRadius.circular(32),
-        color: ColorManger.charcoalBlack,
+        color: ColorManager.charcoalBlack,
       ),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [
-          Icon(icon, color: ColorManger.aquaMint, size: 40),
+          Icon(icon, color: ColorManager.aquaMint, size: 40),
           SizedBox(height: 20),
           Text(
             textAlign: TextAlign.center,
             serviceTitle,
             style: textTheme.titleLarge!.copyWith(
-              color: ColorManger.white,
+              color: ColorManager.white,
               fontSize: 18,
             ),
           ),
@@ -40,7 +40,7 @@ class CustomServiceItem extends StatelessWidget {
 
           Text(
             serviceDescription,
-            style: textTheme.titleSmall!.copyWith(color: ColorManger.blueGray),
+            style: textTheme.titleSmall!.copyWith(color: ColorManager.blueGray),
           ),
         ],
       ),
