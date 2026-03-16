@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Doctor Professional Profile</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#19e6d4",
+                        "background-light": "#f6f8f8",
+                        "background-dark": "#112120",
+                        "card-bg": "#293837",
+                    },
+                    fontFamily: {
+                        "display": ["Inter"]
+                    },
+                    borderRadius: {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "2xl": "1rem",
+                        "3xl": "1.5rem",
+                        "full": "9999px"
+                    },
+                },
+            },
+        }
+    </script>
+<style type="text/tailwindcss">
+        .glass-card {
+            background: rgba(41, 56, 55, 0.4);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border: 1px solid rgba(60, 83, 81, 0.5);
+        }
+        .no-scrollbar::-webkit-scrollbar {
+            display: none;
+        }
+        .no-scrollbar {
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+        }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-background-dark font-display text-white min-h-screen">
+<div class="relative flex h-auto min-h-screen w-full flex-col max-w-[430px] mx-auto overflow-x-hidden pb-32">
+<div class="relative w-full h-[400px]">
+<img alt="Dr. James Wilson" class="h-full w-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDAVBvG9Edn96u0yhdQG-LnTeENrEM-aTKZy7cdHUiNpT9cM22T2ITOfRYiNtD1S3bvSHLeahduNHriVxnSAdX0tbGNKApurj1aqPKC71Fyq6vZh1eZU9D4Lxb03Fy46Bgh9Xq5-EqWoCuTA_I1tuQDBkOmugvYRYHv-S_bvH9UbhtYCHr8YD2dAj7wj484xGy7TlZjXqz4dZhBliojbt-WIyDubkCnUOanceLsr-PC8pvMQQeUocc_r8BuHAlQ5XOlZRuf14fSQvjf"/>
+<div class="absolute top-0 left-0 right-0 p-6 flex justify-between items-center bg-gradient-to-b from-black/60 to-transparent pt-12">
+<button class="flex size-10 items-center justify-center rounded-full glass-card text-white">
+<span class="material-symbols-outlined">arrow_back_ios_new</span>
+</button>
+<button class="flex size-10 items-center justify-center rounded-full glass-card text-white">
+<span class="material-symbols-outlined">favorite</span>
+</button>
+</div>
+<div class="absolute -bottom-10 left-0 right-0 px-4">
+<div class="glass-card rounded-3xl p-5 shadow-2xl">
+<div class="flex flex-col gap-1">
+<div class="flex justify-between items-start">
+<div>
+<h1 class="text-2xl font-bold text-white leading-tight">Dr. James Wilson</h1>
+<p class="text-primary font-medium">Cardiologist</p>
+</div>
+<div class="flex items-center gap-1 bg-primary/10 px-2 py-1 rounded-lg">
+<span class="material-symbols-outlined text-primary text-sm fill-1">star</span>
+<span class="text-primary text-sm font-bold">4.9</span>
+</div>
+</div>
+<div class="flex items-center gap-2 mt-2 text-[#9db8b6]">
+<span class="material-symbols-outlined text-sm">location_on</span>
+<p class="text-xs">St. Patrick's Hospital, NY</p>
+<span class="mx-1 opacity-50">•</span>
+<p class="text-xs">120 reviews</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="h-14"></div>
+<div class="flex justify-between gap-3 px-4 py-4">
+<div class="flex-1 glass-card rounded-2xl p-4 flex flex-col items-center justify-center text-center">
+<span class="text-primary font-bold text-lg">12+</span>
+<span class="text-[#9db8b6] text-[10px] uppercase tracking-wider mt-1">Experience</span>
+</div>
+<div class="flex-1 glass-card rounded-2xl p-4 flex flex-col items-center justify-center text-center">
+<span class="text-primary font-bold text-lg">5k+</span>
+<span class="text-[#9db8b6] text-[10px] uppercase tracking-wider mt-1">Patients</span>
+</div>
+<div class="flex-1 glass-card rounded-2xl p-4 flex flex-col items-center justify-center text-center">
+<span class="text-primary font-bold text-lg">1.2k</span>
+<span class="text-[#9db8b6] text-[10px] uppercase tracking-wider mt-1">Reviews</span>
+</div>
+</div>
+<div class="px-4 py-4">
+<h3 class="text-lg font-bold text-white mb-2">About Doctor</h3>
+<p class="text-[#9db8b6] text-sm leading-relaxed">
+                Dr. James Wilson is a renowned cardiologist with over 12 years of experience in cardiovascular medicine. He specializes in interventional cardiology and heart disease prevention.
+            </p>
+</div>
+<div class="py-4">
+<div class="px-4 flex justify-between items-center mb-4">
+<h3 class="text-lg font-bold text-white">Working Hours</h3>
+<p class="text-primary text-sm font-medium">October, 2023</p>
+</div>
+<div class="flex gap-3 px-4 overflow-x-auto no-scrollbar pb-2">
+<div class="flex flex-col items-center min-w-[64px] py-4 glass-card rounded-2xl border-primary bg-primary/20">
+<span class="text-xs text-primary font-medium">Mon</span>
+<span class="text-lg font-bold text-white">21</span>
+</div>
+<div class="flex flex-col items-center min-w-[64px] py-4 glass-card rounded-2xl border-transparent">
+<span class="text-xs text-[#9db8b6]">Tue</span>
+<span class="text-lg font-bold text-white">22</span>
+</div>
+<div class="flex flex-col items-center min-w-[64px] py-4 glass-card rounded-2xl border-transparent">
+<span class="text-xs text-[#9db8b6]">Wed</span>
+<span class="text-lg font-bold text-white">23</span>
+</div>
+<div class="flex flex-col items-center min-w-[64px] py-4 glass-card rounded-2xl border-transparent">
+<span class="text-xs text-[#9db8b6]">Thu</span>
+<span class="text-lg font-bold text-white">24</span>
+</div>
+<div class="flex flex-col items-center min-w-[64px] py-4 glass-card rounded-2xl border-transparent">
+<span class="text-xs text-[#9db8b6]">Fri</span>
+<span class="text-lg font-bold text-white">25</span>
+</div>
+</div>
+<div class="flex gap-3 px-4 mt-6 overflow-x-auto no-scrollbar">
+<div class="px-6 py-2.5 glass-card rounded-xl border-primary bg-primary/10 shrink-0">
+<span class="text-sm font-semibold text-primary">09:00 AM</span>
+</div>
+<div class="px-6 py-2.5 glass-card rounded-xl border-transparent shrink-0">
+<span class="text-sm font-medium text-white">10:30 AM</span>
+</div>
+<div class="px-6 py-2.5 glass-card rounded-xl border-transparent shrink-0">
+<span class="text-sm font-medium text-white">01:00 PM</span>
+</div>
+<div class="px-6 py-2.5 glass-card rounded-xl border-transparent shrink-0">
+<span class="text-sm font-medium text-white">03:30 PM</span>
+</div>
+</div>
+</div>
+<div class="fixed bottom-0 left-1/2 -translate-x-1/2 w-full max-w-[430px] p-6 pb-10 bg-background-dark/80 backdrop-blur-xl border-t border-[#3c5351] flex items-center gap-4">
+<button class="flex size-14 shrink-0 items-center justify-center rounded-2xl bg-[#293837] text-primary border border-[#3c5351]">
+<span class="material-symbols-outlined text-2xl">chat</span>
+</button>
+<button class="flex-1 h-14 bg-primary text-[#112120] rounded-2xl font-bold text-lg shadow-lg shadow-primary/20 flex items-center justify-center gap-2">
+                Book Appointment
+            </button>
+</div>
+</div>
+
+</body></html>
