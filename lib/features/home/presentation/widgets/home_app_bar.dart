@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:telemedicine/core/theme/color_manger.dart';
 
+import '../../../settings/presentation/screens/user_profile.dart';
+
 class HomeAppBar extends StatelessWidget {
   const HomeAppBar({super.key});
 
@@ -16,7 +18,9 @@ class HomeAppBar extends StatelessWidget {
         Icon(Icons.notifications, size: 28, color: ColorManager.white),
         SizedBox(width: 16),
         IconButton(
-          onPressed: () {},
+          onPressed: () {
+            Navigator.of(context).pushNamed(UserProfileScreen.routeName);
+          },
           icon: Icon(Icons.settings, size: 28.r, color: ColorManager.white),
         ),
       ],

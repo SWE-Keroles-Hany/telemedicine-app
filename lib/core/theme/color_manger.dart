@@ -43,4 +43,27 @@ class ColorManager {
   // Semantic
   static const Color favorite = Color(0xFFFF5252);
   static const Color snackBarBg = teal;
+
+  // ── Profile screen additions ──────────────────────────────────────
+
+  // Card / section containers
+  static const Color profileCardBg = Color(0xFF1A2535);
+  static const Color profileIconBg = Color(0xFF1C3A30);
+  static const Color profileBorder = Color(0xFF1E3040);
+
+  // Stats
+  static const Color statCardBg = Color(0xFF16202E);
+
+  // Logout
+  static const Color logoutBg = Color(0xFF2A1A1A);
+  static const Color logoutBorder = Color(0xFF5A2020);
+  static const Color logoutText = Color(0xFFE05555);
+
+  // Avatar ring
+  static const Color avatarRing = teal;
+  static const Color avatarBg = Color(0xFF0D2A24);
+
+  // Chevron / divider
+  static const Color chevron = textSecondary;
+  static const Color divider = Color(0xFF1E3040);
 }
