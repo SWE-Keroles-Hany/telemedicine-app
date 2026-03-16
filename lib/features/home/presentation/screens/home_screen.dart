@@ -4,6 +4,7 @@ import 'package:telemedicine/core/constants/constants_text.dart';
 import 'package:telemedicine/core/theme/color_manger.dart';
 import 'package:telemedicine/core/widgets/custom_app_label.dart';
 import 'package:telemedicine/features/home/presentation/widgets/home_app_bar.dart';
+import 'package:telemedicine/features/home/presentation/widgets/our_services.dart';
 import 'package:telemedicine/features/home/presentation/widgets/top_doctors_and_view_all_row.dart';
 
 class HomeScreen extends StatelessWidget {
@@ -23,7 +24,7 @@ class HomeScreen extends StatelessWidget {
           children: [
             CustomAppLabel(label: ConstantsText.ourServices),
             SizedBox(height: 10.h),
-            SizedBox(height: 300.h),
+            SizedBox(height: 300.h, child: OurServices()),
             SizedBox(height: 15.h),
             TopDoctorsAndViewAllRow(),
             SizedBox(height: 10.h),
