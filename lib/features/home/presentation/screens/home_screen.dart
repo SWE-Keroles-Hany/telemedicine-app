@@ -7,6 +7,8 @@ import 'package:telemedicine/features/home/presentation/widgets/home_app_bar.dar
 import 'package:telemedicine/features/home/presentation/widgets/our_services.dart';
 import 'package:telemedicine/features/home/presentation/widgets/top_doctors_and_view_all_row.dart';
 
+import '../widgets/top_doctors.dart';
+
 class HomeScreen extends StatelessWidget {
   const HomeScreen({super.key});
   static const String routeName = "HomeScreen";
@@ -25,10 +27,9 @@ class HomeScreen extends StatelessWidget {
             CustomAppLabel(label: ConstantsText.ourServices),
             SizedBox(height: 10.h),
             SizedBox(height: 300.h, child: OurServices()),
-            SizedBox(height: 15.h),
             TopDoctorsAndViewAllRow(),
             SizedBox(height: 10.h),
-            SizedBox(height: 210.h),
+            SizedBox(height: 210.h, child: TopDoctors()),
           ],
         ),
       ),

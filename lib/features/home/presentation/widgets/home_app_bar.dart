@@ -11,11 +11,14 @@ class HomeAppBar extends StatelessWidget {
     return AppBar(
       backgroundColor: ColorManager.backGroundColor,
 
-      actionsPadding: EdgeInsets.only(top: 4.h, right: 16.w),
+      actionsPadding: EdgeInsets.only(top: 6.h, right: 16.w),
       actions: [
         Icon(Icons.notifications, size: 28, color: ColorManager.white),
         SizedBox(width: 16),
-        Icon(Icons.settings, size: 28.r, color: ColorManager.white),
+        IconButton(
+          onPressed: () {},
+          icon: Icon(Icons.settings, size: 28.r, color: ColorManager.white),
+        ),
       ],
       title: Padding(
         padding: EdgeInsets.only(top: 4.h),

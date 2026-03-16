@@ -8,46 +8,38 @@ class OurServices extends StatelessWidget {
 
   final List<ServiceData> services = [
     ServiceData(
-      icon: Icons.person,
-      serviceDescription: "Sympton Analysis",
-      serviceTitle: "Check Yourself",
-    ),
-    ServiceData(
-      icon: Icons.upload,
+      icon: Icons.check_box,
       serviceDescription: "Upload & Ai",
-      serviceTitle: "All Labs Results",
+      serviceTitle: "Check Your Self",
     ),
     ServiceData(
       icon: Icons.calendar_month,
-      serviceDescription: "Book Doctor",
-      serviceTitle: "Virtual Consults",
-    ),
-    ServiceData(
-      icon: Icons.notes,
-      serviceDescription: "Prescritpions",
-      serviceTitle: "Active Orders",
+      serviceDescription: "Book your fav Doctor",
+      serviceTitle: "Book A Doctor",
     ),
   ];
   @override
   Widget build(BuildContext context) {
-    return GridView.builder(
-      physics: NeverScrollableScrollPhysics(),
-      itemCount: 4,
-      gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-        crossAxisCount: 2,
-        crossAxisSpacing: 10.w,
-        mainAxisSpacing: 10.h,
-      ),
-      itemBuilder: (context, index) => GestureDetector(
-        onTap: () {
-          if (index == 0) {
-            Navigator.of(context).pushNamed(CheckYourSelfScreen.routeName);
-          }
-        },
-        child: CustomServiceItem(
-          icon: services[index].icon,
-          serviceDescription: services[index].serviceTitle,
-          serviceTitle: services[index].serviceDescription,
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.stretch,
+      children: List.generate(
+        services.length,
+        (index) => Container(
+          margin: EdgeInsets.only(bottom: 12.h),
+          child: GestureDetector(
+            onTap: () {
+              if (index == 0) {
+                Navigator.of(context).pushNamed(CheckYourSelfScreen.routeName);
+              }
+
+              // Navigator.of(context).pushNamed(CheckYourSelfScreen.routeName);
+            },
+            child: CustomServiceItem(
+              serviceTitle: services[index].serviceTitle,
+              serviceDescription: services[index].serviceDescription,
+              icon: services[index].icon,
+            ),
+          ),
         ),
       ),
     );
