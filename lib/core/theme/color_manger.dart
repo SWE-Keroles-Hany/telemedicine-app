@@ -66,4 +66,8 @@ class ColorManager {
   // Chevron / divider
   static const Color chevron = textSecondary;
   static const Color divider = Color(0xFF1E3040);
+
+  static const Color primary = Color(0xFF1DE9B6); // The bright teal/cyan
+
+  static const Color dotInactive = Color(0xFF37474F);
 }

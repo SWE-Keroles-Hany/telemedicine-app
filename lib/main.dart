@@ -4,13 +4,10 @@ import 'package:telemedicine/core/routes/app_routes.dart';
 import 'package:telemedicine/core/theme/app_theme.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:telemedicine/features/auth/presentation/cubit/auth_cubit.dart';
-import 'package:telemedicine/features/auth/presentation/screens/login_screen.dart';
 import 'package:telemedicine/core/si/service_locator.dart';
 import 'package:telemedicine/features/home/presentation/screens/home_screen.dart';
-import 'package:telemedicine/features/settings/presentation/screens/user_profile.dart';
+import 'package:telemedicine/features/on_boarding/presentation/screens/on_boarding_screen.dart';
 import 'package:toastification/toastification.dart';
-
-import 'features/doctors/presentation/screens/doctor_profile_screen.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -37,7 +34,7 @@ class Telemedicine extends StatelessWidget {
           theme: AppTheme.theme,
           debugShowCheckedModeBanner: false,
           routes: AppRoutes.routes,
-          initialRoute: HomeScreen.routeName,
+          initialRoute: OnboardingScreen.routeName,
         ),
       ),
     );
