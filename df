@@ -1,0 +1,59 @@
+[33mcommit 38f9b6b33187864a855007fa92416e5f3b8ba905[m[33m ([m[1;36mHEAD[m[33m -> [m[1;32mdevelopement[m[33m, [m[1;31morigin/developement[m[33m)[m
+Author: KerolesHany <keroleshany293@gmail.com>
+Date:   Mon Mar 16 13:17:48 2026 +0200
+
+    home scree witout any thing
+
+[33mcommit a6a1f39bae2051ed57454f8a782de58ca4f60be0[m
+Author: KerolesHany <keroleshany293@gmail.com>
+Date:   Sun Mar 15 11:47:04 2026 +0200
+
+    add drop down button for blood types
+
+[33mcommit 0769e188744be6635c6084f9d871960d6888fecf[m
+Author: KerolesHany <keroleshany293@gmail.com>
+Date:   Sat Mar 14 19:54:07 2026 +0200
+
+    convert auth from firebase to api
+
+[33mcommit 622778891259bf6ca7d3dafd6fc89ae74d90d1a3[m[33m ([m[1;32mfeature/auth-firebase[m[33m)[m
+Author: KerolesHany <keroleshany293@gmail.com>
+Date:   Sat Feb 7 11:16:00 2026 +0200
+
+    auth firebase
+
+[33mcommit 02268c4a1a335f556468e98887aa98d57962be20[m[33m ([m[1;32mfeature/check-your-self[m[33m)[m
+Author: KerolesHany <keroleshany293@gmail.com>
+Date:   Thu Feb 5 11:59:18 2026 +0200
+
+    check ur self ui
+
+[33mcommit 4378c7c6ca3f91c6a4543422f3692699c30979c4[m[33m ([m[1;32mfix/auth-ui-colors[m[33m)[m
+Author: KerolesHany <keroleshany293@gmail.com>
+Date:   Wed Feb 4 18:40:25 2026 +0200
+
+    auth ui colors
+
+[33mcommit 30587fd35b051f8300f2b2ba1c7e6d418628f952[m[33m ([m[1;32mfeature/home[m[33m)[m
+Author: KerolesHany <keroleshany293@gmail.com>
+Date:   Wed Feb 4 16:48:31 2026 +0200
+
+    home
+
+[33mcommit a330663ce3ddee6928b948d3006f562fa2f98377[m
+Author: KerolesHany <keroleshany293@gmail.com>
+Date:   Tue Feb 3 09:51:35 2026 +0200
+
+    dev
+
+[33mcommit dce7d895ccddf408131ada09a9925ba34e68630b[m[33m ([m[1;31morigin/main[m[33m, [m[1;32mmain[m[33m, [m[1;32mfeature/authentication[m[33m)[m
+Author: KerolesHany <keroleshany293@gmail.com>
+Date:   Sun Feb 1 14:52:01 2026 +0200
+
+    start
+
+[33mcommit 8c2ce53edd3136a3189475c5bfb1759fdbe6bdec[m
+Author: KerolesHany <keroleshany293@gmail.com>
+Date:   Sun Feb 1 14:45:51 2026 +0200
+
+    first commit

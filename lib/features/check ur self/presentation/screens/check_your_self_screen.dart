@@ -26,11 +26,11 @@ class _CheckYourSelfScreenState extends State<CheckYourSelfScreen> {
     return SafeArea(
       child: Scaffold(
         appBar: AppBar(
-          foregroundColor: ColorManger.white,
+          foregroundColor: ColorManager.white,
           centerTitle: true,
           title: Text(
             "Check Yourself",
-            style: textTheme.titleLarge!.copyWith(color: ColorManger.white),
+            style: textTheme.titleLarge!.copyWith(color: ColorManager.white),
           ),
         ),
         body: Padding(
@@ -52,7 +52,7 @@ class _CheckYourSelfScreenState extends State<CheckYourSelfScreen> {
                   Text(
                     "4 Selected",
                     style: textTheme.titleMedium!.copyWith(
-                      color: ColorManger.aquaMint,
+                      color: ColorManager.aquaMint,
                     ),
                   ),
                 ],
@@ -76,8 +76,8 @@ class _CheckYourSelfScreenState extends State<CheckYourSelfScreen> {
               CustomButton(
                 onPressed: () {},
                 title: "Analyze Symptoms",
-                titleColor: ColorManger.black,
-                bgColor: ColorManger.aquaMint,
+                titleColor: ColorManager.black,
+                bgColor: ColorManager.aquaMint,
                 width: double.infinity,
               ),
             ],

@@ -19,11 +19,11 @@ class SymptomItem extends StatelessWidget {
     return Container(
       decoration: BoxDecoration(
         color: isSelected
-            ? ColorManger.deepTealGreen
-            : ColorManger.midnightTeal,
+            ? ColorManager.deepTealGreen
+            : ColorManager.midnightTeal,
         borderRadius: BorderRadius.circular(16.r),
         border: Border.all(
-          color: isSelected ? ColorManger.aquaMint : ColorManger.blueGray,
+          color: isSelected ? ColorManager.aquaMint : ColorManager.blueGray,
           width: 1.5,
         ),
       ),
@@ -39,7 +39,7 @@ class SymptomItem extends StatelessWidget {
           SizedBox(width: 15.w),
           Text(
             title,
-            style: textTheme.titleMedium!.copyWith(color: ColorManger.white),
+            style: textTheme.titleMedium!.copyWith(color: ColorManager.white),
           ),
         ],
       ),

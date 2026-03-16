@@ -8,6 +8,8 @@ import 'package:telemedicine/features/auth/presentation/screens/login_screen.dar
 import 'package:telemedicine/core/si/service_locator.dart';
 import 'package:toastification/toastification.dart';
 
+import 'features/doctors/presentation/screens/doctor_profile_screen.dart';
+
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   init();
@@ -33,7 +35,7 @@ class Telemedicine extends StatelessWidget {
           theme: AppTheme.theme,
           debugShowCheckedModeBanner: false,
           routes: AppRoutes.routes,
-          initialRoute: LoginScreen.routeName,
+          initialRoute: DoctorProfileScreen.routeName,
         ),
       ),
     );

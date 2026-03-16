@@ -10,7 +10,7 @@ class CustomAppLabel extends StatelessWidget {
     final TextTheme textTheme = Theme.of(context).textTheme;
     return Text(
       label,
-      style: textTheme.titleLarge!.copyWith(color: ColorManger.sageGreen),
+      style: textTheme.titleLarge!.copyWith(color: ColorManager.sageGreen),
     );
   }
 }

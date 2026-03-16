@@ -23,7 +23,7 @@ class LoginScreen extends StatelessWidget {
     final height = MediaQuery.sizeOf(context).height;
     return SafeArea(
       child: Scaffold(
-        backgroundColor: ColorManger.backGroundColor,
+        backgroundColor: ColorManager.backGroundColor,
         body: Padding(
           padding: EdgeInsets.all(18.r),
           child: SingleChildScrollView(
@@ -64,7 +64,7 @@ class LoginScreen extends StatelessWidget {
                         textAlign: TextAlign.center,
                         "Welcome Back!",
                         style: textTheme.titleLarge!.copyWith(
-                          color: ColorManger.white,
+                          color: ColorManager.white,
                           fontSize: 27.sp,
                         ),
                       ),
@@ -74,7 +74,7 @@ class LoginScreen extends StatelessWidget {
                         textAlign: TextAlign.center,
                         "Login To Your Account to Continue",
                         style: textTheme.titleMedium!.copyWith(
-                          color: ColorManger.white,
+                          color: ColorManager.white,
                         ),
                       ),
                       SizedBox(height: 20.h),
@@ -103,8 +103,8 @@ class LoginScreen extends StatelessWidget {
                           }
                         },
                         title: "Login",
-                        titleColor: ColorManger.black,
-                        bgColor: ColorManger.aquaMint,
+                        titleColor: ColorManager.black,
+                        bgColor: ColorManager.aquaMint,
                         width: double.infinity,
                       ),
                       SizedBox(height: 20.h),
@@ -115,7 +115,7 @@ class LoginScreen extends StatelessWidget {
                             "Don't Have an Account ?",
                             style: textTheme.titleLarge!.copyWith(
                               fontSize: 20.sp,
-                              color: ColorManger.grayF0,
+                              color: ColorManager.grayF0,
                             ),
                           ),
                           TextButton(
@@ -127,7 +127,7 @@ class LoginScreen extends StatelessWidget {
                             child: Text(
                               "SingUp",
                               style: textTheme.titleLarge!.copyWith(
-                                color: ColorManger.aquaMint,
+                                color: ColorManager.aquaMint,
                                 fontSize: 20.sp,
                               ),
                             ),

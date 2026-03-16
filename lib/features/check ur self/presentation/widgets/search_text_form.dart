@@ -15,13 +15,13 @@ class SearchTextForm extends StatelessWidget {
   final Function(String)? onSearch;
   List<BoxShadow>? boxShadow = [
     BoxShadow(
-      color: ColorManger.black.withAlpha((0.15 * 255).toInt()), // 0.15 opacity
+      color: ColorManager.black.withAlpha((0.15 * 255).toInt()), // 0.15 opacity
       spreadRadius: 1,
       blurRadius: 12,
       offset: Offset(0, 6),
     ),
     BoxShadow(
-      color: ColorManger.black.withAlpha((0.05 * 255).toInt()), // 0.05 opacity
+      color: ColorManager.black.withAlpha((0.05 * 255).toInt()), // 0.05 opacity
       spreadRadius: 1,
       blurRadius: 4,
       offset: Offset(0, 2),
@@ -34,22 +34,22 @@ class SearchTextForm extends StatelessWidget {
     return Container(
       decoration: BoxDecoration(boxShadow: boxShadow),
       child: TextField(
-        style: TextStyle(color: ColorManger.white),
+        style: TextStyle(color: ColorManager.white),
         onChanged: onSearch,
         controller: controller,
-        cursorColor: ColorManger.white,
+        cursorColor: ColorManager.white,
         cursorRadius: Radius.circular(2.r),
         decoration: InputDecoration(
           contentPadding: EdgeInsets.symmetric(vertical: 14.h),
-          fillColor: ColorManger.midnightTeal,
+          fillColor: ColorManager.midnightTeal,
           filled: true,
           hint: Text(
             searchHint,
-            style: textTheme.titleMedium!.copyWith(color: ColorManger.blueGray),
+            style: textTheme.titleMedium!.copyWith(color: ColorManager.blueGray),
           ),
           prefixIcon: Padding(
             padding: EdgeInsets.only(left: 8.w, right: 6.w),
-            child: Icon(Icons.search, size: 30.r, color: ColorManger.blueGray),
+            child: Icon(Icons.search, size: 30.r, color: ColorManager.blueGray),
           ),
           border: border(),
           focusedBorder: border(),
@@ -60,7 +60,7 @@ class SearchTextForm extends StatelessWidget {
 
   OutlineInputBorder border() {
     return OutlineInputBorder(
-      borderSide: BorderSide(color: ColorManger.blueGray, width: 2),
+      borderSide: BorderSide(color: ColorManager.blueGray, width: 2),
       borderRadius: BorderRadius.circular(18.r),
     );
   }
