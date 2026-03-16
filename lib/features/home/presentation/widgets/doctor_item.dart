@@ -33,7 +33,7 @@ class DoctorCard extends StatelessWidget {
             borderRadius: BorderRadiusGeometry.circular(16.r),
             child: Image.asset(
               fit: BoxFit.fitWidth,
-              width: MediaQuery.sizeOf(context).width * 0.45,
+              width: MediaQuery.sizeOf(context).width * 0.4,
               height: 100.h,
               doctorImage,
             ),

@@ -70,4 +70,62 @@ class ColorManager {
   static const Color primary = Color(0xFF1DE9B6); // The bright teal/cyan
 
   static const Color dotInactive = Color(0xFF37474F);
+
+  // ── Booking screen additions ──────────────────────────────────────
+
+  // Scaffold / page background
+  static const Color bookingScaffoldBg = Color(0xFF0D1117);
+
+  // Cards & surfaces
+  static const Color bookingCardBg = Color(0xFF161B22);
+  static const Color bookingSurfaceBg = Color(0xFF1C2128);
+  static const Color bookingSearchBarBg = Color(0xFF21262D);
+
+  // Primary accent (booking)
+  static const Color bookingPrimary = Color(0xFF00D4B4);
+  static const Color bookingPrimaryLight = Color(0xFF33DDCA);
+  static const Color bookingPrimaryDark = Color(0xFF00A896);
+  static const Color bookingPrimaryContainer = Color(0xFF0D2E2B);
+
+  // Text (booking)
+  static const Color bookingTextPrimary = Color(0xFFE6EDF3);
+  static const Color bookingTextOnPrimary = Color(0xFF0D1117);
+
+  // Badge
+  static const Color topRatedBadgeBg = Color(0xFF1A3A4A);
+  static const Color topRatedBadgeText = Color(0xFF00D4B4);
+
+  // Filter chips
+  static const Color chipSelected = Color(0xFF00D4B4);
+  static const Color chipUnselected = Color(0xFF21262D);
+  static const Color chipSelectedText = Color(0xFF0D1117);
+  static const Color chipUnselectedText = Color(0xFF8B949E);
+  static const Color chipBorder = Color(0xFF30363D);
+
+  // Icons (booking)
+  static const Color bookingIconDefault = Color(0xFF8B949E);
+  static const Color bookingIconActive = Color(0xFF00D4B4);
+
+  // Star rating
+  static const Color starColor = Color(0xFFF0C040);
+
+  // Toggle
+  static const Color toggleActive = Color(0xFF00D4B4);
+  static const Color toggleInactive = Color(0xFF30363D);
+
+  // Borders (booking)
+  static const Color bookingBorder = Color(0xFF30363D);
+
+  // Buttons (booking)
+  static const Color bookingButtonPrimary = Color(0xFF00D4B4);
+  static const Color bookingButtonSecondaryBg = Color(0xFF21262D);
+
+  // Bottom nav (booking)
+  static const Color bookingBottomNavBg = Color(0xFF161B22);
+  static const Color bookingBottomNavActive = Color(0xFF00D4B4);
+  static const Color bookingBottomNavInactive = Color(0xFF484F58);
+  static const Color bookingBottomNavBorder = Color(0xFF21262D);
+
+  // Shadow (booking)
+  static const Color bookingCardShadow = Color(0x1A00D4B4);
 }
