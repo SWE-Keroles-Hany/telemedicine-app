@@ -31,9 +31,11 @@ class OurServices extends StatelessWidget {
             onTap: () {
               if (index == 0) {
                 Navigator.of(context).pushNamed(CheckYourSelfScreen.routeName);
+              } else {
+                
+              Navigator.of(context).pushNamed(BookAppointmentScreen.routeName);
               }
 
-              Navigator.of(context).pushNamed(BookAppointmentScreen.routeName);
             },
             child: CustomServiceItem(
               serviceTitle: services[index].serviceTitle,

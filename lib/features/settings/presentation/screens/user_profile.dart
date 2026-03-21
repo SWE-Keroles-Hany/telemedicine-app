@@ -1,10 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:telemedicine/core/theme/app_text_styles.dart';
 import 'package:telemedicine/core/theme/color_manger.dart';
 
 import '../widgets/health_stats_widget.dart';
 import '../widgets/logout_button_widget.dart';
-import '../widgets/profile_app_bar_widget.dart';
 import '../widgets/profile_avatar_widget.dart';
 import '../widgets/profile_menu_item_widget.dart';
 import '../widgets/profile_menu_section_widget.dart';

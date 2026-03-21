@@ -43,7 +43,7 @@ class AvailableTodayToggle extends StatelessWidget {
           Switch(
             value: value,
             onChanged: onChanged,
-            activeColor: ColorManager.toggleActive,
+            activeThumbColor: ColorManager.toggleActive,
             inactiveTrackColor: ColorManager.toggleInactive,
             inactiveThumbColor: ColorManager.bookingIconDefault,
             materialTapTargetSize: MaterialTapTargetSize.shrinkWrap,
