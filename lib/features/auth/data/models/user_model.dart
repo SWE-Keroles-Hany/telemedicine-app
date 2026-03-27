@@ -20,4 +20,34 @@ class UserModel {
     required this.allergies,
     required this.existingConditions,
   });
+
+  // fromJson
+  factory UserModel.fromJson(Map<String, dynamic> json) {
+    return UserModel(
+      fullName: json['fullName'] ?? '',
+      email: json['email'] ?? '',
+      password: json['password'] ?? '',
+      phoneNumber: json['phoneNumber'] ?? '',
+      gender: json['gender'] ?? '',
+      address: json['address'] ?? '',
+      bloodType: json['bloodType'] ?? '',
+      allergies: json['allergies'] ?? '',
+      existingConditions: json['existingConditions'] ?? '',
+    );
+  }
+
+  // toJson
+  Map<String, dynamic> toJson() {
+    return {
+      'fullName': fullName,
+      'email': email,
+      'password': password,
+      'phoneNumber': phoneNumber,
+      'gender': gender,
+      'address': address,
+      'bloodType': bloodType,
+      'allergies': allergies,
+      'existingConditions': existingConditions,
+    };
+  }
 }

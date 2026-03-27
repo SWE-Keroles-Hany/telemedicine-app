@@ -16,6 +16,13 @@ class AppValidations {
     return null;
   }
 
+  static String? phoneNumberValidator(String? value) {
+    if (value == null || value.trim().isEmpty || value.length < 11) {
+      return "Invalid Phone Number";
+    }
+    return null;
+  }
+
   static String? descibeValidator(String? value) {
     if (value == null || value.trim().isEmpty) {
       return "Must Describe Your Feel..";

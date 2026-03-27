@@ -1,5 +1,6 @@
 import 'dart:developer';
 import 'package:dio/dio.dart';
+import 'package:flutter/material.dart';
 import 'package:telemedicine/core/error/failure.dart';
 import 'package:telemedicine/core/network/api_services.dart';
 import 'package:telemedicine/core/network/dio_interceptor.dart';
@@ -13,7 +14,7 @@ class DioServices implements APIServices {
     dio.options.baseUrl = APICONSTANTS.baseURL;
     dio.options.headers = {
       'Accept': 'application/json',
-      'Content-Type': 'application/x-www-form-urlencoded',
+      'Content-Type': 'application/json',
     };
     dio.interceptors.add(DioInterceptors());
   }
@@ -34,8 +35,7 @@ class DioServices implements APIServices {
       );
       return handleResponse(response);
     } on DioException catch (exception) {
-      log("DioException: ${exception.response?.data}");
-      log("Full Response: ${exception.response}");
+      debugPrint("**** We Are Here");
       return handleDioError(exception);
     } catch (error) {
       log("Error in Dio POST: ${error.toString()}");

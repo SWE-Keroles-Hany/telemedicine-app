@@ -13,6 +13,8 @@ class RegisterUseCase {
   Future<Either<Failure, void>> call({required UserEntity user}) async {
     try {
       return await repository.register(user: user);
+    } on Failure catch (error) {
+      return Left(Failure(message: error.message));
     } catch (e) {
       return Left(Failure(message: e.toString()));
     }

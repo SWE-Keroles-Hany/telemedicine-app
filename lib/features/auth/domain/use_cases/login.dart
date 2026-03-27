@@ -14,6 +14,8 @@ class LoginUseCase {
   }) async {
     try {
       return await repository.login(email: email, password: password);
+    } on Failure catch (error) {
+      return Left(Failure(message: error.message));
     } catch (e) {
       return Left(Failure(message: e.toString()));
     }

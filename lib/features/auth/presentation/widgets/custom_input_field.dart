@@ -54,9 +54,17 @@ class _CustomInputFieldState extends State<CustomInputField> {
                 },
               )
             : null,
-        hint: Text(
+        // hint: Text(
+        //   widget.title,
+        //   style: textTheme.titleMedium!.copyWith(
+        //     color: ColorManager.mediumGray,
+        //   ),
+        // ),
+        label: Text(
           widget.title,
-          style: textTheme.titleMedium!.copyWith(color: ColorManager.mediumGray),
+          style: textTheme.titleMedium!.copyWith(
+            color: ColorManager.mediumGray,
+          ),
         ),
         filled: true,
         fillColor: ColorManager.darkTealGreen,

@@ -35,7 +35,7 @@ class LoginScreen extends StatelessWidget {
                     UiUtils.hideLoading(context);
 
                     UiUtils.showMessage(
-                      message: "Some Thing Went Wrong, Try Again",
+                      message: state.message,
                       isErrorMessage: true,
                     );
                   } else if (state is LoginSuccess) {

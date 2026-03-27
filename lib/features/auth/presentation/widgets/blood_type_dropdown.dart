@@ -2,26 +2,20 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:telemedicine/core/theme/color_manger.dart';
 
-const List<String> bloodTypes = [
-  'A-',
-  'A+',
-  'B-',
-  'B+',
-  'AB-',
-  'AB+',
-  'O-',
-  'O+',
-];
-
-class BloodTypeDropdown extends StatelessWidget {
-  const BloodTypeDropdown({
+class CustomDropDown extends StatelessWidget {
+  const CustomDropDown({
     super.key,
     this.value,
     required this.onChanged,
     this.validator,
+    required this.items,
+    this.label,
   });
 
+  final List<String> items;
   final String? value;
+  final String? label;
+
   final ValueChanged<String?> onChanged;
   final String? Function(String?)? validator;
 
@@ -31,32 +25,34 @@ class BloodTypeDropdown extends StatelessWidget {
     return FormField<String>(
       key: ValueKey(value),
       initialValue: value,
-      validator: validator ??
+      validator:
+          validator ??
           (v) {
-            if (v == null || v.isEmpty) return "Please select your blood type";
+            if (v == null || v.isEmpty) return "Please $label";
             return null;
           },
       builder: (fieldState) {
         return Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-          
             DropdownMenu<String>(
               width: 250.w,
               initialSelection: fieldState.value,
               textStyle: textTheme.titleMedium!.copyWith(
                 color: ColorManager.white,
               ),
-              hintText: "Choose your blood type",
+              label: Text(
+                label ?? "",
+                style: textTheme.titleMedium!.copyWith(
+                  color: ColorManager.mediumGray,
+                ),
+              ),
               inputDecorationTheme: InputDecorationTheme(
                 filled: true,
                 fillColor: ColorManager.darkTealGreen,
                 border: border(Colors.grey),
                 enabledBorder: border(Colors.grey),
                 focusedBorder: border(ColorManager.aquaMint),
-                hintStyle: textTheme.titleMedium!.copyWith(
-                  color: ColorManager.mediumGray,
-                ),
               ),
               menuStyle: MenuStyle(
                 backgroundColor: WidgetStatePropertyAll(ColorManager.white),
@@ -65,12 +61,10 @@ class BloodTypeDropdown extends StatelessWidget {
                 Icons.arrow_drop_down,
                 color: ColorManager.white,
               ),
-              dropdownMenuEntries: bloodTypes
+              dropdownMenuEntries: items
                   .map(
-                    (type) => DropdownMenuEntry<String>(
-                      value: type,
-                      label: type,
-                    ),
+                    (type) =>
+                        DropdownMenuEntry<String>(value: type, label: type),
                   )
                   .toList(),
               onSelected: (selected) {
@@ -97,11 +91,8 @@ class BloodTypeDropdown extends StatelessWidget {
 
   OutlineInputBorder border(Color color) {
     return OutlineInputBorder(
-                borderRadius: BorderRadius.circular(8),
-                borderSide:  BorderSide(
-                  color: color,
-                  width: 1.5,
-                ),
-              );
+      borderRadius: BorderRadius.circular(8),
+      borderSide: BorderSide(color: color, width: 1.5),
+    );
   }
 }

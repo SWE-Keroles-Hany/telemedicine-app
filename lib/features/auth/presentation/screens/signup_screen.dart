@@ -25,17 +25,20 @@ class SignUpScreen extends StatefulWidget {
 class _SignUpScreenState extends State<SignUpScreen> {
   final TextEditingController emailController = TextEditingController();
   final TextEditingController nameController = TextEditingController();
-  final TextEditingController phoneController = TextEditingController();
   final TextEditingController addressController = TextEditingController();
   final TextEditingController passwordController = TextEditingController();
+  final TextEditingController phoneNumberController = TextEditingController();
+  final TextEditingController dateOfBirth = TextEditingController();
+
   final globalKey = GlobalKey<FormState>();
   String? selectedBloodType;
+  String? selectedGender;
 
   @override
   void dispose() {
     emailController.dispose();
     nameController.dispose();
-    phoneController.dispose();
+    phoneNumberController.dispose();
     addressController.dispose();
     passwordController.dispose();
     super.dispose();
@@ -57,7 +60,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                   if (state is RegisterError) {
                     UiUtils.hideLoading(context);
                     UiUtils.showMessage(
-                      message: "Some Thing Went Wrong, Try Again",
+                      message: state.message,
                       isErrorMessage: true,
                     );
                   } else if (state is RegisterSuccess) {
@@ -119,11 +122,42 @@ class _SignUpScreenState extends State<SignUpScreen> {
                             AppValidations.addressValidator(address),
                       ),
                       SizedBox(height: 15.h),
-                      BloodTypeDropdown(
+
+                      CustomInputField(
+                        title: "Enter Your Phone Number",
+                        controller: phoneNumberController,
+                        validator: (email) =>
+                            AppValidations.emailValidator(email),
+                      ),
+                      SizedBox(height: 15.h),
+
+                      CustomDropDown(
+                        label: "Choose Your Blood Type",
+                        items: [
+                          'A+',
+                          'A-',
+                          'B+',
+                          'B-',
+                          'AB+',
+                          'AB-',
+                          'O+',
+                          'O-',
+                        ],
                         key: ValueKey(selectedBloodType),
                         value: selectedBloodType,
                         onChanged: (value) {
                           setState(() => selectedBloodType = value);
+                        },
+                      ),
+                      SizedBox(height: 15.h),
+                      CustomDropDown(
+                        label: "Choose Your Gender",
+
+                        items: ['Male', 'Female'],
+                        key: ValueKey(selectedGender ?? ""),
+                        value: selectedGender,
+                        onChanged: (value) {
+                          setState(() => selectedGender = value);
                         },
                       ),
                       SizedBox(height: 15.h),
@@ -138,9 +172,9 @@ class _SignUpScreenState extends State<SignUpScreen> {
                                 email: emailController.text.trim(),
                                 existingConditions: "",
                                 fullName: nameController.text.trim(),
-                                gender: "",
+                                gender: "male",
                                 password: passwordController.text.trim(),
-                                phoneNumber: phoneController.text.trim(),
+                                phoneNumber: phoneNumberController.text.trim(),
                               ),
                             );
                           }
