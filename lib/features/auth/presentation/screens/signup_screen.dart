@@ -124,10 +124,11 @@ class _SignUpScreenState extends State<SignUpScreen> {
                       SizedBox(height: 15.h),
 
                       CustomInputField(
+                        keyboardType: TextInputType.number,
                         title: "Enter Your Phone Number",
                         controller: phoneNumberController,
                         validator: (email) =>
-                            AppValidations.emailValidator(email),
+                            AppValidations.phoneNumberValidator(email),
                       ),
                       SizedBox(height: 15.h),
 
@@ -162,23 +163,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                       ),
                       SizedBox(height: 15.h),
                       CustomButton(
-                        onPressed: () async {
-                          if (globalKey.currentState!.validate()) {
-                            await context.read<AuthCubit>().register(
-                              user: UserEntity(
-                                address: addressController.text.trim(),
-                                allergies: "",
-                                bloodType: selectedBloodType ?? "",
-                                email: emailController.text.trim(),
-                                existingConditions: "",
-                                fullName: nameController.text.trim(),
-                                gender: "male",
-                                password: passwordController.text.trim(),
-                                phoneNumber: phoneNumberController.text.trim(),
-                              ),
-                            );
-                          }
-                        },
+                        onPressed: onSignUp,
                         title: "SignUp",
                         titleColor: ColorManager.black,
                         bgColor: ColorManager.aquaMint,
@@ -217,5 +202,25 @@ class _SignUpScreenState extends State<SignUpScreen> {
         ),
       ),
     );
+  }
+
+  void onSignUp() async {
+    if (globalKey.currentState!.validate()) {
+      await context.read<AuthCubit>().register(
+        user: UserEntity(
+          imgURL: "",
+          allergies: "",
+          dateOfBirth: "2024/01/22",
+          existingConditions: "",
+          address: addressController.text.trim(),
+          bloodType: selectedBloodType!,
+          email: emailController.text.trim(),
+          fullName: nameController.text.trim(),
+          gender: selectedGender!,
+          password: passwordController.text.trim(),
+          phoneNumber: phoneNumberController.text.trim(),
+        ),
+      );
+    }
   }
 }

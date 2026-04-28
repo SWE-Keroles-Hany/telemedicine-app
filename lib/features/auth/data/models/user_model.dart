@@ -8,8 +8,12 @@ class UserModel {
   final String bloodType;
   final String allergies;
   final String existingConditions;
+  final String dateOfBirth;
+  final String imgURL;
 
   UserModel({
+    required this.imgURL,
+    required this.dateOfBirth,
     required this.email,
     required this.fullName,
     required this.password,
@@ -24,30 +28,34 @@ class UserModel {
   // fromJson
   factory UserModel.fromJson(Map<String, dynamic> json) {
     return UserModel(
-      fullName: json['fullName'] ?? '',
-      email: json['email'] ?? '',
-      password: json['password'] ?? '',
-      phoneNumber: json['phoneNumber'] ?? '',
-      gender: json['gender'] ?? '',
-      address: json['address'] ?? '',
-      bloodType: json['bloodType'] ?? '',
-      allergies: json['allergies'] ?? '',
-      existingConditions: json['existingConditions'] ?? '',
+      imgURL: json['ProfilePicture'],
+      dateOfBirth: json['DateOfBirth'],
+      fullName: json['FullName'] ?? '',
+      email: json['Email'] ?? '',
+      password: json['Password'] ?? '',
+      phoneNumber: json['PhoneNumber'] ?? '',
+      gender: json['Gender'] ?? '',
+      address: json['Address'] ?? '',
+      bloodType: json['BloodType'] ?? '',
+      allergies: json['Allergies'] ?? '',
+      existingConditions: json['ExistingConditions'] ?? '',
     );
   }
 
   // toJson
   Map<String, dynamic> toJson() {
     return {
-      'fullName': fullName,
-      'email': email,
-      'password': password,
-      'phoneNumber': phoneNumber,
-      'gender': gender,
-      'address': address,
-      'bloodType': bloodType,
-      'allergies': allergies,
-      'existingConditions': existingConditions,
+      'FullName': fullName,
+      'Email': email,
+      'Password': password,
+      'PhoneNumber': phoneNumber,
+      'Gender': gender,
+      "DateOfBirth": "2004/01/22",
+      'Address': address,
+      'BloodType': bloodType,
+      'Allergies': allergies,
+      'ExistingConditions': existingConditions,
+      'ProfilePicture': "",
     };
   }
 }

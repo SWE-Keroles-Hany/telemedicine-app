@@ -6,6 +6,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:telemedicine/features/auth/presentation/cubit/auth_cubit.dart';
 import 'package:telemedicine/core/si/service_locator.dart';
 import 'package:telemedicine/features/auth/presentation/screens/login_screen.dart';
+import 'package:telemedicine/features/auth/presentation/screens/signup_screen.dart';
 import 'package:telemedicine/features/home/presentation/screens/home_screen.dart';
 import 'package:toastification/toastification.dart';
 
@@ -33,7 +34,7 @@ class Telemedicine extends StatelessWidget {
           theme: AppTheme.theme,
           debugShowCheckedModeBanner: false,
           routes: AppRoutes.routes,
-          initialRoute: LoginScreen.routeName,
+          initialRoute: SignUpScreen.routeName,
         ),
       ),
     );

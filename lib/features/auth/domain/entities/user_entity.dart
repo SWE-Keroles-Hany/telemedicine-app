@@ -8,8 +8,12 @@ class UserEntity {
   final String bloodType;
   final String allergies;
   final String existingConditions;
+  final String dateOfBirth;
+  final String imgURL;
 
   const UserEntity({
+    required this.imgURL,
+    required this.dateOfBirth,
     required this.email,
     required this.fullName,
     required this.password,

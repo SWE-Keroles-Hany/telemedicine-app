@@ -4,6 +4,7 @@ import 'package:telemedicine/core/theme/color_manger.dart';
 
 class CustomInputField extends StatefulWidget {
   const CustomInputField({
+    this.keyboardType,
     super.key,
     this.isPasswordField = false,
     required this.title,
@@ -16,6 +17,7 @@ class CustomInputField extends StatefulWidget {
   final String title;
   final String? Function(String?)? validator;
   final int maxLines;
+  final TextInputType? keyboardType;
   @override
   State<CustomInputField> createState() => _CustomInputFieldState();
 }
@@ -26,7 +28,8 @@ class _CustomInputFieldState extends State<CustomInputField> {
   Widget build(BuildContext context) {
     final TextTheme textTheme = Theme.of(context).textTheme;
     return TextFormField(
-      // autofocus: true,
+      keyboardType: widget.keyboardType,
+      // autofocus:keyboardTypez true,
       canRequestFocus: true,
       maxLines: widget.maxLines,
       focusNode: FocusNode(descendantsAreTraversable: true),

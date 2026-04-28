@@ -4,9 +4,8 @@ import 'package:flutter/material.dart';
 import '../error/failure.dart';
 
 dynamic handleResponse(Response response) {
-  String? message = "Some Thing Went Wrong";
+  final message = response.statusMessage ?? "Some Thing Went Wrong"; 
   if (response.statusCode == 200 || response.statusCode == 201) {
-    debugPrint("Response data: ${response.data}");
     return response.data;
   }
 
@@ -15,14 +14,19 @@ dynamic handleResponse(Response response) {
 
 Never handleDioError(DioException e) {
   final r = e.response?.data;
+  print(r);
   final r2 = r['errors'];
 
-  print(r.toString());
   String message = "Something went wrong";
   if (r is List) {
+    print("Here 1 ");
     message = r[0]['description'];
   } else if (r2 is Map) {
+    print("Here 2 ");
+
     message = r2.values.first.toString();
   }
+  print("Here 3 ");
+
   throw Failure(message: message);
 }

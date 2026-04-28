@@ -4,6 +4,8 @@ import 'package:telemedicine/features/auth/domain/entities/user_entity.dart';
 extension UserEntityMapper on UserEntity {
   UserModel toModel() {
     return UserModel(
+      imgURL: imgURL,
+      dateOfBirth: dateOfBirth,
       phoneNumber: phoneNumber,
       password: password,
       gender: gender,
@@ -20,6 +22,8 @@ extension UserEntityMapper on UserEntity {
 extension UserModelMapper on UserModel {
   UserEntity toEntity() {
     return UserEntity(
+      dateOfBirth: dateOfBirth,
+      imgURL: imgURL,
       phoneNumber: phoneNumber,
       password: password,
       gender: gender,

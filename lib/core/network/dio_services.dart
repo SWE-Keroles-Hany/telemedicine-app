@@ -35,11 +35,11 @@ class DioServices implements APIServices {
       );
       return handleResponse(response);
     } on DioException catch (exception) {
-      debugPrint("**** We Are Here");
-      return handleDioError(exception);
-    } catch (error) {
-      log("Error in Dio POST: ${error.toString()}");
-      throw Failure(message: "Some Thing Went Wrong");
+      print("Here");
+      print(exception.response!.data);
+      final message = exception.response?.data[0]['description'] ?? "";
+
+      throw Failure(message: message);
     }
   }
 
@@ -57,7 +57,7 @@ class DioServices implements APIServices {
       );
       return handleResponse(response);
     } on DioException catch (exception) {
-      return handleDioError(exception);
+      throw Failure(message: exception.message ?? "");
     } catch (_) {
       throw Failure(message: "Some Thing Went Wrong");
     }
@@ -72,7 +72,7 @@ class DioServices implements APIServices {
       final response = await dio.get(endPoint, queryParameters: queryParams);
       return handleResponse(response);
     } on DioException catch (exception) {
-      return handleDioError(exception);
+      throw Failure(message: exception.message ?? "");
     } catch (_) {
       throw Failure(message: "Some Thing Went Wrong");
     }
@@ -92,7 +92,7 @@ class DioServices implements APIServices {
       );
       return handleResponse(response);
     } on DioException catch (exception) {
-      return handleDioError(exception);
+      throw Failure(message: exception.message ?? "");
     } catch (_) {
       throw Failure(message: "Some Thing Went Wrong");
     }

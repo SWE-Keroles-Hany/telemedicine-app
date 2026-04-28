@@ -14,7 +14,7 @@ class UiUtils {
       autoCloseDuration: const Duration(seconds: 3),
       title: Text(
         message,
-        style: TextStyle(color: ColorManager.white, fontSize: 18.sp),
+        style: TextStyle(color: ColorManager.white, fontSize: 14.sp),
       ),
       // progressBarTheme: true,
       alignment: Alignment.topRight,
@@ -22,7 +22,7 @@ class UiUtils {
       animationDuration: const Duration(milliseconds: 300),
       icon: Icon(
         isErrorMessage ? Icons.error : Icons.check_circle,
-        size: 28,
+        size: 25,
         color: isErrorMessage ? ColorManager.yellow : ColorManager.white,
       ),
       showIcon: true,

@@ -10,7 +10,7 @@ class OurServices extends StatelessWidget {
   final List<ServiceData> services = [
     ServiceData(
       icon: Icons.check_box,
-      serviceDescription: "Upload & Ai",
+      serviceDescription: "Chat With AI",
       serviceTitle: "Check Your Self",
     ),
     ServiceData(
@@ -18,12 +18,28 @@ class OurServices extends StatelessWidget {
       serviceDescription: "Book your fav Doctor",
       serviceTitle: "Book A Doctor",
     ),
+    ServiceData(
+      icon: Icons.history,
+      serviceDescription: "Show Medical History",
+      serviceTitle: "Medical History",
+    ),
+    ServiceData(
+      icon: Icons.lock_clock_outlined,
+      serviceDescription: "Show Appointments",
+      serviceTitle: "Appointments",
+    ),
   ];
   @override
   Widget build(BuildContext context) {
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.stretch,
+    return GridView(
+      physics: NeverScrollableScrollPhysics(),
+      gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+        crossAxisCount: 2,
+        crossAxisSpacing: 10.h,
+      ),
+      // crossAxisAlignment: CrossAxisAlignment.stretch,
       children: List.generate(
+
         services.length,
         (index) => Container(
           margin: EdgeInsets.only(bottom: 12.h),

@@ -2,6 +2,7 @@
 
 import 'dart:developer';
 
+import 'package:dio/dio.dart';
 import 'package:telemedicine/core/error/failure.dart';
 import 'package:telemedicine/core/network/api_constants.dart';
 import '../../../../core/network/dio_services.dart';
@@ -30,15 +31,26 @@ class AuthAPIDataSource implements AuthRemoteDataSource {
   @override
   Future<void> register({required UserModel user}) async {
     try {
+      FormData formData = FormData.fromMap({
+        "FullName": user.fullName,
+        "Email": user.email,
+        "Password": user.password,
+        "PhoneNumber": user.phoneNumber,
+        "Gender": user.gender,
+        "DateOfBirth": user.dateOfBirth, // format depends on backend
+        "Address": user.address,
+        "BloodType": user.bloodType,
+        "Allergies": "Allergies",
+        "ExistingConditions": "Allergies",
+        "ProfilePicture": "",
+      });
+
       await dioServices.post(
         endPoint: APICONSTANTS.registerPatient,
-        data: user.toJson(),
+        data: formData,
       );
-    } on Failure catch (error) {
-      log(error.message);
-      throw Failure(message: error.message);
-    } catch (e) {
-      throw Failure(message: e.toString());
+    } on Failure catch (e) {
+      throw Failure(message: e.message);
     }
   }
 }
