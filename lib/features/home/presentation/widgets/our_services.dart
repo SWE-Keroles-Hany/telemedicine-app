@@ -3,6 +3,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:telemedicine/features/book_doctor/presentation/screens/book_appointment_screen.dart';
 import 'package:telemedicine/features/check%20ur%20self/presentation/screens/check_your_self_screen.dart';
 import 'package:telemedicine/features/home/presentation/widgets/custom_service_item.dart';
+import 'package:telemedicine/features/patient_appointments/presentation/screens/patient_appointments_screen.dart';
 
 class OurServices extends StatelessWidget {
   OurServices({super.key});
@@ -39,7 +40,6 @@ class OurServices extends StatelessWidget {
       ),
       // crossAxisAlignment: CrossAxisAlignment.stretch,
       children: List.generate(
-
         services.length,
         (index) => Container(
           margin: EdgeInsets.only(bottom: 12.h),
@@ -47,11 +47,18 @@ class OurServices extends StatelessWidget {
             onTap: () {
               if (index == 0) {
                 Navigator.of(context).pushNamed(CheckYourSelfScreen.routeName);
-              } else {
-                
-              Navigator.of(context).pushNamed(BookAppointmentScreen.routeName);
+              } else if (index == 1) {
+                Navigator.of(
+                  context,
+                ).pushNamed(BookAppointmentScreen.routeName);
+              } else if (index == 2) {
+                // TODO: Navigate to medical history
+              } else if (index == 3) {
+                Navigator.of(
+                  context,
+                ).pushNamed(PatientAppointmentsScreen.routeName);
               }
-
+              
             },
             child: CustomServiceItem(
               serviceTitle: services[index].serviceTitle,

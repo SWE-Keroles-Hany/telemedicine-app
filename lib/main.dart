@@ -8,7 +8,8 @@ import 'package:telemedicine/features/auth/presentation/cubit/auth_cubit.dart';
 import 'package:telemedicine/core/si/service_locator.dart';
 import 'package:telemedicine/features/book_doctor/presentation/cubit/doctors_cubit.dart';
 import 'package:telemedicine/features/book_doctor/presentation/cubit/specialties_cubit.dart';
-import 'package:telemedicine/features/book_doctor/presentation/screens/book_appointment_screen.dart';
+import 'package:telemedicine/features/home/presentation/screens/home_screen.dart';
+import 'package:telemedicine/features/patient_appointments/presentation/cubit/appointment_cubit.dart';
 import 'package:toastification/toastification.dart';
 
 void main() async {
@@ -22,6 +23,10 @@ void main() async {
         BlocProvider(create: (context) => sl<DoctorsCubit>()..getAllDoctors()),
         BlocProvider(
           create: (context) => sl<SpecialtiesCubit>()..getSpecialties(),
+        ),
+        BlocProvider(
+          create: (context) =>
+              sl<AppointmentCubit>()..getMyAppointments(statusNumber: 1),
         ),
       ],
       child: const Telemedicine(),
@@ -42,7 +47,7 @@ class Telemedicine extends StatelessWidget {
           theme: AppTheme.theme,
           debugShowCheckedModeBanner: false,
           routes: AppRoutes.routes,
-          initialRoute: BookAppointmentScreen.routeName,
+          initialRoute: HomeScreen.routeName,
         ),
       ),
     );

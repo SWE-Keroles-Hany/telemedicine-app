@@ -70,8 +70,9 @@ class DioServices implements APIServices {
                 "";
 
       throw Failure(message: message);
-    } catch (_) {
-      throw Failure(message: "Some Thing Went Wrong");
+    } catch (e) {
+      print(e.toString());
+      throw Failure(message: e.toString());
     }
   }
 
@@ -94,8 +95,8 @@ class DioServices implements APIServices {
       print("${exception.response?.data}");
 
       throw Failure(message: message);
-    } catch (_) {
-      throw Failure(message: "Some Thing Went Wrong");
+    } catch (e) {
+      throw Failure(message: e.toString());
     }
   }
 

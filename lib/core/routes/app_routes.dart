@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:telemedicine/features/book_doctor/presentation/screens/book_appointment_screen.dart';
 import 'package:telemedicine/features/book_doctor/presentation/screens/doctor_profile_screen.dart';
 import 'package:telemedicine/features/on_boarding/presentation/screens/on_boarding_screen.dart';
+import 'package:telemedicine/features/patient_appointments/presentation/screens/patient_appointments_screen.dart';
 import 'package:telemedicine/features/settings/presentation/screens/user_profile.dart';
 
 import '../../features/auth/presentation/screens/login_screen.dart';
@@ -21,5 +22,7 @@ class AppRoutes {
     UserProfileScreen.routeName: (context) => UserProfileScreen(),
     OnboardingScreen.routeName: (context) => OnboardingScreen(),
     BookAppointmentScreen.routeName: (context) => BookAppointmentScreen(),
+    PatientAppointmentsScreen.routeName: (context) =>
+        PatientAppointmentsScreen(),
   };
 }

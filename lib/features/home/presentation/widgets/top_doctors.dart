@@ -5,8 +5,8 @@ import 'package:telemedicine/features/book_doctor/presentation/screens/doctor_pr
 import 'package:telemedicine/features/home/presentation/widgets/doctor_item.dart';
 
 class TopDoctors extends StatelessWidget {
-  TopDoctors({super.key});
-  List<DoctorEntity> topDoctors = [];
+  const TopDoctors({super.key, required this.topDoctors});
+  final List<DoctorEntity> topDoctors;
 
   @override
   Widget build(BuildContext context) {

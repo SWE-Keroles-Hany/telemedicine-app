@@ -29,7 +29,10 @@ class HomeScreen extends StatelessWidget {
             SizedBox(height: 300.h, child: OurServices()),
             TopDoctorsAndViewAllRow(),
             SizedBox(height: 10.h),
-            SizedBox(height: 210.h, child: TopDoctors()),
+            SizedBox(
+              height: 210.h,
+              child: TopDoctors(topDoctors: []),
+            ),
           ],
         ),
       ),

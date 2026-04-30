@@ -8,4 +8,5 @@ class ApiEndPoints {
   static const String doctorsBySpecialty = "Doctor/get-by-Specialty";
   static const String specialties = "Doctor/specialties";
   static const String getDoctorByName = "Doctor/get-by-name";
+  static const String myAppointments = "Patients/my-appointments";
 }

@@ -11,6 +11,12 @@ import 'package:telemedicine/features/book_doctor/domain/usecases/get_doctors_by
 import 'package:telemedicine/features/book_doctor/domain/usecases/get_specialties.dart';
 import 'package:telemedicine/features/book_doctor/presentation/cubit/doctors_cubit.dart';
 import 'package:telemedicine/features/book_doctor/presentation/cubit/specialties_cubit.dart';
+import 'package:telemedicine/features/patient_appointments/data/data_source/appointment_api_data_source.dart';
+import 'package:telemedicine/features/patient_appointments/data/data_source/appointment_remote_data_source.dart';
+import 'package:telemedicine/features/patient_appointments/data/repo/appointment_repo.dart';
+import 'package:telemedicine/features/patient_appointments/domain/repo/appointment_repo_impl.dart';
+import 'package:telemedicine/features/patient_appointments/domain/use_cases/get_my_appointments_usecase.dart';
+import 'package:telemedicine/features/patient_appointments/presentation/cubit/appointment_cubit.dart';
 
 import '../../features/auth/data/data_source/auth_api_data_source.dart';
 import '../../features/auth/data/data_source/auth_remote_data_source.dart';
@@ -34,10 +40,16 @@ Future<void> init() async {
   sl.registerSingleton<DoctorsDataSource>(
     DoctorsApiDataSource(sl<APIServices>()),
   );
+  sl.registerSingleton<AppointmentRemoteDataSource>(
+    AppointmentAPIDataSource(sl<DioServices>()),
+  );
 
   //! Repository
   sl.registerSingleton<AuthRepository>(AuthRepositoryImpl(sl<AuthRemoteDataSource>()));
   sl.registerSingleton<DoctorsRepo>(DoctorsRepoImp(sl<DoctorsDataSource>()));
+  sl.registerSingleton<AppointmentRepo>(
+    AppointmentRepoImpl(sl<AppointmentRemoteDataSource>()),
+  );
 
   //! UseCases
   sl.registerSingleton<LoginUseCase>(LoginUseCase(sl<AuthRepository>()));
@@ -53,6 +65,9 @@ Future<void> init() async {
   );
   sl.registerSingleton<GetSpecialtiesUseCase>(
     GetSpecialtiesUseCase(doctorsRepo: sl<DoctorsRepo>()),
+  );
+  sl.registerSingleton<GetMyAppointmentsUseCase>(
+    GetMyAppointmentsUseCase(sl<AppointmentRepo>()),
   );
 
   //! Cubit
@@ -75,5 +90,10 @@ Future<void> init() async {
   );
   sl.registerFactory<SpecialtiesCubit>(
     () => SpecialtiesCubit(getSpecialtiesUseCase: sl<GetSpecialtiesUseCase>()),
+  );
+  sl.registerFactory<AppointmentCubit>(
+    () => AppointmentCubit(
+      getMyAppointmentsUseCase: sl<GetMyAppointmentsUseCase>(),
+    ),
   );
 }

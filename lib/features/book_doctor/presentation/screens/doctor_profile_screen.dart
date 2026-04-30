@@ -1,10 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:telemedicine/core/si/service_locator.dart';
 import 'package:telemedicine/core/theme/color_manger.dart';
 import 'package:telemedicine/core/utils/ui_utils.dart';
 import 'package:telemedicine/features/book_doctor/domain/entities/doctor_entity.dart';
 import 'package:telemedicine/features/book_doctor/presentation/cubit/doctors_cubit.dart';
 import 'package:telemedicine/features/book_doctor/presentation/cubit/doctors_states.dart';
+import 'package:telemedicine/features/patient_appointments/presentation/cubit/appointment_cubit.dart';
+import 'package:telemedicine/features/patient_appointments/presentation/screens/patient_appointments_screen.dart';
 
 import '../widgets/doctor_hero_header.dart';
 import '../widgets/doctor_info_card.dart';
@@ -84,8 +87,16 @@ class _DoctorProfileScreenState extends State<DoctorProfileScreen> {
                     message: "Booked Successfully",
                     isSuccessMessage: true,
                   );
-                  // go to appointments screen
-                  Navigator.pop(context);
+
+                  Navigator.pushReplacementNamed(
+                    context,
+                    PatientAppointmentsScreen.routeName,
+                  ).then((_) async {
+                    // Refresh the appointments list when returning
+                    await sl<AppointmentCubit>().getMyAppointments(
+                      statusNumber: 1,
+                    );
+                  });
                 } else if (state is BookDoctorError) {
                   UiUtils.hideLoading(context);
                   UiUtils.showMessage(
