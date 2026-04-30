@@ -67,6 +67,23 @@ class _PatientAppointmentsScreenState extends State<PatientAppointmentsScreen> {
           StatusTabs(
             selectedStatus: _selectedStatus,
             onStatusChanged: (status) {
+              if (status.toLowerCase() == "pending") {
+                context.read<AppointmentCubit>().getMyAppointments(
+                  statusNumber: 1,
+                );
+              } else if (status.toLowerCase() == "confirmed") {
+                context.read<AppointmentCubit>().getMyAppointments(
+                  statusNumber: 2,
+                );
+              } else if (status.toLowerCase() == "cancelled") {
+                context.read<AppointmentCubit>().getMyAppointments(
+                  statusNumber: 3,
+                );
+              } else if (status.toLowerCase() == "completed") {
+                context.read<AppointmentCubit>().getMyAppointments(
+                  statusNumber: 4,
+                );
+              }
               setState(() {
                 _selectedStatus = status;
               });
@@ -88,25 +105,7 @@ class _PatientAppointmentsScreenState extends State<PatientAppointmentsScreen> {
                 } else if (state is AppointmentsError) {
                   return AppointmentsErrorWidget(
                     message: state.message,
-                    onRetry: () {
-                      if (_selectedStatus.toLowerCase() == 'pending') {
-                        context.read<AppointmentCubit>().getMyAppointments(
-                          statusNumber: 1,
-                        );
-                      } else if (_selectedStatus.toLowerCase() == "confirmed") {
-                        context.read<AppointmentCubit>().getMyAppointments(
-                          statusNumber: 2,
-                        );
-                      } else if (_selectedStatus.toLowerCase() == "cancelled") {
-                        context.read<AppointmentCubit>().getMyAppointments(
-                          statusNumber: 3,
-                        );
-                      } else if (_selectedStatus.toLowerCase() == "completed") {
-                        context.read<AppointmentCubit>().getMyAppointments(
-                          statusNumber: 4,
-                        );
-                      }
-                    },
+                    onRetry: () {},
                   );
                 }
                 return const SizedBox.shrink();

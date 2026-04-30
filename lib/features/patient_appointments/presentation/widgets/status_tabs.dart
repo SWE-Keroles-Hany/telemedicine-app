@@ -11,7 +11,12 @@ class StatusTabs extends StatelessWidget {
     required this.onStatusChanged,
   });
 
-  static const List<String> statuses = ['Pending', 'Confirmed', 'Cancelled'];
+  static const List<String> statuses = [
+    'Pending',
+    'Confirmed',
+    'Completed',
+    'Cancelled',
+  ];
 
   @override
   Widget build(BuildContext context) {
@@ -32,15 +37,17 @@ class StatusTabs extends StatelessWidget {
                 margin: const EdgeInsets.all(4),
                 padding: const EdgeInsets.symmetric(vertical: 12),
                 decoration: BoxDecoration(
-                  color: isSelected ? ColorManager.bookingPrimary : Colors.transparent,
+                  color: isSelected
+                      ? ColorManager.bookingPrimary
+                      : Colors.transparent,
                   borderRadius: BorderRadius.circular(8),
                 ),
                 child: Text(
                   status,
                   textAlign: TextAlign.center,
                   style: TextStyle(
-                    color: isSelected 
-                        ? ColorManager.bookingTextOnPrimary 
+                    color: isSelected
+                        ? ColorManager.bookingTextOnPrimary
                         : ColorManager.bookingTextPrimary,
                     fontWeight: isSelected ? FontWeight.w600 : FontWeight.w400,
                     fontSize: 14,
