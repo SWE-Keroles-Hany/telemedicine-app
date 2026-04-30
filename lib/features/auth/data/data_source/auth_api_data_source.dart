@@ -18,7 +18,7 @@ class AuthAPIDataSource implements AuthRemoteDataSource {
   Future<void> login({required String email, required String password}) async {
     try {
       await dioServices.post(
-        endPoint: APICONSTANTS.login,
+        endPoint: ApiEndPoints.login,
         data: {"email": email, "password": password},
       );
     } on Failure catch (error) {
@@ -46,7 +46,7 @@ class AuthAPIDataSource implements AuthRemoteDataSource {
       });
 
       await dioServices.post(
-        endPoint: APICONSTANTS.registerPatient,
+        endPoint: ApiEndPoints.registerPatient,
         data: formData,
       );
     } on Failure catch (e) {

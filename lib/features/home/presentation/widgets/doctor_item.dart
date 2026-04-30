@@ -1,19 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:telemedicine/core/constants/constants_assets.dart';
 import 'package:telemedicine/core/theme/color_manger.dart';
+import 'package:telemedicine/features/book_doctor/domain/entities/doctor_entity.dart';
 
 class DoctorCard extends StatelessWidget {
-  const DoctorCard({
-    super.key,
-    required this.doctorImage,
-    required this.doctorField,
-    required this.doctorName,
-    required this.doctorRate,
-  });
-  final String doctorImage;
-  final String doctorField;
-  final String doctorName;
-  final double doctorRate;
+  const DoctorCard({required this.doctor, super.key});
+  final DoctorEntity doctor;
 
   @override
   Widget build(BuildContext context) {
@@ -31,23 +24,29 @@ class DoctorCard extends StatelessWidget {
         children: [
           ClipRRect(
             borderRadius: BorderRadiusGeometry.circular(16.r),
-            child: Image.asset(
+            child: Image.network(
+              errorBuilder: (context, error, stackTrace) => Image.network(
+                ConstantAssetImages.defaultDoctorImage,
+                fit: BoxFit.fitWidth,
+                width: MediaQuery.sizeOf(context).width * 0.35,
+                height: 100.h,
+              ),
               fit: BoxFit.fitWidth,
-              width: MediaQuery.sizeOf(context).width * 0.4,
+              width: MediaQuery.sizeOf(context).width * 0.35,
               height: 100.h,
-              doctorImage,
+              // scale: 1,
+              doctor.profilePictureUrl!,
             ),
           ),
           SizedBox(height: 8.h),
 
           Text(
-            "Dr.$doctorName",
+            doctor.fullName,
             style: textTheme.titleMedium!.copyWith(color: ColorManager.white),
           ),
 
-          SizedBox(height: 4.h),
           Text(
-            doctorField,
+            doctor.specialty,
             style: textTheme.titleMedium!.copyWith(
               color: ColorManager.mediumGray,
               fontWeight: FontWeight.normal,
@@ -62,7 +61,7 @@ class DoctorCard extends StatelessWidget {
               Icon(Icons.star, color: ColorManager.yellow),
               SizedBox(width: 8.w),
               Text(
-                "$doctorRate",
+                "${doctor.rate}",
                 style: textTheme.titleMedium!.copyWith(
                   color: ColorManager.white,
                 ),

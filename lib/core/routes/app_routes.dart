@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:telemedicine/features/book%20appointment/presentation/screens/book_appointment_screen.dart';
-import 'package:telemedicine/features/doctors/presentation/screens/doctor_profile_screen.dart';
+import 'package:telemedicine/features/book_doctor/presentation/screens/book_appointment_screen.dart';
+import 'package:telemedicine/features/book_doctor/presentation/screens/doctor_profile_screen.dart';
 import 'package:telemedicine/features/on_boarding/presentation/screens/on_boarding_screen.dart';
 import 'package:telemedicine/features/settings/presentation/screens/user_profile.dart';
 

@@ -11,7 +11,7 @@ import 'api_constants.dart';
 class DioServices implements APIServices {
   final Dio dio;
   DioServices(this.dio) {
-    dio.options.baseUrl = APICONSTANTS.baseURL;
+    dio.options.baseUrl = ApiEndPoints.baseURL;
     dio.options.headers = {
       'Accept': 'application/json',
       'Content-Type': 'application/json',
@@ -35,9 +35,13 @@ class DioServices implements APIServices {
       );
       return handleResponse(response);
     } on DioException catch (exception) {
-      print("Here");
-      print(exception.response!.data);
-      final message = exception.response?.data[0]['description'] ?? "";
+      final message =
+          (exception.response?.data is List &&
+              exception.response?.data.isNotEmpty)
+          ? exception.response?.data[0]['description'] ?? ""
+          : exception.response?.data['description']?.toString() ??
+                exception.message ??
+                "";
 
       throw Failure(message: message);
     }
@@ -57,7 +61,15 @@ class DioServices implements APIServices {
       );
       return handleResponse(response);
     } on DioException catch (exception) {
-      throw Failure(message: exception.message ?? "");
+      final message =
+          (exception.response?.data is List &&
+              exception.response?.data.isNotEmpty)
+          ? exception.response?.data[0]['description'] ?? ""
+          : exception.response?.data['description']?.toString() ??
+                exception.message ??
+                "";
+
+      throw Failure(message: message);
     } catch (_) {
       throw Failure(message: "Some Thing Went Wrong");
     }
@@ -72,7 +84,16 @@ class DioServices implements APIServices {
       final response = await dio.get(endPoint, queryParameters: queryParams);
       return handleResponse(response);
     } on DioException catch (exception) {
-      throw Failure(message: exception.message ?? "");
+      final message =
+          (exception.response?.data is List &&
+              exception.response?.data.isNotEmpty)
+          ? exception.response?.data[0]['description'] ?? ""
+          : exception.response?.data['description']?.toString() ??
+                exception.message ??
+                "";
+      print("${exception.response?.data}");
+
+      throw Failure(message: message);
     } catch (_) {
       throw Failure(message: "Some Thing Went Wrong");
     }
