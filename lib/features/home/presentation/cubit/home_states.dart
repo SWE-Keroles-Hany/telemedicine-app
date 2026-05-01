@@ -1,4 +1,4 @@
-import 'package:telemedicine/features/home/domain/entities/top_doctor_entity.dart';
+import 'package:telemedicine/features/book_doctor/domain/entities/doctor_entity.dart';
 
 abstract class HomeState {}
 
@@ -10,7 +10,7 @@ class GetTopDoctorsInitial extends GetTopDoctorsState {}
 class GetTopDoctorsLoading extends GetTopDoctorsState {}
 
 class GetTopDoctorsSuccess extends GetTopDoctorsState {
-  final List<TopDoctorEntity> topDoctors;
+  final List<DoctorEntity> topDoctors;
 
   GetTopDoctorsSuccess(this.topDoctors);
 }

@@ -25,8 +25,6 @@ class DoctorProfileScreen extends StatefulWidget {
 }
 
 class _DoctorProfileScreenState extends State<DoctorProfileScreen> {
-  final bool _isFavorite = false;
-
   String _selectedDate = "2026-05-21";
 
   @override
@@ -47,11 +45,7 @@ class _DoctorProfileScreenState extends State<DoctorProfileScreen> {
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    DoctorHeroHeader(
-                      imageAsset: doctor.profilePictureUrl!,
-                      isFavorite: _isFavorite,
-                      onFavoriteToggle: () {},
-                    ),
+                    DoctorHeroHeader(imageAsset: doctor.profilePictureUrl!),
                     const SizedBox(height: 16),
                     DoctorInfoCard(doctor: doctor),
                     const SizedBox(height: 16),
@@ -88,11 +82,13 @@ class _DoctorProfileScreenState extends State<DoctorProfileScreen> {
                     isSuccessMessage: true,
                   );
 
-                  Navigator.pushReplacementNamed(
+                  Navigator.pushAndRemoveUntil(
                     context,
-                    PatientAppointmentsScreen.routeName,
+                    MaterialPageRoute(
+                      builder: (context) => const PatientAppointmentsScreen(),
+                    ),
+                    (route) => route.isFirst,
                   ).then((_) async {
-                    // Refresh the appointments list when returning
                     await sl<AppointmentCubit>().getMyAppointments(
                       statusNumber: 1,
                     );

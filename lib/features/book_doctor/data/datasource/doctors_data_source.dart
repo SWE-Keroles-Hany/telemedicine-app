@@ -1,4 +1,4 @@
-import 'package:telemedicine/features/book_doctor/data/models/doctor_model.dart';
+import 'package:telemedicine/core/shared_models/models/doctor_model.dart';
 
 abstract class DoctorsDataSource {
   Future<List<DoctorModel>> getAllDoctors();

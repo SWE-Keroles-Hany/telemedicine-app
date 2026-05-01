@@ -4,7 +4,6 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:telemedicine/core/constants/constants_text.dart';
 import 'package:telemedicine/core/theme/color_manger.dart';
 import 'package:telemedicine/core/widgets/custom_app_label.dart';
-import 'package:telemedicine/features/home/domain/entities/top_doctor_entity.dart';
 import 'package:telemedicine/features/home/presentation/cubit/home_cubit.dart';
 import 'package:telemedicine/features/home/presentation/cubit/home_states.dart';
 import 'package:telemedicine/features/home/presentation/widgets/home_app_bar.dart';

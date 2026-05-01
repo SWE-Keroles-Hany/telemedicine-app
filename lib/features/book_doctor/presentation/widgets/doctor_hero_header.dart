@@ -3,15 +3,8 @@ import 'package:telemedicine/core/constants/constants_assets.dart';
 
 class DoctorHeroHeader extends StatelessWidget {
   final String imageAsset;
-  final bool isFavorite;
-  final VoidCallback onFavoriteToggle;
 
-  const DoctorHeroHeader({
-    super.key,
-    required this.imageAsset,
-    required this.isFavorite,
-    required this.onFavoriteToggle,
-  });
+  const DoctorHeroHeader({super.key, required this.imageAsset});
 
   @override
   Widget build(BuildContext context) {

@@ -1,4 +1,4 @@
-import 'package:telemedicine/features/book_doctor/data/models/doctor_model.dart';
+import 'package:telemedicine/core/shared_models/models/doctor_model.dart';
 import 'package:telemedicine/features/book_doctor/domain/entities/doctor_entity.dart';
 
 extension DoctorEntityMapper on DoctorEntity {

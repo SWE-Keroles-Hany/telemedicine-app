@@ -1,8 +1,8 @@
 import 'package:dartz/dartz.dart';
 import 'package:telemedicine/core/error/failure.dart';
+import 'package:telemedicine/core/shared_models/mapper/doctor_model_mapper.dart';
+import 'package:telemedicine/core/shared_models/models/doctor_model.dart';
 import 'package:telemedicine/features/book_doctor/data/datasource/doctors_data_source.dart';
-import 'package:telemedicine/features/book_doctor/data/mapper/doctor_model_mapper.dart';
-import 'package:telemedicine/features/book_doctor/data/models/doctor_model.dart';
 import 'package:telemedicine/features/book_doctor/data/repo/doctors_repo.dart';
 import 'package:telemedicine/features/book_doctor/domain/entities/doctor_entity.dart';
 

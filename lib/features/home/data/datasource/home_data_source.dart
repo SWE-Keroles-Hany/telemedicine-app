@@ -1,5 +1,5 @@
-import 'package:telemedicine/features/home/data/models/top_doctor_model.dart';
+import 'package:telemedicine/core/shared_models/models/doctor_model.dart';
 
 abstract class HomeDataSource {
-  Future<List<TopDoctorModel>> getTopDoctors();
+  Future<List<DoctorModel>> getTopDoctors();
 }

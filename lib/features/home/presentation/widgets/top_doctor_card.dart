@@ -2,11 +2,11 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:telemedicine/core/constants/constants_assets.dart';
 import 'package:telemedicine/core/theme/color_manger.dart';
-import 'package:telemedicine/features/home/domain/entities/top_doctor_entity.dart';
+import 'package:telemedicine/features/book_doctor/domain/entities/doctor_entity.dart';
 
 class TopDoctorCard extends StatelessWidget {
   const TopDoctorCard({required this.doctor, super.key});
-  final TopDoctorEntity doctor;
+  final DoctorEntity doctor;
 
   @override
   Widget build(BuildContext context) {
@@ -34,13 +34,13 @@ class TopDoctorCard extends StatelessWidget {
               fit: BoxFit.fitWidth,
               width: MediaQuery.sizeOf(context).width * 0.35,
               height: 100.h,
-              doctor.pictureUrl,
+              doctor.profilePictureUrl!,
             ),
           ),
           SizedBox(height: 8.h),
 
           Text(
-            doctor.name,
+            doctor.fullName,
             style: textTheme.titleMedium!.copyWith(color: ColorManager.white),
           ),
 
