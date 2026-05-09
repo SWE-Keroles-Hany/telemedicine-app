@@ -5,6 +5,7 @@ import 'package:telemedicine/core/shared_models/user/entities/user_entity.dart';
 import 'package:telemedicine/core/theme/color_manger.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:telemedicine/core/utils/ui_utils.dart';
+import 'package:telemedicine/features/auth/presentation/screens/login_screen.dart';
 import 'personal_information_screen.dart';
 import 'change_password_screen.dart';
 import 'language_screen.dart';
@@ -172,9 +173,10 @@ class _UserProfileScreenState extends State<UserProfileScreen> {
                         UiUtils.showMessage(
                           message: "Logged out successfully!",
                         );
-                        Navigator.of(
-                          context,
-                        ).pushNamedAndRemoveUntil("/", (route) => false);
+                        Navigator.of(context).pushNamedAndRemoveUntil(
+                          LoginScreen.routeName,
+                          (route) => false,
+                        );
                       }
                     },
                     child: LogoutButtonWidget(
