@@ -23,6 +23,8 @@ import 'package:telemedicine/features/home/data/repo/home_repo.dart';
 import 'package:telemedicine/features/home/domain/repo/home_repo_imp.dart';
 import 'package:telemedicine/features/home/domain/usecases/get_top_doctors.dart';
 import 'package:telemedicine/features/home/presentation/cubit/home_cubit.dart';
+import 'package:telemedicine/features/settings/domain/use_cases/logout.dart';
+import 'package:telemedicine/features/settings/domain/use_cases/update_image_profile.dart';
 
 import '../../features/auth/data/data_source/auth_api_data_source.dart';
 import '../../features/auth/data/data_source/auth_remote_data_source.dart';
@@ -49,7 +51,9 @@ Future<void> init() async {
   sl.registerSingleton<APIServices>(sl<DioServices>());
 
   //! Data Source
-  sl.registerSingleton<AuthRemoteDataSource>(AuthAPIDataSource(sl<DioServices>()));
+  sl.registerSingleton<AuthRemoteDataSource>(
+    AuthAPIDataSource(sl<DioServices>()),
+  );
   sl.registerSingleton<DoctorsDataSource>(
     DoctorsApiDataSource(sl<APIServices>()),
   );
@@ -62,7 +66,9 @@ Future<void> init() async {
   );
 
   //! Repository
-  sl.registerSingleton<AuthRepository>(AuthRepositoryImpl(sl<AuthRemoteDataSource>()));
+  sl.registerSingleton<AuthRepository>(
+    AuthRepositoryImpl(sl<AuthRemoteDataSource>()),
+  );
   sl.registerSingleton<DoctorsRepo>(DoctorsRepoImp(sl<DoctorsDataSource>()));
   sl.registerSingleton<AppointmentRepo>(
     AppointmentRepoImpl(sl<AppointmentRemoteDataSource>()),
@@ -99,7 +105,10 @@ Future<void> init() async {
   sl.registerSingleton<UpdateProfileUseCase>(
     UpdateProfileUseCase(sl<SettingsRepository>()),
   );
-
+  sl.registerSingleton<UpdateImageProfileUseCase>(
+    UpdateImageProfileUseCase(sl<SettingsRepository>()),
+  );
+  sl.registerSingleton<LogoutUseCase>(LogoutUseCase(sl<SettingsRepository>()));
   //! Cubit
   sl.registerFactory<AuthCubit>(
     () => AuthCubit(
@@ -133,6 +142,8 @@ Future<void> init() async {
     () => SettingsCubit(
       getUserProfileUseCase: sl<GetUserProfileUseCase>(),
       updateProfileUseCase: sl<UpdateProfileUseCase>(),
+      updateImageProfileUseCase: sl<UpdateImageProfileUseCase>(),
+      logoutUseCase: sl<LogoutUseCase>(),
     ),
   );
 }

@@ -1,3 +1,6 @@
+import 'package:dio/dio.dart';
+import 'package:image_picker/image_picker.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 import 'package:telemedicine/core/error/failure.dart';
 import 'package:telemedicine/core/network/api_constants.dart';
 import 'package:telemedicine/core/shared_models/user/models/user_model.dart';
@@ -33,6 +36,35 @@ class SettingsAPIDataSource implements SettingsRemoteDataSource {
         endPoint: ApiEndPoints.updateProfile,
         data: userProfile.toJson(),
       );
+    } on Failure catch (error) {
+      throw Failure(message: error.message);
+    } catch (e) {
+      throw Failure(message: e.toString());
+    }
+  }
+
+  @override
+  Future<void> updateImageProfile({required XFile image}) async {
+    try {
+      FormData formData = FormData.fromMap({
+        "Image": await MultipartFile.fromFile(image.path, filename: image.name),
+      });
+
+      await dioServices.put(endPoint: ApiEndPoints.updateImage, data: formData);
+    } on Failure catch (error) {
+      throw Failure(message: error.message);
+    } catch (e) {
+      throw Failure(message: e.toString());
+    }
+  }
+
+  @override
+  Future<void> logout() async {
+    try {
+      await dioServices.post(endPoint: ApiEndPoints.logout);
+      SharedPreferences sharedPreferences =
+          await SharedPreferences.getInstance();
+      await sharedPreferences.remove("token");
     } on Failure catch (error) {
       throw Failure(message: error.message);
     } catch (e) {

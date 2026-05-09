@@ -37,3 +37,37 @@ class UpdateProfileError extends UpdateProfileState {
 
   UpdateProfileError(this.message);
 }
+
+// ----- UPDATE IMAGE PROFILE STATES -----
+abstract class UpdateImageProfileState extends SettingsState {}
+
+class UpdateImageProfileInitial extends UpdateImageProfileState {}
+
+class UpdateImageProfileLoading extends UpdateImageProfileState {}
+
+class UpdateImageProfileSuccess extends UpdateImageProfileState {
+  UpdateImageProfileSuccess();
+}
+
+class UpdateImageProfileError extends UpdateImageProfileState {
+  final String message;
+
+  UpdateImageProfileError(this.message);
+}
+
+// ----- LOGOUT STATES -----
+abstract class LogoutState extends SettingsState {}
+
+class LogoutInitial extends LogoutState {}
+
+class LogoutLoading extends LogoutState {}
+
+class LogoutSuccess extends LogoutState {
+  LogoutSuccess();
+}
+
+class LogoutError extends LogoutState {
+  final String message;
+
+  LogoutError(this.message);
+}

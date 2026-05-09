@@ -12,4 +12,6 @@ class ApiEndPoints {
   static const String topDoctors = "Doctor/top";
   static const String patientProfile = "Patients/profile";
   static const String updateProfile = "Patients/update-profile";
+  static const String updateImage = "Patients/update-image";
+  static const String logout = "Auth/logout";
 }
