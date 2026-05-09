@@ -3,24 +3,27 @@
 import 'dart:developer';
 
 import 'package:dio/dio.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 import 'package:telemedicine/core/error/failure.dart';
 import 'package:telemedicine/core/network/api_constants.dart';
 import '../../../../core/network/dio_services.dart';
-import '../models/user_model.dart';
+import '../../../../core/shared_models/user/models/user_model.dart';
 import 'auth_remote_data_source.dart';
 
 class AuthAPIDataSource implements AuthRemoteDataSource {
   final DioServices dioServices;
 
   AuthAPIDataSource(this.dioServices);
-
   @override
   Future<void> login({required String email, required String password}) async {
+    SharedPreferences sharedPreferences = await SharedPreferences.getInstance();
     try {
-      await dioServices.post(
+      final response = await dioServices.post(
         endPoint: ApiEndPoints.login,
         data: {"email": email, "password": password},
       );
+      final token = response['token'];
+      await sharedPreferences.setString("token", token);
     } on Failure catch (error) {
       throw Failure(message: error.message);
     } catch (e) {

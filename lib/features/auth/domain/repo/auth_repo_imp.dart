@@ -2,9 +2,9 @@
 import 'package:dartz/dartz.dart';
 import 'package:telemedicine/core/error/failure.dart';
 import 'package:telemedicine/features/auth/data/data_source/auth_remote_data_source.dart';
-import 'package:telemedicine/features/auth/data/mapper/user_model_mapper.dart';
+import 'package:telemedicine/core/shared_models/user/mapper/user_model_mapper.dart';
 import 'package:telemedicine/features/auth/data/repo/auth_repo.dart';
-import '../entities/user_entity.dart';
+import '../../../../core/shared_models/user/entities/user_entity.dart';
 
 class AuthRepositoryImpl implements AuthRepository {
   final AuthRemoteDataSource remoteDataSource;

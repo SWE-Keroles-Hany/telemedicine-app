@@ -7,6 +7,8 @@ class CustomInputField extends StatefulWidget {
     this.keyboardType,
     super.key,
     this.isPasswordField = false,
+    this.isTabedEnabed = false,
+
     required this.title,
     required this.controller,
     required this.validator,
@@ -14,6 +16,8 @@ class CustomInputField extends StatefulWidget {
   });
   final TextEditingController controller;
   final bool isPasswordField;
+  final bool isTabedEnabed;
+
   final String title;
   final String? Function(String?)? validator;
   final int maxLines;
@@ -28,6 +32,7 @@ class _CustomInputFieldState extends State<CustomInputField> {
   Widget build(BuildContext context) {
     final TextTheme textTheme = Theme.of(context).textTheme;
     return TextFormField(
+      onTap: () => pickDate(context, widget.isTabedEnabed),
       keyboardType: widget.keyboardType,
       // autofocus:keyboardTypez true,
       canRequestFocus: true,
@@ -99,5 +104,23 @@ class _CustomInputFieldState extends State<CustomInputField> {
       borderSide: BorderSide(color: ColorManager.red, width: 1.5),
       borderRadius: BorderRadius.circular(8),
     );
+  }
+
+  Future<void> pickDate(BuildContext context, bool isTabedEnabled) async {
+    if (!isTabedEnabled) {
+      return;
+    }
+    DateTime now = DateTime.now();
+    DateTime? pickedDate = await showDatePicker(
+      context: context,
+      initialDate: now,
+      firstDate: DateTime(1900),
+      lastDate: now,
+    );
+    if (pickedDate != null) {
+      String formattedDate =
+          "${pickedDate.year}-${pickedDate.month.toString().padLeft(2, '0')}-${pickedDate.day.toString().padLeft(2, '0')}";
+      widget.controller.text = formattedDate;
+    }
   }
 }

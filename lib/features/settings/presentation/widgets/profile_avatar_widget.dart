@@ -1,3 +1,4 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:telemedicine/core/theme/color_manger.dart';
 
@@ -32,7 +33,10 @@ class ProfileAvatarWidget extends StatelessWidget {
         const SizedBox(height: 4),
         GestureDetector(
           onTap: onEditTap,
-          child: Text('View/Edit Profile', style: AppTextStyles.s13teal),
+          child: Text(
+            'settings.edit_prorfile_image'.tr(),
+            style: AppTextStyles.s13teal,
+          ),
         ),
       ],
     );

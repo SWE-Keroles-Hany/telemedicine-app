@@ -1,3 +1,4 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:telemedicine/core/theme/app_text_styles.dart';
 
@@ -19,7 +20,7 @@ class _AboutDoctorSectionState extends State<AboutDoctorSection> {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Text('About Doctor', style: AppTextStyles.s17bold),
+          Text('profile.about_doctor'.tr(), style: AppTextStyles.s17bold),
           const SizedBox(height: 10),
           AnimatedCrossFade(
             duration: const Duration(milliseconds: 200),

@@ -1,4 +1,4 @@
-import '../models/user_model.dart';
+import '../../../../core/shared_models/user/models/user_model.dart';
 
 abstract class AuthRemoteDataSource {
   Future<void> login({required String email, required String password});

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:easy_localization/easy_localization.dart';
 import 'package:telemedicine/core/theme/color_manger.dart';
 
 import '../../../../../core/theme/app_text_styles.dart';
@@ -29,12 +30,12 @@ class AvailableTodayToggle extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Text(
-                  'Available Today',
+                  'booking.available_today'.tr(),
                   style: AppTextStyles.bookingToggleTitle,
                 ),
                 const SizedBox(height: 2),
                 Text(
-                  'Show doctors with immediate slots',
+                  'booking.show_doctors_with_slots'.tr(),
                   style: AppTextStyles.bookingToggleSubtitle,
                 ),
               ],

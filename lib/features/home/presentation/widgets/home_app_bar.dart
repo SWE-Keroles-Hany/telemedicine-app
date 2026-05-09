@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:easy_localization/easy_localization.dart';
 import 'package:telemedicine/core/theme/color_manger.dart';
 
 import '../../../settings/presentation/screens/user_profile.dart';
@@ -30,7 +31,7 @@ class HomeAppBar extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Text(
-              "GOOD MORNING",
+              "home.good_morning".tr(),
               style: textTheme.labelLarge!.copyWith(
                 color: ColorManager.aquaMint,
               ),

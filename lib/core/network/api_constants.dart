@@ -10,4 +10,6 @@ class ApiEndPoints {
   static const String getDoctorByName = "Doctor/get-by-name";
   static const String myAppointments = "Patients/my-appointments";
   static const String topDoctors = "Doctor/top";
+  static const String patientProfile = "Patients/profile";
+  static const String updateProfile = "Patients/update-profile";
 }

@@ -31,6 +31,13 @@ import '../../features/auth/domain/repo/auth_repo_imp.dart';
 import '../../features/auth/domain/use_cases/login.dart';
 import '../../features/auth/domain/use_cases/register.dart';
 import '../../features/auth/presentation/cubit/auth_cubit.dart';
+import '../../features/settings/data/data_source/settings_api_data_source.dart';
+import '../../features/settings/data/data_source/settings_remote_data_source.dart';
+import '../../features/settings/data/repo/settings_repo.dart';
+import '../../features/settings/domain/repo/settings_repo_imp.dart';
+import '../../features/settings/domain/use_cases/get_user_profile.dart';
+import '../../features/settings/domain/use_cases/update_profile.dart';
+import '../../features/settings/presentation/cubit/settings_cubit.dart';
 import '../network/api_services.dart';
 import '../network/dio_services.dart';
 
@@ -50,6 +57,9 @@ Future<void> init() async {
     AppointmentAPIDataSource(sl<DioServices>()),
   );
   sl.registerSingleton<HomeDataSource>(HomeApiDataSource(sl<APIServices>()));
+  sl.registerSingleton<SettingsRemoteDataSource>(
+    SettingsAPIDataSource(sl<DioServices>()),
+  );
 
   //! Repository
   sl.registerSingleton<AuthRepository>(AuthRepositoryImpl(sl<AuthRemoteDataSource>()));
@@ -58,6 +68,9 @@ Future<void> init() async {
     AppointmentRepoImpl(sl<AppointmentRemoteDataSource>()),
   );
   sl.registerSingleton<HomeRepo>(HomeRepoImp(sl<HomeDataSource>()));
+  sl.registerSingleton<SettingsRepository>(
+    SettingsRepositoryImpl(sl<SettingsRemoteDataSource>()),
+  );
 
   //! UseCases
   sl.registerSingleton<LoginUseCase>(LoginUseCase(sl<AuthRepository>()));
@@ -79,6 +92,12 @@ Future<void> init() async {
   );
   sl.registerSingleton<GetTopDoctorsUseCase>(
     GetTopDoctorsUseCase(homeRepo: sl<HomeRepo>()),
+  );
+  sl.registerSingleton<GetUserProfileUseCase>(
+    GetUserProfileUseCase(sl<SettingsRepository>()),
+  );
+  sl.registerSingleton<UpdateProfileUseCase>(
+    UpdateProfileUseCase(sl<SettingsRepository>()),
   );
 
   //! Cubit
@@ -109,5 +128,11 @@ Future<void> init() async {
   );
   sl.registerFactory<HomeCubit>(
     () => HomeCubit(getTopDoctorsUseCase: sl<GetTopDoctorsUseCase>()),
+  );
+  sl.registerFactory<SettingsCubit>(
+    () => SettingsCubit(
+      getUserProfileUseCase: sl<GetUserProfileUseCase>(),
+      updateProfileUseCase: sl<UpdateProfileUseCase>(),
+    ),
   );
 }

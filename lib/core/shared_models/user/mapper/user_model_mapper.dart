@@ -1,5 +1,5 @@
-import 'package:telemedicine/features/auth/data/models/user_model.dart';
-import 'package:telemedicine/features/auth/domain/entities/user_entity.dart';
+import 'package:telemedicine/core/shared_models/user/models/user_model.dart';
+import 'package:telemedicine/core/shared_models/user/entities/user_entity.dart';
 
 extension UserEntityMapper on UserEntity {
   UserModel toModel() {

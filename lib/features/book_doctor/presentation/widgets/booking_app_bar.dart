@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:telemedicine/core/theme/app_text_styles.dart';
 import 'package:telemedicine/core/theme/color_manger.dart';
+import 'package:easy_localization/easy_localization.dart';
 import 'package:telemedicine/features/book_doctor/presentation/widgets/calendar_action.dart';
 
 class BookingAppBar extends StatelessWidget implements PreferredSizeWidget {
@@ -15,7 +16,10 @@ class BookingAppBar extends StatelessWidget implements PreferredSizeWidget {
       backgroundColor: ColorManager.bookingScaffoldBg,
       elevation: 0,
       leading: const BackButton(color: ColorManager.white),
-      title: Text('Book Appointment', style: AppTextStyles.bookingAppBarTitle),
+      title: Text(
+        'booking.book_appointment'.tr(),
+        style: AppTextStyles.bookingAppBarTitle,
+      ),
       centerTitle: true,
       actions: const [CalendarAction()],
     );

@@ -1,7 +1,7 @@
 import 'package:telemedicine/core/error/failure.dart';
 import 'package:telemedicine/core/network/api_constants.dart';
 import 'package:telemedicine/core/network/api_services.dart';
-import 'package:telemedicine/core/shared_models/models/doctor_model.dart';
+import 'package:telemedicine/core/shared_models/doctor/models/doctor_model.dart';
 import 'package:telemedicine/features/home/data/datasource/home_data_source.dart';
 
 class HomeApiDataSource implements HomeDataSource {

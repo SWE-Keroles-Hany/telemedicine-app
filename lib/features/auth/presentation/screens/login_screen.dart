@@ -1,3 +1,4 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -62,7 +63,7 @@ class LoginScreen extends StatelessWidget {
                       SizedBox(height: 20.h),
                       Text(
                         textAlign: TextAlign.center,
-                        "Welcome Back!",
+                        'login.welcome_back'.tr(),
                         style: textTheme.titleLarge!.copyWith(
                           color: ColorManager.white,
                           fontSize: 27.sp,
@@ -72,14 +73,14 @@ class LoginScreen extends StatelessWidget {
 
                       Text(
                         textAlign: TextAlign.center,
-                        "Login To Your Account to Continue",
+                        'login.login_to_account'.tr(),
                         style: textTheme.titleMedium!.copyWith(
                           color: ColorManager.white,
                         ),
                       ),
                       SizedBox(height: 20.h),
                       CustomInputField(
-                        title: "Enter Your E-mail",
+                        title: 'login.enter_email'.tr(),
                         controller: emailController,
                         validator: (value) =>
                             AppValidations.emailValidator(value),
@@ -87,7 +88,7 @@ class LoginScreen extends StatelessWidget {
                       SizedBox(height: 15.h),
 
                       CustomInputField(
-                        title: "Enter Your Password",
+                        title: 'login.enter_password'.tr(),
                         controller: passwordController,
                         validator: (value) =>
                             AppValidations.passwordValidator(value: value),
@@ -102,7 +103,7 @@ class LoginScreen extends StatelessWidget {
                             );
                           }
                         },
-                        title: "Login",
+                        title: 'login.login'.tr(),
                         titleColor: ColorManager.black,
                         bgColor: ColorManager.aquaMint,
                         width: double.infinity,
@@ -112,7 +113,7 @@ class LoginScreen extends StatelessWidget {
                       Row(
                         children: [
                           Text(
-                            "Don't Have an Account ?",
+                            'login.dont_have_account'.tr(),
                             style: textTheme.titleLarge!.copyWith(
                               fontSize: 20.sp,
                               color: ColorManager.grayF0,
@@ -125,7 +126,7 @@ class LoginScreen extends StatelessWidget {
                               ).pushReplacementNamed(SignUpScreen.routeName);
                             },
                             child: Text(
-                              "SingUp",
+                              'login.signup'.tr(),
                               style: textTheme.titleLarge!.copyWith(
                                 color: ColorManager.aquaMint,
                                 fontSize: 20.sp,

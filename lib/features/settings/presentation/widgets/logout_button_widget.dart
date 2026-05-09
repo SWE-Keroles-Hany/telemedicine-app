@@ -1,3 +1,4 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:telemedicine/core/theme/color_manger.dart';
 
@@ -51,6 +52,6 @@ class _LogoutTextWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Text('Log Out', style: AppTextStyles.s16logoutRed);
+    return Text('settings.logout'.tr(), style: AppTextStyles.s16logoutRed);
   }
 }

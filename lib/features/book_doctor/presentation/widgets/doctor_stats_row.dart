@@ -1,3 +1,4 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:telemedicine/core/theme/app_text_styles.dart';
 import 'package:telemedicine/core/theme/color_manger.dart';
@@ -25,11 +26,14 @@ class DoctorStatsRow extends StatelessWidget {
       padding: const EdgeInsets.symmetric(horizontal: 16),
       child: Row(
         children: [
-          _StatCard(value: '$experienceYears+', label: 'EXPERIENCE'),
+          _StatCard(
+            value: '$experienceYears+',
+            label: 'profile.experience'.tr(),
+          ),
           const SizedBox(width: 12),
-          _StatCard(value: _fmt(patientCount), label: 'PATIENTS'),
+          _StatCard(value: _fmt(patientCount), label: 'profile.patients'.tr()),
           const SizedBox(width: 12),
-          _StatCard(value: '$reviewCount', label: 'REVIEWS'),
+          _StatCard(value: '$reviewCount', label: 'profile.reviews'.tr()),
         ],
       ),
     );

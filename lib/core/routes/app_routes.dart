@@ -4,6 +4,11 @@ import 'package:telemedicine/features/book_doctor/presentation/screens/doctor_pr
 import 'package:telemedicine/features/on_boarding/presentation/screens/on_boarding_screen.dart';
 import 'package:telemedicine/features/patient_appointments/presentation/screens/patient_appointments_screen.dart';
 import 'package:telemedicine/features/settings/presentation/screens/user_profile.dart';
+import 'package:telemedicine/features/settings/presentation/screens/personal_information_screen.dart';
+import 'package:telemedicine/features/settings/presentation/screens/change_password_screen.dart';
+import 'package:telemedicine/features/settings/presentation/screens/language_screen.dart';
+import 'package:telemedicine/features/settings/presentation/screens/help_center_screen.dart';
+import 'package:telemedicine/features/settings/presentation/screens/privacy_policy_screen.dart';
 
 import '../../features/auth/presentation/screens/login_screen.dart';
 import '../../features/auth/presentation/screens/signup_screen.dart';
@@ -24,5 +29,12 @@ class AppRoutes {
     BookAppointmentScreen.routeName: (context) => BookAppointmentScreen(),
     PatientAppointmentsScreen.routeName: (context) =>
         PatientAppointmentsScreen(),
+
+    // PersonalInformationScreen.routeName: (context) =>
+    //     PersonalInformationScreen(),
+    ChangePasswordScreen.routeName: (context) => ChangePasswordScreen(),
+    LanguageScreen.routeName: (context) => LanguageScreen(),
+    HelpCenterScreen.routeName: (context) => HelpCenterScreen(),
+    PrivacyPolicyScreen.routeName: (context) => PrivacyPolicyScreen(),
   };
 }

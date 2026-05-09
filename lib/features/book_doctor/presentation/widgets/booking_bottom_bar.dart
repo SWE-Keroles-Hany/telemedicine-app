@@ -1,3 +1,4 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:telemedicine/core/theme/app_text_styles.dart';
 import 'package:telemedicine/core/theme/color_manger.dart';
@@ -34,7 +35,7 @@ class BookingBottomBar extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Text(
-                    'Selected Appointment Date',
+                    'profile.selected_app_date'.tr(),
                     style: AppTextStyles.s13medium.copyWith(
                       color: ColorManager.mediumGray,
                     ),
@@ -48,8 +49,7 @@ class BookingBottomBar extends StatelessWidget {
                         color: ColorManager.teal,
                       ),
                       const SizedBox(width: 6),
-                      Text(selectedDate!, style: AppTextStyles.s15semibold,
-                      ),
+                      Text(selectedDate!, style: AppTextStyles.s15semibold),
                     ],
                   ),
                 ],
@@ -59,7 +59,9 @@ class BookingBottomBar extends StatelessWidget {
           CustomButton(
             width: double.infinity,
             onPressed: onBook,
-            title: selectedDate != null ? 'Confirm Booking' : 'Select Date',
+            title: selectedDate != null
+                ? 'profile.confirm_booking'.tr()
+                : 'Select Date',
             titleColor: ColorManager.black,
             radiusNumber: 20,
             bgColor: ColorManager.teal,

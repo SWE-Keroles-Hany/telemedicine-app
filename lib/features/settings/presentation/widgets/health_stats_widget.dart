@@ -1,3 +1,4 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:telemedicine/core/theme/color_manger.dart';
 
@@ -20,19 +21,19 @@ class HealthStatsWidget extends StatelessWidget {
     return Row(
       children: [
         _StatCardWidget(
-          label: 'BLOOD\nTYPE',
+          label: 'settings.blood_type'.tr(),
           value: bloodType,
           isAccent: false,
         ),
         const SizedBox(width: 10),
         _StatCardWidget(
-          label: 'WEIGHT',
+          label: 'settings.weight'.tr(),
           value: '${weightKg.toStringAsFixed(0)}kg',
           isAccent: false,
         ),
         const SizedBox(width: 10),
         _StatCardWidget(
-          label: 'HEIGHT',
+          label: 'settings.height'.tr(),
           value: '${heightCm.toStringAsFixed(0)}cm',
           isAccent: true,
         ),

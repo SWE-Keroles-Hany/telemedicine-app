@@ -77,6 +77,35 @@ class DioServices implements APIServices {
   }
 
   @override
+  Future<dynamic> patch({
+    required String endPoint,
+    Object? data,
+    Map<String, dynamic>? queryParams,
+  }) async {
+    try {
+      final response = await dio.patch(
+        endPoint,
+        data: data,
+        queryParameters: queryParams,
+      );
+      return handleResponse(response);
+    } on DioException catch (exception) {
+      final message =
+          (exception.response?.data is List &&
+              exception.response?.data.isNotEmpty)
+          ? exception.response?.data[0]['description'] ?? ""
+          : exception.response?.data['description']?.toString() ??
+                exception.message ??
+                "";
+
+      throw Failure(message: message);
+    } catch (e) {
+      print(e.toString());
+      throw Failure(message: e.toString());
+    }
+  }
+
+  @override
   Future<dynamic> get({
     required String endPoint,
     Map<String, dynamic>? queryParams,

@@ -1,3 +1,4 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -39,7 +40,7 @@ class _HomeScreenState extends State<HomeScreen> {
         body: ListView(
           padding: EdgeInsets.all(16.r),
           children: [
-            CustomAppLabel(label: ConstantsText.ourServices),
+            CustomAppLabel(label: 'home.our_services'.tr()),
             SizedBox(height: 10.h),
             SizedBox(height: 300.h, child: OurServices()),
             TopDoctorsAndViewAllRow(),

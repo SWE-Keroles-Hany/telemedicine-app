@@ -27,7 +27,7 @@ class CustomServiceItem extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [
           Icon(icon, color: ColorManager.aquaMint, size: 40),
-          SizedBox(height: 20),
+          SizedBox(height: 5),
           Text(
             textAlign: TextAlign.center,
             serviceTitle,
@@ -39,6 +39,7 @@ class CustomServiceItem extends StatelessWidget {
           SizedBox(height: 8),
 
           Text(
+            textAlign: TextAlign.center,
             serviceDescription,
             style: textTheme.titleSmall!.copyWith(color: ColorManager.blueGray),
           ),

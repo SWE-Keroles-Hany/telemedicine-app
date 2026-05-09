@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:easy_localization/easy_localization.dart';
 import 'package:telemedicine/core/theme/app_text_styles.dart';
 
 class SectionHeader extends StatelessWidget {
@@ -9,7 +10,10 @@ class SectionHeader extends StatelessWidget {
     return Row(
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: [
-        Text('Doctors', style: AppTextStyles.bookingSectionTitle),
+        Text(
+          'booking.nearby_specialists'.tr(),
+          style: AppTextStyles.bookingSectionTitle,
+        ),
       ],
     );
   }

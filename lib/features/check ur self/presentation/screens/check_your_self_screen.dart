@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:easy_localization/easy_localization.dart';
 import 'package:telemedicine/core/helper/validations/app_validations.dart';
 import 'package:telemedicine/core/theme/color_manger.dart';
 import 'package:telemedicine/core/widgets/custom_app_label.dart';
@@ -29,7 +30,7 @@ class _CheckYourSelfScreenState extends State<CheckYourSelfScreen> {
           foregroundColor: ColorManager.white,
           centerTitle: true,
           title: Text(
-            "Check Yourself",
+            'check_yourself.title'.tr(),
             style: textTheme.titleLarge!.copyWith(color: ColorManager.white),
           ),
         ),
@@ -39,7 +40,7 @@ class _CheckYourSelfScreenState extends State<CheckYourSelfScreen> {
             children: [
               //! Search
               SearchTextForm(
-                searchHint: "Search For Symptoms",
+                searchHint: 'check_yourself.search_symptoms'.tr(),
                 controller: searchController,
                 onSearch: (value) {},
               ),
@@ -48,9 +49,9 @@ class _CheckYourSelfScreenState extends State<CheckYourSelfScreen> {
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  CustomAppLabel(label: "Select Symptoms"),
+                  CustomAppLabel(label: 'check_yourself.select_symptoms'.tr()),
                   Text(
-                    "4 Selected",
+                    '4 ${'check_yourself.selected_count'.tr()}',
                     style: textTheme.titleMedium!.copyWith(
                       color: ColorManager.aquaMint,
                     ),
@@ -62,12 +63,14 @@ class _CheckYourSelfScreenState extends State<CheckYourSelfScreen> {
               Symptoms(),
               SizedBox(height: 15.h),
               //! Describe Label...
-              CustomAppLabel(label: "Describe How You Feel"),
+              CustomAppLabel(
+                label: 'check_yourself.describe_how_you_feel'.tr(),
+              ),
               SizedBox(height: 10.h),
               //! describtion
               CustomInputField(
                 maxLines: 5,
-                title: "Type More Details about your symptoms",
+                title: 'check_yourself.type_details'.tr(),
                 controller: describeController,
                 validator: (value) => AppValidations.descibeValidator(value),
               ),
@@ -75,7 +78,7 @@ class _CheckYourSelfScreenState extends State<CheckYourSelfScreen> {
               //! Analyze Button
               CustomButton(
                 onPressed: () {},
-                title: "Analyze Symptoms",
+                title: 'check_yourself.analyze_symptoms'.tr(),
                 titleColor: ColorManager.black,
                 bgColor: ColorManager.aquaMint,
                 width: double.infinity,

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:easy_localization/easy_localization.dart';
 import 'package:telemedicine/core/theme/color_manger.dart';
 import 'package:telemedicine/features/patient_appointments/domain/entities/appointment.dart';
 import 'package:telemedicine/features/patient_appointments/presentation/cubit/appointment_cubit.dart';
@@ -46,9 +47,9 @@ class _PatientAppointmentsScreenState extends State<PatientAppointmentsScreen> {
       appBar: AppBar(
         backgroundColor: ColorManager.bookingScaffoldBg,
         elevation: 0,
-        title: const Text(
-          'My Appointments',
-          style: TextStyle(
+        title: Text(
+          'appointments.my_appointments'.tr(),
+          style: const TextStyle(
             color: ColorManager.bookingTextPrimary,
             fontSize: 20,
             fontWeight: FontWeight.w600,

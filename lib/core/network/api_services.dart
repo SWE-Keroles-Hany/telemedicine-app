@@ -19,4 +19,9 @@ abstract class APIServices {
     Object? data,
     Map<String, dynamic> queryParams,
   });
+  Future<dynamic> patch({
+    required String endPoint,
+    Object? data,
+    Map<String, dynamic> queryParams,
+  });
 }

@@ -1,10 +1,10 @@
-import 'package:telemedicine/core/shared_models/models/doctor_model.dart';
+import 'package:telemedicine/core/shared_models/doctor/models/doctor_model.dart';
 import 'package:telemedicine/features/book_doctor/domain/entities/doctor_entity.dart';
 
-extension DoctorEntityMapper on DoctorEntity {
-  DoctorModel get toEntity => DoctorModel(
-    rate: rate,
+extension DoctorModelMapper on DoctorModel {
+  DoctorEntity get toEntity => DoctorEntity(
     rateCount: rateCount,
+    rate: rate,
     bio: bio,
     clinicAddress: clinicAddress,
     email: email,

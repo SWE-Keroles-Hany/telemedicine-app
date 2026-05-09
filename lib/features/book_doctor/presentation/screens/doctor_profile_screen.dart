@@ -106,7 +106,6 @@ class _DoctorProfileScreenState extends State<DoctorProfileScreen> {
                 onBook: () async {
                   // Only allow booking if date is selected
                   if (_selectedDate.isNotEmpty) {
-                    print("Id new ${doctor.id}");
                     await cubit.bookDoctor(
                       appoinmentDate: _selectedDate,
                       doctorId: doctor.id,

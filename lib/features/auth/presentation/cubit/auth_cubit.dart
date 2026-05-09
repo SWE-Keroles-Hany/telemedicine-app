@@ -5,7 +5,7 @@ import 'package:telemedicine/features/auth/domain/use_cases/login.dart';
 import 'package:telemedicine/features/auth/domain/use_cases/register.dart';
 import 'package:telemedicine/features/auth/presentation/cubit/auth_states.dart';
 
-import '../../domain/entities/user_entity.dart';
+import '../../../../core/shared_models/user/entities/user_entity.dart';
 
 class AuthCubit extends Cubit<AuthState> {
   final LoginUseCase loginUseCase;
