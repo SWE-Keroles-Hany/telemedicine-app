@@ -7,6 +7,7 @@ import 'package:telemedicine/core/theme/color_manger.dart';
 import 'package:telemedicine/core/utils/ui_utils.dart';
 import 'package:telemedicine/features/auth/presentation/cubit/auth_cubit.dart';
 import 'package:telemedicine/features/auth/presentation/cubit/auth_states.dart';
+import 'package:telemedicine/features/auth/presentation/screens/forgot_password_screen.dart';
 import 'package:telemedicine/features/auth/presentation/screens/signup_screen.dart';
 import 'package:telemedicine/features/auth/presentation/widgets/custom_button.dart';
 import 'package:telemedicine/features/auth/presentation/widgets/custom_input_field.dart';
@@ -92,6 +93,24 @@ class LoginScreen extends StatelessWidget {
                         controller: passwordController,
                         validator: (value) =>
                             AppValidations.passwordValidator(value: value),
+                      ),
+                      SizedBox(height: 8.h),
+
+                      Align(
+                        alignment: AlignmentGeometry.centerLeft,
+                        child: GestureDetector(
+                          onTap: () {
+                            Navigator.of(
+                              context,
+                            ).pushNamed(ForgotPasswordScreen.routeName);
+                          },
+                          child: Text(
+                            style: textTheme.titleMedium!.copyWith(
+                              color: ColorManager.aquaMint,
+                            ),
+                            "Forgot Password ?",
+                          ),
+                        ),
                       ),
                       SizedBox(height: 20.h),
                       CustomButton(

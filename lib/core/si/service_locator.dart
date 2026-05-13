@@ -25,7 +25,7 @@ import 'package:telemedicine/features/home/domain/usecases/get_top_doctors.dart'
 import 'package:telemedicine/features/home/presentation/cubit/home_cubit.dart';
 import 'package:telemedicine/features/settings/domain/use_cases/logout.dart';
 import 'package:telemedicine/features/settings/domain/use_cases/update_image_profile.dart';
-import 'package:telemedicine/features/settings/domain/use_cases/forget_password.dart';
+import 'package:telemedicine/features/settings/domain/use_cases/change_password.dart';
 
 import '../../features/auth/data/data_source/auth_api_data_source.dart';
 import '../../features/auth/data/data_source/auth_remote_data_source.dart';
@@ -33,6 +33,9 @@ import '../../features/auth/data/repo/auth_repo.dart';
 import '../../features/auth/domain/repo/auth_repo_imp.dart';
 import '../../features/auth/domain/use_cases/login.dart';
 import '../../features/auth/domain/use_cases/register.dart';
+import '../../features/auth/domain/use_cases/forgot_password_send_code.dart';
+import '../../features/auth/domain/use_cases/forgot_password_verify_code.dart';
+import '../../features/auth/domain/use_cases/forgot_password_reset.dart';
 import '../../features/auth/presentation/cubit/auth_cubit.dart';
 import '../../features/settings/data/data_source/settings_api_data_source.dart';
 import '../../features/settings/data/data_source/settings_remote_data_source.dart';
@@ -82,6 +85,15 @@ Future<void> init() async {
   //! UseCases
   sl.registerSingleton<LoginUseCase>(LoginUseCase(sl<AuthRepository>()));
   sl.registerSingleton<RegisterUseCase>(RegisterUseCase(sl<AuthRepository>()));
+  sl.registerSingleton<ForgotPasswordSendCodeUseCase>(
+    ForgotPasswordSendCodeUseCase(sl<AuthRepository>()),
+  );
+  sl.registerSingleton<ForgotPasswordVerifyCodeUseCase>(
+    ForgotPasswordVerifyCodeUseCase(sl<AuthRepository>()),
+  );
+  sl.registerSingleton<ForgotPasswordResetUseCase>(
+    ForgotPasswordResetUseCase(sl<AuthRepository>()),
+  );
   sl.registerSingleton<GetAllDoctorsUseCase>(
     GetAllDoctorsUseCase(doctorsRepo: sl<DoctorsRepo>()),
   );
@@ -110,14 +122,17 @@ Future<void> init() async {
     UpdateImageProfileUseCase(sl<SettingsRepository>()),
   );
   sl.registerSingleton<LogoutUseCase>(LogoutUseCase(sl<SettingsRepository>()));
-  sl.registerSingleton<ForgetPasswordUseCase>(
-    ForgetPasswordUseCase(sl<SettingsRepository>()),
+  sl.registerSingleton<ChangePasswordUseCase>(
+    ChangePasswordUseCase(sl<SettingsRepository>()),
   );
   //! Cubit
   sl.registerFactory<AuthCubit>(
     () => AuthCubit(
       loginUseCase: sl<LoginUseCase>(),
       registerUseCase: sl<RegisterUseCase>(),
+      forgotPasswordSendCodeUseCase: sl<ForgotPasswordSendCodeUseCase>(),
+      forgotPasswordVerifyCodeUseCase: sl<ForgotPasswordVerifyCodeUseCase>(),
+      forgotPasswordResetUseCase: sl<ForgotPasswordResetUseCase>(),
     ),
   );
   sl.registerSingleton<GetDoctorByNameUseCase>(
@@ -148,7 +163,7 @@ Future<void> init() async {
       updateProfileUseCase: sl<UpdateProfileUseCase>(),
       updateImageProfileUseCase: sl<UpdateImageProfileUseCase>(),
       logoutUseCase: sl<LogoutUseCase>(),
-      forgetPasswordUseCase: sl<ForgetPasswordUseCase>(),
+      changePasswordUseCase: sl<ChangePasswordUseCase>(),
     ),
   );
 }

@@ -10,4 +10,17 @@ abstract class AuthRepository {
   });
 
   Future<Either<Failure, void>> register({required UserEntity user});
+
+  Future<Either<Failure, void>> forgotPasswordSendCode({required String email});
+
+  Future<Either<Failure, void>> forgotPasswordVerifyCode({
+    required String email,
+    required String code,
+  });
+
+  Future<Either<Failure, void>> forgotPasswordReset({
+    required String email,
+    required String newPassword,
+    required String confirmPassword,
+  });
 }

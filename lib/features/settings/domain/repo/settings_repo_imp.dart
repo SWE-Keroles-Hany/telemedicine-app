@@ -64,13 +64,13 @@ class SettingsRepositoryImpl implements SettingsRepository {
   }
 
   @override
-  Future<Either<Failure, void>> forgetPassword({
+  Future<Either<Failure, void>> changePassword({
     required String currentPassword,
     required String newPassword,
     required String confirmPassword,
   }) async {
     try {
-      await remoteDataSource.forgetPassword(
+      await remoteDataSource.changePassword(
         currentPassword: currentPassword,
         newPassword: newPassword,
         confirmPassword: confirmPassword,

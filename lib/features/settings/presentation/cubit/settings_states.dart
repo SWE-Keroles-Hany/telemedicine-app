@@ -72,19 +72,19 @@ class LogoutError extends LogoutState {
   LogoutError(this.message);
 }
 
-// ----- FORGET PASSWORD STATES -----
-abstract class ForgetPasswordState extends SettingsState {}
+// ----- CHANGE PASSWORD STATES -----
+abstract class ChangePasswordState extends SettingsState {}
 
-class ForgetPasswordInitial extends ForgetPasswordState {}
+class ChangePasswordInitial extends ChangePasswordState {}
 
-class ForgetPasswordLoading extends ForgetPasswordState {}
+class ChangePasswordLoading extends ChangePasswordState {}
 
-class ForgetPasswordSuccess extends ForgetPasswordState {
-  ForgetPasswordSuccess();
+class ChangePasswordSuccess extends ChangePasswordState {
+  ChangePasswordSuccess();
 }
 
-class ForgetPasswordError extends ForgetPasswordState {
+class ChangePasswordError extends ChangePasswordState {
   final String message;
 
-  ForgetPasswordError(this.message);
+  ChangePasswordError(this.message);
 }

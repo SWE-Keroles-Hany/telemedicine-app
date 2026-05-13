@@ -90,15 +90,15 @@ class _ChangePasswordScreenState extends State<ChangePasswordScreen> {
                 SizedBox(height: 40.h),
                 BlocListener<SettingsCubit, SettingsState>(
                   listener: (context, state) {
-                    if (state is ForgetPasswordLoading) {
+                    if (state is ChangePasswordLoading) {
                       UiUtils.showLoadingIndicator(context);
-                    } else if (state is ForgetPasswordSuccess) {
+                    } else if (state is ChangePasswordSuccess) {
                       UiUtils.hideLoading(context);
                       UiUtils.showMessage(
                         message: 'change_password.password_changed_successfully'
                             .tr(),
                       );
-                    } else if (state is ForgetPasswordError) {
+                    } else if (state is ChangePasswordError) {
                       UiUtils.hideLoading(context);
                       UiUtils.showMessage(message: state.message);
                     }
@@ -110,7 +110,7 @@ class _ChangePasswordScreenState extends State<ChangePasswordScreen> {
                     bgColor: ColorManager.teal,
                     onPressed: () async {
                       if (_formKey.currentState!.validate()) {
-                        await cubit.forgetPassword(
+                        await cubit.changePassword(
                           currentPassword: _currentPasswordController.text,
                           newPassword: _newPasswordController.text,
                           confirmPassword: _confirmPasswordController.text,

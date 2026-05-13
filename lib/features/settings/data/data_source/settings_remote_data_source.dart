@@ -6,7 +6,7 @@ abstract class SettingsRemoteDataSource {
   Future<void> updateProfile({required UserModel userProfile});
   Future<void> updateImageProfile({required XFile image});
   Future<void> logout();
-  Future<void> forgetPassword({
+  Future<void> changePassword({
     required String currentPassword,
     required String newPassword,
     required String confirmPassword,

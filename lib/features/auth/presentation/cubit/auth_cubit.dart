@@ -3,6 +3,9 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 
 import 'package:telemedicine/features/auth/domain/use_cases/login.dart';
 import 'package:telemedicine/features/auth/domain/use_cases/register.dart';
+import 'package:telemedicine/features/auth/domain/use_cases/forgot_password_send_code.dart';
+import 'package:telemedicine/features/auth/domain/use_cases/forgot_password_verify_code.dart';
+import 'package:telemedicine/features/auth/domain/use_cases/forgot_password_reset.dart';
 import 'package:telemedicine/features/auth/presentation/cubit/auth_states.dart';
 
 import '../../../../core/shared_models/user/entities/user_entity.dart';
@@ -10,9 +13,17 @@ import '../../../../core/shared_models/user/entities/user_entity.dart';
 class AuthCubit extends Cubit<AuthState> {
   final LoginUseCase loginUseCase;
   final RegisterUseCase registerUseCase;
+  final ForgotPasswordSendCodeUseCase forgotPasswordSendCodeUseCase;
+  final ForgotPasswordVerifyCodeUseCase forgotPasswordVerifyCodeUseCase;
+  final ForgotPasswordResetUseCase forgotPasswordResetUseCase;
 
-  AuthCubit({required this.loginUseCase, required this.registerUseCase})
-    : super(LoginInitial());
+  AuthCubit({
+    required this.loginUseCase,
+    required this.registerUseCase,
+    required this.forgotPasswordSendCodeUseCase,
+    required this.forgotPasswordVerifyCodeUseCase,
+    required this.forgotPasswordResetUseCase,
+  }) : super(LoginInitial());
 
   //! LOGIN
   Future<void> login(String email, String password) async {
@@ -35,6 +46,58 @@ class AuthCubit extends Cubit<AuthState> {
     result.fold(
       (failure) => emit(RegisterError(failure.message)),
       (user) => emit(RegisterSuccess()),
+    );
+  }
+
+  //! FORGOT PASSWORD - SEND CODE
+  Future<void> forgotPasswordSendCode({required String email}) async {
+    emit(ForgotPasswordSendCodeLoading());
+
+    final result = await forgotPasswordSendCodeUseCase(email: email);
+
+    result.fold(
+      (failure) => emit(ForgotPasswordSendCodeError(failure.message)),
+      (_) => emit(ForgotPasswordSendCodeSuccess()),
+    );
+  }
+
+  //! FORGOT PASSWORD - VERIFY CODE
+  Future<void> forgotPasswordVerifyCode({
+    required String email,
+    required String code,
+  }) async {
+    emit(ForgotPasswordVerifyCodeLoading());
+
+    final result = await forgotPasswordVerifyCodeUseCase(
+      email: email,
+      code: code,
+    );
+
+    result.fold(
+      (failure) => emit(ForgotPasswordVerifyCodeError(failure.message)),
+      (_) => emit(ForgotPasswordVerifyCodeSuccess()),
+    );
+  }
+
+  //! FORGOT PASSWORD - RESET PASSWORD
+  Future<void> forgotPasswordReset({
+    required String email,
+    required String code,
+    required String newPassword,
+    required String confirmPassword,
+  }) async {
+    emit(ForgotPasswordResetLoading());
+
+    final result = await forgotPasswordResetUseCase(
+      email: email,
+      code: code,
+      newPassword: newPassword,
+      confirmPassword: confirmPassword,
+    );
+
+    result.fold(
+      (failure) => emit(ForgotPasswordResetError(failure.message)),
+      (_) => emit(ForgotPasswordResetSuccess()),
     );
   }
 }

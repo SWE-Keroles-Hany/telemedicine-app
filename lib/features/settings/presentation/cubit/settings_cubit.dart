@@ -5,7 +5,7 @@ import 'package:telemedicine/features/settings/domain/use_cases/get_user_profile
 import 'package:telemedicine/features/settings/domain/use_cases/update_profile.dart';
 import 'package:telemedicine/features/settings/domain/use_cases/update_image_profile.dart';
 import 'package:telemedicine/features/settings/domain/use_cases/logout.dart';
-import 'package:telemedicine/features/settings/domain/use_cases/forget_password.dart';
+import 'package:telemedicine/features/settings/domain/use_cases/change_password.dart';
 import 'package:telemedicine/features/settings/presentation/cubit/settings_states.dart';
 
 class SettingsCubit extends Cubit<SettingsState> {
@@ -13,14 +13,14 @@ class SettingsCubit extends Cubit<SettingsState> {
   final UpdateProfileUseCase updateProfileUseCase;
   final UpdateImageProfileUseCase updateImageProfileUseCase;
   final LogoutUseCase logoutUseCase;
-  final ForgetPasswordUseCase forgetPasswordUseCase;
+  final ChangePasswordUseCase changePasswordUseCase;
 
   SettingsCubit({
     required this.getUserProfileUseCase,
     required this.updateProfileUseCase,
     required this.updateImageProfileUseCase,
     required this.logoutUseCase,
-    required this.forgetPasswordUseCase,
+    required this.changePasswordUseCase,
   }) : super(GetUserProfileInitial());
 
   //! GET USER PROFILE
@@ -71,23 +71,23 @@ class SettingsCubit extends Cubit<SettingsState> {
     );
   }
 
-  //! FORGET PASSWORD
-  Future<void> forgetPassword({
+  //! CHANGE PASSWORD
+  Future<void> changePassword({
     required String currentPassword,
     required String newPassword,
     required String confirmPassword,
   }) async {
-    emit(ForgetPasswordLoading());
+    emit(ChangePasswordLoading());
 
-    final result = await forgetPasswordUseCase(
+    final result = await changePasswordUseCase(
       currentPassword: currentPassword,
       newPassword: newPassword,
       confirmPassword: confirmPassword,
     );
 
     result.fold(
-      (failure) => emit(ForgetPasswordError(failure.message)),
-      (_) => emit(ForgetPasswordSuccess()),
+      (failure) => emit(ChangePasswordError(failure.message)),
+      (_) => emit(ChangePasswordSuccess()),
     );
   }
 }

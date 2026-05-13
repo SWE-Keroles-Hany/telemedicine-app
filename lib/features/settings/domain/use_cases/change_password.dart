@@ -2,10 +2,10 @@ import 'package:dartz/dartz.dart';
 import 'package:telemedicine/core/error/failure.dart';
 import 'package:telemedicine/features/settings/data/repo/settings_repo.dart';
 
-class ForgetPasswordUseCase {
+class ChangePasswordUseCase {
   final SettingsRepository repository;
 
-  ForgetPasswordUseCase(this.repository);
+  ChangePasswordUseCase(this.repository);
 
   Future<Either<Failure, void>> call({
     required String currentPassword,
@@ -13,7 +13,7 @@ class ForgetPasswordUseCase {
     required String confirmPassword,
   }) async {
     try {
-      return await repository.forgetPassword(
+      return await repository.changePassword(
         currentPassword: currentPassword,
         newPassword: newPassword,
         confirmPassword: confirmPassword,

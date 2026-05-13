@@ -35,3 +35,54 @@ class RegisterError extends RegisterState {
 
   RegisterError(this.message);
 }
+
+// ----- FORGOT PASSWORD SEND CODE STATES -----
+abstract class ForgotPasswordSendCodeState extends AuthState {}
+
+class ForgotPasswordSendCodeInitial extends ForgotPasswordSendCodeState {}
+
+class ForgotPasswordSendCodeLoading extends ForgotPasswordSendCodeState {}
+
+class ForgotPasswordSendCodeSuccess extends ForgotPasswordSendCodeState {
+  ForgotPasswordSendCodeSuccess();
+}
+
+class ForgotPasswordSendCodeError extends ForgotPasswordSendCodeState {
+  final String message;
+
+  ForgotPasswordSendCodeError(this.message);
+}
+
+// ----- FORGOT PASSWORD VERIFY CODE STATES -----
+abstract class ForgotPasswordVerifyCodeState extends AuthState {}
+
+class ForgotPasswordVerifyCodeInitial extends ForgotPasswordVerifyCodeState {}
+
+class ForgotPasswordVerifyCodeLoading extends ForgotPasswordVerifyCodeState {}
+
+class ForgotPasswordVerifyCodeSuccess extends ForgotPasswordVerifyCodeState {
+  ForgotPasswordVerifyCodeSuccess();
+}
+
+class ForgotPasswordVerifyCodeError extends ForgotPasswordVerifyCodeState {
+  final String message;
+
+  ForgotPasswordVerifyCodeError(this.message);
+}
+
+// ----- FORGOT PASSWORD RESET STATES -----
+abstract class ForgotPasswordResetState extends AuthState {}
+
+class ForgotPasswordResetInitial extends ForgotPasswordResetState {}
+
+class ForgotPasswordResetLoading extends ForgotPasswordResetState {}
+
+class ForgotPasswordResetSuccess extends ForgotPasswordResetState {
+  ForgotPasswordResetSuccess();
+}
+
+class ForgotPasswordResetError extends ForgotPasswordResetState {
+  final String message;
+
+  ForgotPasswordResetError(this.message);
+}

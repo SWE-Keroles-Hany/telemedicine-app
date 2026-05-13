@@ -73,14 +73,14 @@ class SettingsAPIDataSource implements SettingsRemoteDataSource {
   }
 
   @override
-  Future<void> forgetPassword({
+  Future<void> changePassword({
     required String currentPassword,
     required String newPassword,
     required String confirmPassword,
   }) async {
     try {
       await dioServices.post(
-        endPoint: ApiEndPoints.forgetPassword,
+        endPoint: ApiEndPoints.changePassword,
         data: {
           "currentPassword": currentPassword,
           "newPassword": newPassword,

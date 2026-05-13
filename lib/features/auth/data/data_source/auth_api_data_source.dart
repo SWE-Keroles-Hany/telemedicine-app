@@ -56,4 +56,57 @@ class AuthAPIDataSource implements AuthRemoteDataSource {
       throw Failure(message: e.message);
     }
   }
+
+  @override
+  Future<void> forgotPasswordSendCode({required String email}) async {
+    try {
+      await dioServices.post(
+        queryParams: {"email": email},
+        endPoint: ApiEndPoints.forgotPasswordSendCode,
+      );
+    } on Failure catch (error) {
+      throw Failure(message: error.message);
+    } catch (e) {
+      throw Failure(message: e.toString());
+    }
+  }
+
+  @override
+  Future<void> forgotPasswordVerifyCode({
+    required String email,
+    required String code,
+  }) async {
+    try {
+      await dioServices.post(
+        endPoint: ApiEndPoints.forgotPasswordVerifyCode,
+        data: {"email": email, "code": code},
+      );
+    } on Failure catch (error) {
+      throw Failure(message: error.message);
+    } catch (e) {
+      throw Failure(message: e.toString());
+    }
+  }
+
+  @override
+  Future<void> forgotPasswordReset({
+    required String email,
+    required String newPassword,
+    required String confirmPassword,
+  }) async {
+    try {
+      await dioServices.post(
+        endPoint: ApiEndPoints.forgotPasswordReset,
+        data: {
+          "email": email,
+          "newPassword": newPassword,
+          "confirmPassword": confirmPassword,
+        },
+      );
+    } on Failure catch (error) {
+      throw Failure(message: error.message);
+    } catch (e) {
+      throw Failure(message: e.toString());
+    }
+  }
 }
