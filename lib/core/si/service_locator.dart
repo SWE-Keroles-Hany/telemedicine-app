@@ -25,6 +25,7 @@ import 'package:telemedicine/features/home/domain/usecases/get_top_doctors.dart'
 import 'package:telemedicine/features/home/presentation/cubit/home_cubit.dart';
 import 'package:telemedicine/features/settings/domain/use_cases/logout.dart';
 import 'package:telemedicine/features/settings/domain/use_cases/update_image_profile.dart';
+import 'package:telemedicine/features/settings/domain/use_cases/forget_password.dart';
 
 import '../../features/auth/data/data_source/auth_api_data_source.dart';
 import '../../features/auth/data/data_source/auth_remote_data_source.dart';
@@ -109,6 +110,9 @@ Future<void> init() async {
     UpdateImageProfileUseCase(sl<SettingsRepository>()),
   );
   sl.registerSingleton<LogoutUseCase>(LogoutUseCase(sl<SettingsRepository>()));
+  sl.registerSingleton<ForgetPasswordUseCase>(
+    ForgetPasswordUseCase(sl<SettingsRepository>()),
+  );
   //! Cubit
   sl.registerFactory<AuthCubit>(
     () => AuthCubit(
@@ -144,6 +148,7 @@ Future<void> init() async {
       updateProfileUseCase: sl<UpdateProfileUseCase>(),
       updateImageProfileUseCase: sl<UpdateImageProfileUseCase>(),
       logoutUseCase: sl<LogoutUseCase>(),
+      forgetPasswordUseCase: sl<ForgetPasswordUseCase>(),
     ),
   );
 }

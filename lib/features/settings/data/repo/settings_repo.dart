@@ -10,4 +10,9 @@ abstract class SettingsRepository {
   });
   Future<Either<Failure, void>> updateImageProfile({required XFile image});
   Future<Either<Failure, void>> logout();
+  Future<Either<Failure, void>> forgetPassword({
+    required String currentPassword,
+    required String newPassword,
+    required String confirmPassword,
+  });
 }

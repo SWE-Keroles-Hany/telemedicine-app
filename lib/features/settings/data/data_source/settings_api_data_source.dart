@@ -71,4 +71,26 @@ class SettingsAPIDataSource implements SettingsRemoteDataSource {
       throw Failure(message: e.toString());
     }
   }
+
+  @override
+  Future<void> forgetPassword({
+    required String currentPassword,
+    required String newPassword,
+    required String confirmPassword,
+  }) async {
+    try {
+      await dioServices.post(
+        endPoint: ApiEndPoints.forgetPassword,
+        data: {
+          "currentPassword": currentPassword,
+          "newPassword": newPassword,
+          "confirmPassword": confirmPassword,
+        },
+      );
+    } on Failure catch (error) {
+      throw Failure(message: error.message);
+    } catch (e) {
+      throw Failure(message: e.toString());
+    }
+  }
 }

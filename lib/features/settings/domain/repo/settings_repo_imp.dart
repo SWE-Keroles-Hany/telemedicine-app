@@ -62,4 +62,24 @@ class SettingsRepositoryImpl implements SettingsRepository {
       return Left(Failure(message: e.toString()));
     }
   }
+
+  @override
+  Future<Either<Failure, void>> forgetPassword({
+    required String currentPassword,
+    required String newPassword,
+    required String confirmPassword,
+  }) async {
+    try {
+      await remoteDataSource.forgetPassword(
+        currentPassword: currentPassword,
+        newPassword: newPassword,
+        confirmPassword: confirmPassword,
+      );
+      return Right(null);
+    } on Failure catch (error) {
+      return Left(Failure(message: error.message));
+    } catch (e) {
+      return Left(Failure(message: e.toString()));
+    }
+  }
 }

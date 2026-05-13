@@ -14,4 +14,5 @@ class ApiEndPoints {
   static const String updateProfile = "Patients/update-profile";
   static const String updateImage = "Patients/update-image";
   static const String logout = "Auth/logout";
+  static const String forgetPassword = "Auth/change-password";
 }

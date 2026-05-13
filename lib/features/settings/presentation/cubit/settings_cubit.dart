@@ -5,6 +5,7 @@ import 'package:telemedicine/features/settings/domain/use_cases/get_user_profile
 import 'package:telemedicine/features/settings/domain/use_cases/update_profile.dart';
 import 'package:telemedicine/features/settings/domain/use_cases/update_image_profile.dart';
 import 'package:telemedicine/features/settings/domain/use_cases/logout.dart';
+import 'package:telemedicine/features/settings/domain/use_cases/forget_password.dart';
 import 'package:telemedicine/features/settings/presentation/cubit/settings_states.dart';
 
 class SettingsCubit extends Cubit<SettingsState> {
@@ -12,12 +13,14 @@ class SettingsCubit extends Cubit<SettingsState> {
   final UpdateProfileUseCase updateProfileUseCase;
   final UpdateImageProfileUseCase updateImageProfileUseCase;
   final LogoutUseCase logoutUseCase;
+  final ForgetPasswordUseCase forgetPasswordUseCase;
 
   SettingsCubit({
     required this.getUserProfileUseCase,
     required this.updateProfileUseCase,
     required this.updateImageProfileUseCase,
     required this.logoutUseCase,
+    required this.forgetPasswordUseCase,
   }) : super(GetUserProfileInitial());
 
   //! GET USER PROFILE
@@ -65,6 +68,26 @@ class SettingsCubit extends Cubit<SettingsState> {
     result.fold(
       (failure) => emit(LogoutError(failure.message)),
       (_) => emit(LogoutSuccess()),
+    );
+  }
+
+  //! FORGET PASSWORD
+  Future<void> forgetPassword({
+    required String currentPassword,
+    required String newPassword,
+    required String confirmPassword,
+  }) async {
+    emit(ForgetPasswordLoading());
+
+    final result = await forgetPasswordUseCase(
+      currentPassword: currentPassword,
+      newPassword: newPassword,
+      confirmPassword: confirmPassword,
+    );
+
+    result.fold(
+      (failure) => emit(ForgetPasswordError(failure.message)),
+      (_) => emit(ForgetPasswordSuccess()),
     );
   }
 }
