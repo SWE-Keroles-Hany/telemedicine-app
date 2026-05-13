@@ -68,7 +68,7 @@ class Telemedicine extends StatelessWidget {
           theme: AppTheme.theme,
           debugShowCheckedModeBanner: false,
           routes: AppRoutes.routes,
-          initialRoute: HomeScreen.routeName,
+          initialRoute: SignUpScreen.routeName,
         ),
       ),
     );
