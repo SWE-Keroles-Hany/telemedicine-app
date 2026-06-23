@@ -25,7 +25,7 @@ class DoctorProfileScreen extends StatefulWidget {
 }
 
 class _DoctorProfileScreenState extends State<DoctorProfileScreen> {
-  String _selectedDate = "2026-05-21";
+  String _selectedDate = "2026-06-15";
 
   @override
   Widget build(BuildContext context) {

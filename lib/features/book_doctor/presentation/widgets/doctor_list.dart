@@ -29,8 +29,8 @@ class DoctorList extends StatelessWidget {
         mainAxisExtent: 220.h,
         crossAxisCount: 2,
       ),
-      shrinkWrap: true,
-      // physics: const NeverScrollableScrollPhysics(),
+
+      // shrinkWrap: true,
       itemCount: doctors.length,
       itemBuilder: (context, index) {
         final doctor = doctors[index];

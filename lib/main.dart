@@ -11,12 +11,11 @@ import 'package:telemedicine/features/auth/presentation/screens/signup_screen.da
 import 'package:telemedicine/features/book_doctor/presentation/cubit/doctors_cubit.dart';
 import 'package:telemedicine/features/book_doctor/presentation/cubit/specialties_cubit.dart';
 import 'package:telemedicine/features/home/presentation/cubit/home_cubit.dart';
-import 'package:telemedicine/features/home/presentation/screens/home_screen.dart';
 import 'package:telemedicine/features/patient_appointments/presentation/cubit/appointment_cubit.dart';
 import 'package:telemedicine/features/settings/presentation/cubit/settings_cubit.dart';
 import 'package:toastification/toastification.dart';
 
-// === === ======(3)===(2)===(1)===
+import 'features/home/presentation/screens/home_screen.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -68,7 +67,7 @@ class Telemedicine extends StatelessWidget {
           theme: AppTheme.theme,
           debugShowCheckedModeBanner: false,
           routes: AppRoutes.routes,
-          initialRoute: SignUpScreen.routeName,
+          initialRoute: HomeScreen.routeName,
         ),
       ),
     );

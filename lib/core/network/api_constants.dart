@@ -6,7 +6,7 @@ class ApiEndPoints {
   static const String bookDoctor = "Doctor/book";
   static const String doctors = "Doctor";
   static const String doctorsBySpecialty = "Doctor/get-by-Specialty";
-  static const String specialties = "Doctor/specialties";
+  static const String specialties = "Doctor/all_specialties";
   static const String getDoctorByName = "Doctor/get-by-name";
   static const String myAppointments = "Patients/my-appointments";
   static const String topDoctors = "Doctor/top";
