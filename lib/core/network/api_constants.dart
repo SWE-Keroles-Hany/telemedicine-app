@@ -18,4 +18,6 @@ class ApiEndPoints {
   static const String forgotPasswordSendCode = "Auth/forgot-password";
   static const String forgotPasswordVerifyCode = "Auth/verify-code";
   static const String forgotPasswordReset = "Auth/reset-password";
+  static const String medicalHistory = "MedicalRecords/my-history";
+  static const String rateDoctor = "Doctor/rate";
 }

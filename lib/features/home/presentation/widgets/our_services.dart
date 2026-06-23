@@ -4,6 +4,7 @@ import 'package:easy_localization/easy_localization.dart';
 import 'package:telemedicine/features/book_doctor/presentation/screens/book_appointment_screen.dart';
 import 'package:telemedicine/features/check%20ur%20self/presentation/screens/check_your_self_screen.dart';
 import 'package:telemedicine/features/home/presentation/widgets/custom_service_item.dart';
+import 'package:telemedicine/features/medical_history/presentation/screens/medical_history_screen.dart';
 import 'package:telemedicine/features/patient_appointments/presentation/screens/patient_appointments_screen.dart';
 
 class OurServices extends StatelessWidget {
@@ -52,6 +53,7 @@ class OurServices extends StatelessWidget {
                   context,
                 ).pushNamed(BookAppointmentScreen.routeName);
               } else if (index == 2) {
+                Navigator.of(context).pushNamed(MedicalHistoryScreen.routeName);
               } else if (index == 3) {
                 Navigator.of(
                   context,

@@ -10,6 +10,7 @@ import 'package:telemedicine/features/settings/presentation/screens/change_passw
 import 'package:telemedicine/features/settings/presentation/screens/language_screen.dart';
 import 'package:telemedicine/features/settings/presentation/screens/help_center_screen.dart';
 import 'package:telemedicine/features/settings/presentation/screens/privacy_policy_screen.dart';
+import 'package:telemedicine/features/medical_history/presentation/screens/medical_history_screen.dart';
 
 import '../../features/auth/presentation/screens/login_screen.dart';
 import '../../features/auth/presentation/screens/signup_screen.dart';
@@ -38,5 +39,6 @@ class AppRoutes {
     LanguageScreen.routeName: (context) => LanguageScreen(),
     HelpCenterScreen.routeName: (context) => HelpCenterScreen(),
     PrivacyPolicyScreen.routeName: (context) => PrivacyPolicyScreen(),
+    MedicalHistoryScreen.routeName: (context) => MedicalHistoryScreen(),
   };
 }

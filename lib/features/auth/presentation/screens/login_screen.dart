@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -34,6 +36,7 @@ class LoginScreen extends StatelessWidget {
               child: BlocListener<AuthCubit, AuthState>(
                 listener: (context, state) {
                   if (state is LoginError) {
+                    log(state.message);
                     UiUtils.hideLoading(context);
 
                     UiUtils.showMessage(
@@ -115,6 +118,9 @@ class LoginScreen extends StatelessWidget {
                       SizedBox(height: 20.h),
                       CustomButton(
                         onPressed: () async {
+                          log("email : ${emailController.text}");
+                          log("email : ${passwordController.text}");
+
                           if (globalKey.currentState!.validate()) {
                             await context.read<AuthCubit>().login(
                               emailController.text,

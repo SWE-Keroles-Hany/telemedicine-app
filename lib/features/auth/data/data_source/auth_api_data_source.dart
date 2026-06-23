@@ -22,11 +22,14 @@ class AuthAPIDataSource implements AuthRemoteDataSource {
         endPoint: ApiEndPoints.login,
         data: {"email": email, "password": password},
       );
+      print(response);
       final token = response['token'];
       await sharedPreferences.setString("token", token);
     } on Failure catch (error) {
+      log(error.message);
       throw Failure(message: error.message);
     } catch (e) {
+      log(e.toString());
       throw Failure(message: e.toString());
     }
   }

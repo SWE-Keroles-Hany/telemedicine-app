@@ -7,14 +7,15 @@ import 'package:telemedicine/core/theme/app_theme.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:telemedicine/features/auth/presentation/cubit/auth_cubit.dart';
 import 'package:telemedicine/core/si/service_locator.dart';
+import 'package:telemedicine/features/auth/presentation/screens/login_screen.dart';
 import 'package:telemedicine/features/auth/presentation/screens/signup_screen.dart';
 import 'package:telemedicine/features/book_doctor/presentation/cubit/doctors_cubit.dart';
 import 'package:telemedicine/features/book_doctor/presentation/cubit/specialties_cubit.dart';
 import 'package:telemedicine/features/home/presentation/cubit/home_cubit.dart';
 import 'package:telemedicine/features/patient_appointments/presentation/cubit/appointment_cubit.dart';
 import 'package:telemedicine/features/settings/presentation/cubit/settings_cubit.dart';
+import 'package:telemedicine/features/medical_history/presentation/cubit/medical_history_cubit.dart';
 import 'package:toastification/toastification.dart';
-
 import 'features/home/presentation/screens/home_screen.dart';
 
 void main() async {
@@ -44,6 +45,7 @@ void main() async {
           BlocProvider(
             create: (context) => sl<SettingsCubit>()..getUserProfile(),
           ),
+          BlocProvider(create: (context) => sl<MedicalHistoryCubit>()),
         ],
         child: const Telemedicine(),
       ),
@@ -67,7 +69,7 @@ class Telemedicine extends StatelessWidget {
           theme: AppTheme.theme,
           debugShowCheckedModeBanner: false,
           routes: AppRoutes.routes,
-          initialRoute: HomeScreen.routeName,
+          initialRoute: LoginScreen.routeName,
         ),
       ),
     );

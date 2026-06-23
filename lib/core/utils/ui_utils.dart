@@ -14,7 +14,7 @@ class UiUtils {
       autoCloseDuration: const Duration(seconds: 3),
       title: Text(
         message,
-        style: TextStyle(color: ColorManager.white, fontSize: 14.sp),
+        style: TextStyle(color: ColorManager.white, fontSize: 14),
       ),
       // progressBarTheme: true,
       alignment: Alignment.topRight,
