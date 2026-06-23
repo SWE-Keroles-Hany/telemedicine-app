@@ -5,8 +5,13 @@ import 'appointment_card.dart';
 
 class AppointmentsList extends StatelessWidget {
   final List<Appointment> appointments;
+  final Function(int)? onCancel;
 
-  const AppointmentsList({super.key, required this.appointments});
+  const AppointmentsList({
+    super.key,
+    required this.appointments,
+    this.onCancel,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -46,7 +51,12 @@ class AppointmentsList extends StatelessWidget {
       padding: const EdgeInsets.symmetric(vertical: 8),
       itemCount: appointments.length,
       itemBuilder: (context, index) {
-        return AppointmentCard(appointment: appointments[index]);
+        return AppointmentCard(
+          appointment: appointments[index],
+          onCancel: onCancel != null
+              ? () => onCancel!(appointments[index].appointmentId)
+              : null,
+        );
       },
     );
   }

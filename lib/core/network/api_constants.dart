@@ -20,4 +20,5 @@ class ApiEndPoints {
   static const String forgotPasswordReset = "Auth/reset-password";
   static const String medicalHistory = "MedicalRecords/my-history";
   static const String rateDoctor = "Doctor/rate";
+  static const String cancelAppointment = "Patients/cancel-appointment";
 }

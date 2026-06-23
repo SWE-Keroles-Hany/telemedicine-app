@@ -17,3 +17,13 @@ class AppointmentsError extends AppointmentState {
 
   AppointmentsError(this.message);
 }
+
+class CancelAppointmentLoading extends AppointmentState {}
+
+class CancelAppointmentSuccess extends AppointmentState {}
+
+class CancelAppointmentError extends AppointmentState {
+  final String message;
+
+  CancelAppointmentError(this.message);
+}

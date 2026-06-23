@@ -4,8 +4,9 @@ import 'package:telemedicine/features/patient_appointments/domain/entities/appoi
 
 class AppointmentCard extends StatelessWidget {
   final Appointment appointment;
+  final VoidCallback? onCancel;
 
-  const AppointmentCard({super.key, required this.appointment});
+  const AppointmentCard({super.key, required this.appointment, this.onCancel});
 
   @override
   Widget build(BuildContext context) {
@@ -75,20 +76,45 @@ class AppointmentCard extends StatelessWidget {
             ],
           ),
           const SizedBox(height: 12),
-          Container(
-            padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 6),
-            decoration: BoxDecoration(
-              color: _getStatusColor(appointment.status),
-              borderRadius: BorderRadius.circular(20),
-            ),
-            child: Text(
-              appointment.status,
-              style: const TextStyle(
-                color: Colors.black,
-                fontSize: 12,
-                fontWeight: FontWeight.w500,
+          Row(
+            children: [
+              Container(
+                padding: const EdgeInsets.symmetric(
+                  horizontal: 12,
+                  vertical: 6,
+                ),
+                decoration: BoxDecoration(
+                  color: _getStatusColor(appointment.status),
+                  borderRadius: BorderRadius.circular(20),
+                ),
+                child: Text(
+                  appointment.status,
+                  style: const TextStyle(
+                    color: Colors.black,
+                    fontSize: 12,
+                    fontWeight: FontWeight.w500,
+                  ),
+                ),
               ),
-            ),
+              const Spacer(),
+              if (onCancel != null &&
+                  (appointment.status.toLowerCase() == 'pending' ||
+                      appointment.status.toLowerCase() == 'confirmed'))
+                TextButton(
+                  onPressed: onCancel,
+                  style: TextButton.styleFrom(
+                    foregroundColor: ColorManager.red,
+                    padding: const EdgeInsets.symmetric(
+                      horizontal: 12,
+                      vertical: 6,
+                    ),
+                  ),
+                  child: const Text(
+                    'Cancel',
+                    style: TextStyle(fontSize: 14, fontWeight: FontWeight.w600),
+                  ),
+                ),
+            ],
           ),
         ],
       ),

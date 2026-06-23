@@ -29,4 +29,18 @@ class AppointmentRepoImpl implements AppointmentRepo {
       return Left(Failure(message: e.toString()));
     }
   }
+
+  @override
+  Future<Either<Failure, void>> cancelAppointment({
+    required int appointmentId,
+  }) async {
+    try {
+      await _remoteDataSource.cancelAppointment(appointmentId: appointmentId);
+      return const Right(null);
+    } on Failure catch (exception) {
+      return Left(Failure(message: exception.message));
+    } catch (e) {
+      return Left(Failure(message: e.toString()));
+    }
+  }
 }

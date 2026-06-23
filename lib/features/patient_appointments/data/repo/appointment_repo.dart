@@ -7,4 +7,5 @@ abstract class AppointmentRepo {
   Future<Either<Failure, List<Appointment>>> getMyAppointments({
     required int statusNumber,
   });
+  Future<Either<Failure, void>> cancelAppointment({required int appointmentId});
 }

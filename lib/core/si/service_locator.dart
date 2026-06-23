@@ -16,6 +16,7 @@ import 'package:telemedicine/features/patient_appointments/data/data_source/appo
 import 'package:telemedicine/features/patient_appointments/data/repo/appointment_repo.dart';
 import 'package:telemedicine/features/patient_appointments/domain/repo/appointment_repo_impl.dart';
 import 'package:telemedicine/features/patient_appointments/domain/use_cases/get_my_appointments_usecase.dart';
+import 'package:telemedicine/features/patient_appointments/domain/use_cases/cancel_appointment_usecase.dart';
 import 'package:telemedicine/features/patient_appointments/presentation/cubit/appointment_cubit.dart';
 import 'package:telemedicine/features/home/data/datasource/home_api_data_source.dart';
 import 'package:telemedicine/features/home/data/datasource/home_data_source.dart';
@@ -122,6 +123,9 @@ Future<void> init() async {
   sl.registerSingleton<GetMyAppointmentsUseCase>(
     GetMyAppointmentsUseCase(sl<AppointmentRepo>()),
   );
+  sl.registerSingleton<CancelAppointmentUseCase>(
+    CancelAppointmentUseCase(sl<AppointmentRepo>()),
+  );
   sl.registerSingleton<GetTopDoctorsUseCase>(
     GetTopDoctorsUseCase(homeRepo: sl<HomeRepo>()),
   );
@@ -171,6 +175,7 @@ Future<void> init() async {
   sl.registerFactory<AppointmentCubit>(
     () => AppointmentCubit(
       getMyAppointmentsUseCase: sl<GetMyAppointmentsUseCase>(),
+      cancelAppointmentUseCase: sl<CancelAppointmentUseCase>(),
     ),
   );
   sl.registerFactory<HomeCubit>(

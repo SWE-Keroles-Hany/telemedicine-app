@@ -29,6 +29,50 @@ class _PatientAppointmentsScreenState extends State<PatientAppointmentsScreen> {
     });
   }
 
+  void _handleCancelAppointment(int appointmentId) {
+    showDialog(
+      context: context,
+      builder: (BuildContext context) {
+        return AlertDialog(
+          title: const Text('Cancel Appointment'),
+          content: const Text(
+            'Are you sure you want to cancel this appointment?',
+          ),
+          actions: [
+            TextButton(
+              onPressed: () => Navigator.of(context).pop(),
+              child: const Text('No'),
+            ),
+            TextButton(
+              onPressed: () {
+                Navigator.of(context).pop();
+                context.read<AppointmentCubit>().cancelAppointment(
+                  appointmentId: appointmentId,
+                );
+              },
+              child: const Text('Yes', style: TextStyle(color: Colors.red)),
+            ),
+          ],
+        );
+      },
+    );
+  }
+
+  int _getStatusNumber(String status) {
+    switch (status.toLowerCase()) {
+      case 'pending':
+        return 1;
+      case 'confirmed':
+        return 2;
+      case 'cancelled':
+        return 3;
+      case 'completed':
+        return 4;
+      default:
+        return 1;
+    }
+  }
+
   List<Appointment> _filterAppointmentsByStatus(
     List<Appointment> appointments,
   ) {
@@ -68,23 +112,9 @@ class _PatientAppointmentsScreenState extends State<PatientAppointmentsScreen> {
           StatusTabs(
             selectedStatus: _selectedStatus,
             onStatusChanged: (status) {
-              if (status.toLowerCase() == "pending") {
-                context.read<AppointmentCubit>().getMyAppointments(
-                  statusNumber: 1,
-                );
-              } else if (status.toLowerCase() == "confirmed") {
-                context.read<AppointmentCubit>().getMyAppointments(
-                  statusNumber: 2,
-                );
-              } else if (status.toLowerCase() == "cancelled") {
-                context.read<AppointmentCubit>().getMyAppointments(
-                  statusNumber: 3,
-                );
-              } else if (status.toLowerCase() == "completed") {
-                context.read<AppointmentCubit>().getMyAppointments(
-                  statusNumber: 4,
-                );
-              }
+              context.read<AppointmentCubit>().getMyAppointments(
+                statusNumber: _getStatusNumber(status),
+              );
               setState(() {
                 _selectedStatus = status;
               });
@@ -93,16 +123,34 @@ class _PatientAppointmentsScreenState extends State<PatientAppointmentsScreen> {
           Expanded(
             child: BlocConsumer<AppointmentCubit, AppointmentState>(
               listener: (context, state) {
-                // Handle any side effects if needed
+                if (state is CancelAppointmentSuccess) {
+                  ScaffoldMessenger.of(context).showSnackBar(
+                    const SnackBar(
+                      content: Text('Appointment cancelled successfully'),
+                      backgroundColor: Colors.green,
+                    ),
+                  );
+                } else if (state is CancelAppointmentError) {
+                  ScaffoldMessenger.of(context).showSnackBar(
+                    SnackBar(
+                      content: Text(state.message),
+                      backgroundColor: Colors.red,
+                    ),
+                  );
+                }
               },
               builder: (context, state) {
-                if (state is AppointmentsLoading) {
+                if (state is AppointmentsLoading ||
+                    state is CancelAppointmentLoading) {
                   return const AppointmentsLoadingWidget();
                 } else if (state is AppointmentsSuccess) {
                   final filteredAppointments = _filterAppointmentsByStatus(
                     state.appointments,
                   );
-                  return AppointmentsList(appointments: filteredAppointments);
+                  return AppointmentsList(
+                    appointments: filteredAppointments,
+                    onCancel: _handleCancelAppointment,
+                  );
                 } else if (state is AppointmentsError) {
                   return AppointmentsErrorWidget(
                     message: state.message,
