@@ -29,6 +29,8 @@ class _SignUpScreenState extends State<SignUpScreen> {
   final TextEditingController addressController = TextEditingController();
   final TextEditingController passwordController = TextEditingController();
   final TextEditingController phoneNumberController = TextEditingController();
+  final TextEditingController heightController = TextEditingController();
+  final TextEditingController weightController = TextEditingController();
   final TextEditingController dateOfBirth = TextEditingController();
 
   final globalKey = GlobalKey<FormState>();
@@ -42,6 +44,9 @@ class _SignUpScreenState extends State<SignUpScreen> {
     phoneNumberController.dispose();
     addressController.dispose();
     passwordController.dispose();
+    heightController.dispose();
+    weightController.dispose();
+    dateOfBirth.dispose();
     super.dispose();
   }
 
@@ -132,36 +137,65 @@ class _SignUpScreenState extends State<SignUpScreen> {
                             AppValidations.phoneNumberValidator(email),
                       ),
                       SizedBox(height: 15.h),
-
-                      CustomDropDown(
-                        label: 'signup.choose_blood_type'.tr(),
-                        items: [
-                          'A+',
-                          'A-',
-                          'B+',
-                          'B-',
-                          'AB+',
-                          'AB-',
-                          'O+',
-                          'O-',
+                      Row(
+                        children: [
+                          Expanded(
+                            child: CustomInputField(
+                              keyboardType: TextInputType.number,
+                              title: 'Enter Your Height'.tr(),
+                              controller: heightController,
+                              validator: (value) =>
+                                  AppValidations.heightValidator(value),
+                            ),
+                          ),
+                          SizedBox(width: 15.w),
+                          Expanded(
+                            child: CustomInputField(
+                              keyboardType: TextInputType.number,
+                              title: 'Enter Your Weight'.tr(),
+                              controller: weightController,
+                              validator: (value) =>
+                                  AppValidations.heightValidator(value),
+                            ),
+                          ),
                         ],
-                        key: ValueKey(selectedBloodType),
-                        value: selectedBloodType,
-                        onChanged: (value) {
-                          setState(() => selectedBloodType = value);
-                        },
                       ),
                       SizedBox(height: 15.h),
-                      CustomDropDown(
-                        label: 'signup.choose_gender'.tr(),
 
-                        items: ['Male', 'Female'],
-                        key: ValueKey(selectedGender ?? ""),
-                        value: selectedGender,
-                        onChanged: (value) {
-                          setState(() => selectedGender = value);
-                        },
+                      Row(
+                        children: [
+                          CustomDropDown(
+                            label: 'Blood Type'.tr(),
+                            items: [
+                              'A+',
+                              'A-',
+                              'B+',
+                              'B-',
+                              'AB+',
+                              'AB-',
+                              'O+',
+                              'O-',
+                            ],
+                            key: ValueKey(selectedBloodType),
+                            value: selectedBloodType,
+                            onChanged: (value) {
+                              setState(() => selectedBloodType = value);
+                            },
+                          ),
+                          SizedBox(width: 15.w),
+                          CustomDropDown(
+                            label: 'Gender'.tr(),
+
+                            items: ['Male', 'Female'],
+                            key: ValueKey(selectedGender ?? ""),
+                            value: selectedGender,
+                            onChanged: (value) {
+                              setState(() => selectedGender = value);
+                            },
+                          ),
+                        ],
                       ),
+
                       SizedBox(height: 15.h),
                       CustomButton(
                         onPressed: onSignUp,
@@ -218,6 +252,8 @@ class _SignUpScreenState extends State<SignUpScreen> {
           email: emailController.text.trim(),
           fullName: nameController.text.trim(),
           gender: selectedGender!,
+          height: double.parse(heightController.text.trim()),
+          weight: double.parse(weightController.text.trim()),
           password: passwordController.text.trim(),
           phoneNumber: phoneNumberController.text.trim(),
         ),

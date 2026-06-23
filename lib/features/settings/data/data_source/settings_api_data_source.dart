@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:dio/dio.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -18,12 +20,13 @@ class SettingsAPIDataSource implements SettingsRemoteDataSource {
       final response = await dioServices.get(
         endPoint: ApiEndPoints.patientProfile,
       );
+      log(response.toString());
       return UserModel.fromJson(response);
     } on Failure catch (error) {
-      print("here1 ${error.message}");
+      log("here1 ${error.message}");
       throw Failure(message: error.message);
     } catch (e) {
-      print("here2 ${e.toString()}");
+      log("here2 ${e.toString()}");
 
       throw Failure(message: e.toString());
     }

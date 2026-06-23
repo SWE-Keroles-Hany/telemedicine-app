@@ -61,6 +61,8 @@ class _UserProfileScreenState extends State<UserProfileScreen> {
               user.address = state.userProfile.address;
               user.bloodType = state.userProfile.bloodType;
               user.gender = state.userProfile.gender;
+              user.height = state.userProfile.height;
+              user.weight = state.userProfile.weight;
             }
 
             return SingleChildScrollView(
@@ -91,8 +93,8 @@ class _UserProfileScreenState extends State<UserProfileScreen> {
                   const SizedBox(height: 24),
                   HealthStatsWidget(
                     bloodType: user.bloodType ?? "0",
-                    weightKg: 75,
-                    heightCm: 180,
+                    weightKg: user.weight?.toDouble() ?? 75.0,
+                    heightCm: user.height?.toDouble() ?? 180.0,
                   ),
                   const SizedBox(height: 28),
                   ProfileMenuSectionWidget(

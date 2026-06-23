@@ -15,6 +15,8 @@ extension UserEntityMapper on UserEntity {
       allergies: allergies,
       address: address,
       email: email,
+      height: height,
+      weight: weight,
     );
   }
 }
@@ -33,6 +35,8 @@ extension UserModelMapper on UserModel {
       allergies: allergies,
       address: address,
       email: email,
+      height: height,
+      weight: weight,
     );
   }
 }

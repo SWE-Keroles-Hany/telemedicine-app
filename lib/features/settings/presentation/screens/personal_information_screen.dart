@@ -38,18 +38,18 @@ class _PersonalInformationScreenState extends State<PersonalInformationScreen> {
   @override
   void initState() {
     super.initState();
-    _nameController.text = widget.user.fullName ?? "0";
-    _phoneController.text = widget.user.phoneNumber ?? "";
-    _addressController.text = widget.user.address ?? "0";
-    _emailController.text = widget.user.email ?? "0";
+    context.read<SettingsCubit>().getUserProfile();
+
+    _nameController.text = widget.user.fullName ?? "null";
+    _phoneController.text = widget.user.phoneNumber ?? "null";
+    _addressController.text = widget.user.address ?? "null";
+    _emailController.text = widget.user.email ?? "null";
     DateTime dateTime = DateTime.parse(widget.user.dateOfBirth ?? "");
 
     _dateOfBirthController.text = DateFormat('yyyy-MM-dd').format(dateTime);
 
     selectedBloodType = widget.user.bloodType ?? "";
     selectedGender = widget.user.gender ?? "";
-
-    context.read<SettingsCubit>().getUserProfile();
   }
 
   @override
@@ -146,8 +146,8 @@ class _PersonalInformationScreenState extends State<PersonalInformationScreen> {
                     CustomDropDown(
                       label: 'signup.choose_gender'.tr(),
 
-                      items: ['male', 'female'],
-                      key: ValueKey(selectedGender ?? ""),
+                      items: ['Male', 'Female'],
+                      key: ValueKey(selectedGender),
                       value: selectedGender,
                       onChanged: (value) {
                         setState(() => selectedGender = value);

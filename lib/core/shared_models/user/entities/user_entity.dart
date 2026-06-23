@@ -10,6 +10,8 @@ class UserEntity {
   String? existingConditions;
   String? dateOfBirth;
   String? imgURL;
+  double? height;
+  double? weight;
 
   UserEntity({
     this.imgURL,
@@ -23,5 +25,7 @@ class UserEntity {
     this.bloodType,
     this.allergies,
     this.existingConditions,
+    this.height,
+    this.weight,
   });
 }

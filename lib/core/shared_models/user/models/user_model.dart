@@ -10,6 +10,8 @@ class UserModel {
   final String? existingConditions;
   final String? dateOfBirth;
   final String? imgURL;
+  final double? height;
+  final double? weight;
 
   UserModel({
     required this.imgURL,
@@ -23,6 +25,8 @@ class UserModel {
     this.bloodType,
     this.allergies,
     this.existingConditions,
+    this.height,
+    this.weight,
   });
 
   // fromJson
@@ -30,21 +34,24 @@ class UserModel {
     return UserModel(
       imgURL: json['pictureUrl'],
       dateOfBirth: json['dateOfBirth'],
-      fullName: json['fullName'] ?? '',
-      email: json['email'] ?? '',
-      password: json['password'] ?? '',
-      phoneNumber: json['phoneNumber'] ?? '',
-      gender: json['gender'] ?? '',
-      address: json['address'] ?? '',
-      bloodType: json['bloodType'] ?? '',
-      allergies: json['allergies'] ?? '',
-      existingConditions: json['existingConditions'] ?? '',
+      fullName: json['fullName'],
+      email: json['email'],
+      password: json['password'],
+      phoneNumber: json['phoneNumber'],
+      gender: json['gender'],
+      address: json['address'],
+      bloodType: json['bloodType'],
+      allergies: json['allergies'],
+      height: json['height'],
+      weight: json['weight'],
     );
   }
 
   // toJson
   Map<String, dynamic> toJson() {
     return {
+      'height': height,
+      'weight': weight,
       'fullName': fullName,
       'email': email,
       'password': password,

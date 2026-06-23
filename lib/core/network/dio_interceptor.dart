@@ -11,9 +11,9 @@ class DioInterceptors extends Interceptor {
   ) async {
     final SharedPreferences sharedPreferences =
         await SharedPreferences.getInstance();
-    final token = sharedPreferences.getString("token");
-    // final token =
-    // "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6Imtsa2wxQGdtYWlsLmNvbSIsIm5hbWUiOiJrbGtsMUBnbWFpbC5jb20iLCJodHRwOi8vc2NoZW1hcy54bWxzb2FwLm9yZy93cy8yMDA1LzA1L2lkZW50aXR5L2NsYWltcy9uYW1laWRlbnRpZmllciI6Ijk5YTg1Y2EzLWY2MWQtNDc0ZC1hNTNlLWM0NWEzMjA2OTNlYyIsImh0dHA6Ly9zY2hlbWFzLm1pY3Jvc29mdC5jb20vd3MvMjAwOC8wNi9pZGVudGl0eS9jbGFpbXMvcm9sZSI6IlBhdGllbnQiLCJleHAiOjE3ODIyMTg5ODksImlzcyI6IlRlbGVtZWRpY2luZUFwcCIsImF1ZCI6IlRlbGVtZWRpY2luZUFwcFVzZXJzIn0.u40d-_7aKON4MfATfQJL4cvHAHMJsp8p3YsOVWA4a-Y";
+    // final token = sharedPreferences.getString("token");
+    final token =
+        "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6Im5qbmpAZ21haWwuY29tIiwibmFtZSI6Im5qbmpAZ21haWwuY29tIiwiaHR0cDovL3NjaGVtYXMueG1sc29hcC5vcmcvd3MvMjAwNS8wNS9pZGVudGl0eS9jbGFpbXMvbmFtZWlkZW50aWZpZXIiOiJmMmEwZTQzMy0xZjQyLTQyMWEtYTQ1Yi0yYWNhYjViMTI3MzgiLCJodHRwOi8vc2NoZW1hcy5taWNyb3NvZnQuY29tL3dzLzIwMDgvMDYvaWRlbnRpdHkvY2xhaW1zL3JvbGUiOiJQYXRpZW50IiwiZXhwIjoxNzgyMjUyNzY4LCJpc3MiOiJUZWxlbWVkaWNpbmVBcHAiLCJhdWQiOiJUZWxlbWVkaWNpbmVBcHBVc2VycyJ9.6OPx1Gf8P0UK206bAcT36vlxTv1p_UpmpUJdyjgvw-Y";
     log("token  $token");
     options.headers['Authorization'] = 'Bearer $token';
     super.onRequest(options, handler);

@@ -16,9 +16,23 @@ class AppValidations {
     return null;
   }
 
+  static String? heightValidator(String? value) {
+    if (value == null || value.trim().isEmpty) {
+      return "Invalid Height";
+    }
+    return null;
+  }
+
+  static String? weightValidator(String? value) {
+    if (value == null || value.trim().isEmpty) {
+      return "Invalid Weight";
+    }
+    return null;
+  }
+
   static String? phoneNumberValidator(String? value) {
     if (value == null || value.trim().isEmpty || value.length < 11) {
-      return "Invalid Phone Number";
+      return "Must Enter Phone Number";
     }
     return null;
   }

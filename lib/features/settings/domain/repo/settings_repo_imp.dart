@@ -15,10 +15,13 @@ class SettingsRepositoryImpl implements SettingsRepository {
   Future<Either<Failure, UserEntity>> getUserProfile() async {
     try {
       final model = await remoteDataSource.getUserProfile();
+      print("model: ${model.toJson()}");
       return Right(model.toEntity());
     } on Failure catch (error) {
+      print("error: ${error.message}");
       return Left(Failure(message: error.message));
     } catch (e) {
+      print("error: ${e.toString()}");
       return Left(Failure(message: e.toString()));
     }
   }

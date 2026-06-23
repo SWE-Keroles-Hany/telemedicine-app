@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:telemedicine/core/theme/app_text_styles.dart';
 import 'package:telemedicine/core/theme/color_manger.dart';
 
 class CustomDropDown extends StatelessWidget {
@@ -21,6 +22,7 @@ class CustomDropDown extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final width = MediaQuery.of(context).size.width;
     final textTheme = Theme.of(context).textTheme;
     return FormField<String>(
       key: ValueKey(value),
@@ -28,7 +30,7 @@ class CustomDropDown extends StatelessWidget {
       validator:
           validator ??
           (v) {
-            if (v == null || v.isEmpty) return "Please $label";
+            if (v == null || v.isEmpty) return "Choose $label";
             return null;
           },
       builder: (fieldState) {
@@ -36,17 +38,12 @@ class CustomDropDown extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             DropdownMenu<String>(
-              width: 250.w,
+              width: width * 0.4,
               initialSelection: fieldState.value,
               textStyle: textTheme.titleMedium!.copyWith(
                 color: ColorManager.white,
               ),
-              label: Text(
-                label ?? "",
-                style: textTheme.titleMedium!.copyWith(
-                  color: ColorManager.mediumGray,
-                ),
-              ),
+              label: Text(label ?? "", style: AppTextStyles.s14regular),
               inputDecorationTheme: InputDecorationTheme(
                 filled: true,
                 fillColor: ColorManager.darkTealGreen,
