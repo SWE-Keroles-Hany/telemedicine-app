@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:telemedicine/core/theme/color_manger.dart';
+import 'package:telemedicine/features/book_doctor/domain/entities/doctor_schedule_entity.dart';
 
 class WorkingDayesSection extends StatelessWidget {
-  const WorkingDayesSection({super.key});
+  final List<DoctorScheduleEntity> schedules;
+  const WorkingDayesSection({super.key, required this.schedules});
 
   @override
   Widget build(BuildContext context) {
@@ -31,10 +33,10 @@ class WorkingDayesSection extends StatelessWidget {
             physics: NeverScrollableScrollPhysics(),
             shrinkWrap: true,
             itemBuilder: (context, index) {
-              return DayTimeRowInfo();
+              return DayTimeRowInfo(schedule: schedules[index]);
             },
             separatorBuilder: (context, index) => SizedBox(height: 8.h),
-            itemCount: 7,
+            itemCount: schedules.length,
           ),
         ],
       ),
@@ -43,7 +45,8 @@ class WorkingDayesSection extends StatelessWidget {
 }
 
 class DayTimeRowInfo extends StatelessWidget {
-  const DayTimeRowInfo({super.key});
+  final DoctorScheduleEntity schedule;
+  const DayTimeRowInfo({super.key, required this.schedule});
 
   @override
   Widget build(BuildContext context) {
@@ -56,8 +59,11 @@ class DayTimeRowInfo extends StatelessWidget {
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
-          Text('Saturday', style: TextStyle(color: Colors.white)),
-          Text('From 10AM To 6PM', style: TextStyle(color: Colors.white)),
+          Text(schedule.dayOfWeek, style: TextStyle(color: Colors.white)),
+          Text(
+            'From ${schedule.startTime} To ${schedule.endTime}',
+            style: TextStyle(color: Colors.white),
+          ),
         ],
       ),
     );

@@ -5,6 +5,7 @@ import 'package:telemedicine/core/shared_models/doctor/models/doctor_model.dart'
 import 'package:telemedicine/features/book_doctor/data/datasource/doctors_data_source.dart';
 import 'package:telemedicine/features/book_doctor/data/repo/doctors_repo.dart';
 import 'package:telemedicine/features/book_doctor/domain/entities/doctor_entity.dart';
+import 'package:telemedicine/features/book_doctor/domain/entities/doctor_schedule_entity.dart';
 
 class DoctorsRepoImp implements DoctorsRepo {
   final DoctorsDataSource _doctorsDataSoruce;
@@ -85,6 +86,22 @@ class DoctorsRepoImp implements DoctorsRepo {
         specialties.insert(0, "All");
       }
       return Right(specialties);
+    } on Failure catch (exception) {
+      return Left(Failure(message: exception.message));
+    } catch (e) {
+      return Left(Failure(message: e.toString()));
+    }
+  }
+
+  @override
+  Future<Either<Failure, List<DoctorScheduleEntity>>> getDoctorSchedule({
+    required int doctorId,
+  }) async {
+    try {
+      final schedules = await _doctorsDataSoruce.getDoctorSchedule(
+        doctorId: doctorId,
+      );
+      return Right(schedules);
     } on Failure catch (exception) {
       return Left(Failure(message: exception.message));
     } catch (e) {

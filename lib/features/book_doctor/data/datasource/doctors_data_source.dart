@@ -1,4 +1,5 @@
 import 'package:telemedicine/core/shared_models/doctor/models/doctor_model.dart';
+import 'package:telemedicine/features/book_doctor/domain/entities/doctor_schedule_entity.dart';
 
 abstract class DoctorsDataSource {
   Future<List<DoctorModel>> getAllDoctors();
@@ -11,4 +12,5 @@ abstract class DoctorsDataSource {
     required int doctorId,
     required String appoinmentDate,
   });
+  Future<List<DoctorScheduleEntity>> getDoctorSchedule({required int doctorId});
 }

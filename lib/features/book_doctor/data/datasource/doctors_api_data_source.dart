@@ -1,10 +1,12 @@
 import 'dart:developer';
 
+import 'package:dio/dio.dart';
 import 'package:telemedicine/core/error/failure.dart';
 import 'package:telemedicine/core/network/api_constants.dart';
 import 'package:telemedicine/core/network/api_services.dart';
 import 'package:telemedicine/core/shared_models/doctor/models/doctor_model.dart';
 import 'package:telemedicine/features/book_doctor/data/datasource/doctors_data_source.dart';
+import 'package:telemedicine/features/book_doctor/domain/entities/doctor_schedule_entity.dart';
 
 class DoctorsApiDataSource implements DoctorsDataSource {
   DoctorsApiDataSource(this.apiServices);
@@ -93,6 +95,33 @@ class DoctorsApiDataSource implements DoctorsDataSource {
       );
 
       return response.map((speciality) => speciality.toString()).toList();
+    } on Failure catch (exception) {
+      throw Failure(message: exception.message);
+    } catch (e) {
+      throw Failure(message: e.toString());
+    }
+  }
+
+  @override
+  Future<List<DoctorScheduleEntity>> getDoctorSchedule({
+    required int doctorId,
+  }) async {
+    FormData formData = FormData.fromMap({"doctorId": doctorId});
+    try {
+      final List<dynamic> response = await apiServices.get(
+        endPoint: ApiEndPoints.doctorSchedule,
+        data: formData,
+      );
+
+      final schedules = response.map((scheduleResponse) {
+        return DoctorScheduleEntity(
+          dayOfWeek: scheduleResponse['dayOfWeek'],
+          startTime: scheduleResponse['startTime'],
+          endTime: scheduleResponse['endTime'],
+        );
+      }).toList();
+
+      return schedules;
     } on Failure catch (exception) {
       throw Failure(message: exception.message);
     } catch (e) {

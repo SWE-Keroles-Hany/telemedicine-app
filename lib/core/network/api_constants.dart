@@ -21,4 +21,5 @@ class ApiEndPoints {
   static const String medicalHistory = "MedicalRecords/my-history";
   static const String rateDoctor = "Doctor/rate";
   static const String cancelAppointment = "Patients/cancel-appointment";
+  static const String doctorSchedule = "DoctorSchedules/doctor";
 }

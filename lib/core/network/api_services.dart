@@ -1,6 +1,8 @@
 abstract class APIServices {
   Future<dynamic> get({
     required String endPoint,
+    Object? data,
+
     Map<String, dynamic> queryParams,
   });
 

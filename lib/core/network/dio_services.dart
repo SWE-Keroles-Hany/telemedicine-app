@@ -111,11 +111,16 @@ class DioServices implements APIServices {
 
   @override
   Future<dynamic> get({
+    Object? data,
     required String endPoint,
     Map<String, dynamic>? queryParams,
   }) async {
     try {
-      final response = await dio.get(endPoint, queryParameters: queryParams);
+      final response = await dio.get(
+        endPoint,
+        data: data,
+        queryParameters: queryParams,
+      );
       return handleResponse(response);
     } on DioException catch (exception) {
       final message =

@@ -1,6 +1,7 @@
 import 'package:dartz/dartz.dart';
 import 'package:telemedicine/core/error/failure.dart';
 import 'package:telemedicine/features/book_doctor/domain/entities/doctor_entity.dart';
+import 'package:telemedicine/features/book_doctor/domain/entities/doctor_schedule_entity.dart';
 
 abstract class DoctorsRepo {
   Future<Either<Failure, List<DoctorEntity>>> getAllDoctors();
@@ -14,5 +15,8 @@ abstract class DoctorsRepo {
   Future<Either<Failure, void>> bookDoctor({
     required int doctorId,
     required String appoinmentDate,
+  });
+  Future<Either<Failure, List<DoctorScheduleEntity>>> getDoctorSchedule({
+    required int doctorId,
   });
 }

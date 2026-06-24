@@ -2,6 +2,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:telemedicine/features/book_doctor/domain/usecases/book_doctor.dart';
 import 'package:telemedicine/features/book_doctor/domain/usecases/get_all_doctors.dart';
 import 'package:telemedicine/features/book_doctor/domain/usecases/get_doctor_by_name.dart';
+import 'package:telemedicine/features/book_doctor/domain/usecases/get_doctor_schedule.dart';
 import 'package:telemedicine/features/book_doctor/domain/usecases/get_doctors_by_speciality.dart';
 import 'package:telemedicine/features/book_doctor/presentation/cubit/doctors_states.dart';
 
@@ -10,12 +11,14 @@ class DoctorsCubit extends Cubit<DoctorsState> {
   final GetDoctorsBySpecialityUseCase getDoctorsBySpecialityUseCase;
   final GetDoctorByNameUseCase getDoctorByNameUseCase;
   final BookDoctorUseCase bookDoctorUseCase;
+  final GetDoctorScheduleUseCase getDoctorScheduleUseCase;
 
   DoctorsCubit({
     required this.getAllDoctorsUseCase,
     required this.getDoctorsBySpecialityUseCase,
     required this.getDoctorByNameUseCase,
     required this.bookDoctorUseCase,
+    required this.getDoctorScheduleUseCase,
   }) : super(GetDoctorsInitial());
 
   Future<void> getAllDoctors() async {
@@ -67,6 +70,19 @@ class DoctorsCubit extends Cubit<DoctorsState> {
     result.fold(
       (failure) => emit(BookDoctorError(failure.message)),
       (_) => emit(BookDoctorSuccess()),
+    );
+  }
+
+  Future<void> getDoctorSchedule({required int doctorId}) async {
+    emit(GetDoctorScheduleLoading());
+
+    final result = await getDoctorScheduleUseCase.getDoctorSchedule(
+      doctorId: doctorId,
+    );
+
+    result.fold(
+      (failure) => emit(GetDoctorScheduleError(failure.message)),
+      (schedules) => emit(GetDoctorScheduleSuccess(schedules)),
     );
   }
 }

@@ -7,6 +7,7 @@ import 'package:telemedicine/features/book_doctor/domain/repo/doctors_repo_imp.d
 import 'package:telemedicine/features/book_doctor/domain/usecases/book_doctor.dart';
 import 'package:telemedicine/features/book_doctor/domain/usecases/get_all_doctors.dart';
 import 'package:telemedicine/features/book_doctor/domain/usecases/get_doctor_by_name.dart';
+import 'package:telemedicine/features/book_doctor/domain/usecases/get_doctor_schedule.dart';
 import 'package:telemedicine/features/book_doctor/domain/usecases/get_doctors_by_speciality.dart';
 import 'package:telemedicine/features/book_doctor/domain/usecases/get_specialties.dart';
 import 'package:telemedicine/features/book_doctor/presentation/cubit/doctors_cubit.dart';
@@ -161,12 +162,16 @@ Future<void> init() async {
   sl.registerSingleton<GetDoctorByNameUseCase>(
     GetDoctorByNameUseCase(doctorsRepo: sl<DoctorsRepo>()),
   );
+  sl.registerSingleton<GetDoctorScheduleUseCase>(
+    GetDoctorScheduleUseCase(doctorsRepo: sl<DoctorsRepo>()),
+  );
   sl.registerFactory<DoctorsCubit>(
     () => DoctorsCubit(
       getAllDoctorsUseCase: sl<GetAllDoctorsUseCase>(),
       getDoctorsBySpecialityUseCase: sl<GetDoctorsBySpecialityUseCase>(),
       getDoctorByNameUseCase: sl<GetDoctorByNameUseCase>(),
       bookDoctorUseCase: sl<BookDoctorUseCase>(),
+      getDoctorScheduleUseCase: sl<GetDoctorScheduleUseCase>(),
     ),
   );
   sl.registerFactory<SpecialtiesCubit>(

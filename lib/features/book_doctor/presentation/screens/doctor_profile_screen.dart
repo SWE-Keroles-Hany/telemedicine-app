@@ -27,7 +27,16 @@ class DoctorProfileScreen extends StatefulWidget {
 }
 
 class _DoctorProfileScreenState extends State<DoctorProfileScreen> {
-  final String _selectedDate = "2026-07-25";
+  @override
+  void initState() {
+    super.initState();
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      final doctor = ModalRoute.of(context)!.settings.arguments as DoctorEntity;
+      context.read<DoctorsCubit>().getDoctorSchedule(
+        doctorId: int.parse(doctor.id),
+      );
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -62,7 +71,21 @@ class _DoctorProfileScreenState extends State<DoctorProfileScreen> {
                     const SizedBox(height: 24),
                     AboutDoctorSection(text: doctor.bio),
                     const SizedBox(height: 24),
-                    WorkingDayesSection(),
+                    BlocBuilder<DoctorsCubit, DoctorsState>(
+                      builder: (context, state) {
+                        log("state: $state");
+                        if (state is GetDoctorScheduleSuccess) {
+                          return WorkingDayesSection(
+                            schedules: state.schedules,
+                          );
+                        } else if (state is GetDoctorScheduleLoading) {
+                          return Center(child: CircularProgressIndicator());
+                        } else if (state is GetDoctorScheduleError) {
+                          return Center(child: Text('Failed to load schedule'));
+                        }
+                        return WorkingDayesSection(schedules: []);
+                      },
+                    ),
                     const SizedBox(height: 24),
                   ],
                 ),
