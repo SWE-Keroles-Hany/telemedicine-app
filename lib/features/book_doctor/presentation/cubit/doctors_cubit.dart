@@ -55,7 +55,7 @@ class DoctorsCubit extends Cubit<DoctorsState> {
 
   Future<void> bookDoctor({
     required String appoinmentDate,
-    required String doctorId,
+    required int doctorId,
   }) async {
     emit(BookDoctorLoading());
 

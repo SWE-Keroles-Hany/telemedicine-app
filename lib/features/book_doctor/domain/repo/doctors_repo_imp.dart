@@ -13,7 +13,7 @@ class DoctorsRepoImp implements DoctorsRepo {
 
   @override
   Future<Either<Failure, void>> bookDoctor({
-    required String doctorId,
+    required int doctorId,
     required String appoinmentDate,
   }) async {
     try {

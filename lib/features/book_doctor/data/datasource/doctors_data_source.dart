@@ -8,7 +8,7 @@ abstract class DoctorsDataSource {
   Future<List<DoctorModel>> getDoctorByName({required String name});
   Future<List<String>> getSpecialties();
   Future<void> bookDoctor({
-    required String doctorId,
+    required int doctorId,
     required String appoinmentDate,
   });
 }

@@ -1,15 +1,24 @@
+import 'dart:developer';
+
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:telemedicine/core/theme/app_text_styles.dart';
 import 'package:telemedicine/core/theme/color_manger.dart';
 import 'package:telemedicine/features/auth/presentation/widgets/custom_button.dart';
+import 'package:telemedicine/features/book_doctor/presentation/cubit/doctors_cubit.dart';
 
-class BookingBottomBar extends StatelessWidget {
-  final VoidCallback? onBook;
-  final String? selectedDate;
+class BookingBottomBar extends StatefulWidget {
+  final int doctorId;
+  const BookingBottomBar({super.key, required this.doctorId});
 
-  const BookingBottomBar({super.key, this.onBook, this.selectedDate});
+  @override
+  State<BookingBottomBar> createState() => _BookingBottomBarState();
+}
 
+class _BookingBottomBarState extends State<BookingBottomBar> {
+  DateTime? selectedDate;
+  DateFormat dateFormat = DateFormat('yyyy-MM-dd');
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -21,47 +30,77 @@ class BookingBottomBar extends StatelessWidget {
       child: Column(
         mainAxisSize: MainAxisSize.min,
         children: [
-          // Show selected date
-          if (selectedDate != null)
-            Container(
-              width: double.infinity,
-              padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 12),
-              decoration: BoxDecoration(
-                color: ColorManager.cardBg,
-                borderRadius: BorderRadius.circular(12),
-                border: Border.all(color: ColorManager.borderLight),
-              ),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Text(
-                    'profile.selected_app_date'.tr(),
-                    style: AppTextStyles.s13medium.copyWith(
-                      color: ColorManager.mediumGray,
-                    ),
-                  ),
-                  const SizedBox(height: 4),
-                  Row(
-                    children: [
-                      Icon(
-                        Icons.calendar_today,
-                        size: 16,
-                        color: ColorManager.teal,
-                      ),
-                      const SizedBox(width: 6),
-                      Text(selectedDate!, style: AppTextStyles.s15semibold),
-                    ],
-                  ),
-                ],
-              ),
+          Container(
+            width: double.infinity,
+            padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 12),
+            decoration: BoxDecoration(
+              color: ColorManager.cardBg,
+              borderRadius: BorderRadius.circular(12),
+              border: Border.all(color: ColorManager.borderLight),
             ),
-          if (selectedDate != null) const SizedBox(height: 12),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    Text(
+                      'Select Date'.tr(),
+                      style: AppTextStyles.s13medium.copyWith(
+                        color: ColorManager.white,
+                      ),
+                    ),
+                    IconButton(
+                      onPressed: () async {
+                        final date = await showDatePicker(
+                          context: context,
+                          firstDate: DateTime.now(),
+                          lastDate: DateTime.now().add(
+                            const Duration(days: 365),
+                          ),
+                        );
+                        if (date != null) {
+                          setState(() {
+                            selectedDate = date;
+                          });
+                        }
+
+                        //! select date
+                      },
+                      icon: Icon(Icons.date_range, color: ColorManager.white),
+                    ),
+                  ],
+                ),
+                const SizedBox(height: 4),
+                Row(
+                  children: [
+                    Icon(
+                      Icons.calendar_today,
+                      size: 16,
+                      color: ColorManager.teal,
+                    ),
+                    const SizedBox(width: 6),
+                    Text(
+                      dateFormat.format(selectedDate ?? DateTime.now()),
+                      style: AppTextStyles.s15semibold,
+                    ),
+                  ],
+                ),
+              ],
+            ),
+          ),
+          const SizedBox(height: 12),
           CustomButton(
             width: double.infinity,
-            onPressed: onBook,
-            title: selectedDate != null
-                ? 'profile.confirm_booking'.tr()
-                : 'Select Date',
+            onPressed: () {
+              context.read<DoctorsCubit>().bookDoctor(
+                appoinmentDate: dateFormat.format(
+                  selectedDate ?? DateTime.now(),
+                ),
+                doctorId: widget.doctorId, // TODO: Get actual doctor ID
+              );
+            },
+            title: 'profile.confirm_booking'.tr(),
             titleColor: ColorManager.black,
             radiusNumber: 20,
             bgColor: ColorManager.teal,

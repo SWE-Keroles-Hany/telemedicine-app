@@ -35,6 +35,8 @@ class DioServices implements APIServices {
       );
       return handleResponse(response);
     } on DioException catch (exception) {
+      log("error${exception.message}");
+
       final message =
           (exception.response?.data is List &&
               exception.response?.data.isNotEmpty)
@@ -44,6 +46,8 @@ class DioServices implements APIServices {
                 "";
 
       throw Failure(message: message);
+    } catch (e) {
+      throw Failure(message: "message");
     }
   }
 

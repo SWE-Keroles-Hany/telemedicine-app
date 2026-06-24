@@ -12,7 +12,7 @@ abstract class DoctorsRepo {
   });
   Future<Either<Failure, List<String>>> getSpecialties();
   Future<Either<Failure, void>> bookDoctor({
-    required String doctorId,
+    required int doctorId,
     required String appoinmentDate,
   });
 }

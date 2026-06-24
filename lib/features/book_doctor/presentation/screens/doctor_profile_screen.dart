@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:telemedicine/core/si/service_locator.dart';
@@ -25,12 +27,13 @@ class DoctorProfileScreen extends StatefulWidget {
 }
 
 class _DoctorProfileScreenState extends State<DoctorProfileScreen> {
-  String _selectedDate = "2026-06-15";
+  final String _selectedDate = "2026-07-25";
 
   @override
   Widget build(BuildContext context) {
     final cubit = context.read<DoctorsCubit>();
     final doctor = ModalRoute.of(context)!.settings.arguments as DoctorEntity;
+
     return SafeArea(
       child: Scaffold(
         appBar: AppBar(
@@ -52,19 +55,14 @@ class _DoctorProfileScreenState extends State<DoctorProfileScreen> {
                     DoctorStatsRow(
                       reviewCount: doctor.rateCount,
                       experienceYears: doctor.yearsOfExperience,
-                      patientCount: 10,
+                      //! TODO: Get actual number of patients
+                      numberOfPatients: 10,
                       rate: doctor.rate,
                     ),
                     const SizedBox(height: 24),
                     AboutDoctorSection(text: doctor.bio),
                     const SizedBox(height: 24),
-                    WorkingDayesSection(
-                      onDateSelected: (date) {
-                        setState(() {
-                          _selectedDate = date;
-                        });
-                      },
-                    ),
+                    WorkingDayesSection(),
                     const SizedBox(height: 24),
                   ],
                 ),
@@ -101,18 +99,8 @@ class _DoctorProfileScreenState extends State<DoctorProfileScreen> {
                   );
                 }
               },
-              builder: (context, state) => BookingBottomBar(
-                selectedDate: _selectedDate,
-                onBook: () async {
-                  // Only allow booking if date is selected
-                  if (_selectedDate.isNotEmpty) {
-                    await cubit.bookDoctor(
-                      appoinmentDate: _selectedDate,
-                      doctorId: doctor.id,
-                    );
-                  }
-                },
-              ),
+              builder: (context, state) =>
+                  BookingBottomBar(doctorId: int.parse(doctor.id)),
             ),
           ],
         ),

@@ -9,7 +9,7 @@ class BookDoctorUseCase {
 
   Future<Either<Failure, void>> bookDoctor({
     required String appoinmentDate,
-    required String doctorId,
+    required int doctorId,
   }) async {
     return await doctorsRepo.bookDoctor(
       appoinmentDate: appoinmentDate,

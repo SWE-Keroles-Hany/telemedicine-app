@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:telemedicine/core/error/failure.dart';
 import 'package:telemedicine/core/network/api_constants.dart';
 import 'package:telemedicine/core/network/api_services.dart';
@@ -9,19 +11,19 @@ class DoctorsApiDataSource implements DoctorsDataSource {
   final APIServices apiServices;
   @override
   Future<void> bookDoctor({
-    required String doctorId,
+    required int doctorId,
     required String appoinmentDate,
   }) async {
     try {
       await apiServices.post(
         endPoint: ApiEndPoints.bookDoctor,
-        data: {"doctorId": doctorId, "appointmentDate": appoinmentDate},
+        data: {"doctorId": "$doctorId", "appointmentDate": appoinmentDate},
       );
     } on Failure catch (exception) {
-      print("here");
+      print("here ${exception.message}");
       throw Failure(message: exception.message);
     } catch (e) {
-      print(e.toString());
+      print("e.toString() ${e.toString()}");
       throw Failure(message: e.toString());
     }
   }
