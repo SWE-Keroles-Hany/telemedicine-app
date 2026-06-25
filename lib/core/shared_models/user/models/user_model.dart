@@ -1,4 +1,5 @@
 class UserModel {
+  final String? id;
   final String? fullName;
   final String? email;
   final String? password;
@@ -14,6 +15,7 @@ class UserModel {
   final double? weight;
 
   UserModel({
+    this.id,
     required this.imgURL,
     this.dateOfBirth,
     this.email,
@@ -32,6 +34,7 @@ class UserModel {
   // fromJson
   factory UserModel.fromJson(Map<String, dynamic> json) {
     return UserModel(
+      id: json['id']?.toString(),
       imgURL: json['pictureUrl'],
       dateOfBirth: json['dateOfBirth'],
       fullName: json['fullName'],
@@ -42,14 +45,15 @@ class UserModel {
       address: json['address'],
       bloodType: json['bloodType'],
       allergies: json['allergies'],
-      height: json['height'],
-      weight: json['weight'],
+      height: json['height']?.toDouble(),
+      weight: json['weight']?.toDouble(),
     );
   }
 
   // toJson
   Map<String, dynamic> toJson() {
     return {
+      'id': id,
       'height': height,
       'weight': weight,
       'fullName': fullName,

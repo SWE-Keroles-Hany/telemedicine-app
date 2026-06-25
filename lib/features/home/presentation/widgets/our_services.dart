@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:telemedicine/features/book_doctor/presentation/screens/book_appointment_screen.dart';
-import 'package:telemedicine/features/check%20ur%20self/presentation/screens/check_your_self_screen.dart';
+import 'package:telemedicine/features/check_yourself/presentation/screens/check_yourself_screen.dart';
 import 'package:telemedicine/features/home/presentation/widgets/custom_service_item.dart';
 import 'package:telemedicine/features/medical_history/presentation/screens/medical_history_screen.dart';
 import 'package:telemedicine/features/patient_appointments/presentation/screens/patient_appointments_screen.dart';
@@ -47,7 +47,7 @@ class OurServices extends StatelessWidget {
           child: GestureDetector(
             onTap: () {
               if (index == 0) {
-                Navigator.of(context).pushNamed(CheckYourSelfScreen.routeName);
+                Navigator.of(context).pushNamed(CheckYourselfScreen.routeName);
               } else if (index == 1) {
                 Navigator.of(
                   context,

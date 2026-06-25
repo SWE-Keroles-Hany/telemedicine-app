@@ -35,6 +35,12 @@ import 'package:telemedicine/features/medical_history/domain/repo/medical_histor
 import 'package:telemedicine/features/medical_history/domain/usecases/get_medical_history.dart';
 import 'package:telemedicine/features/medical_history/domain/usecases/rate_doctor.dart';
 import 'package:telemedicine/features/medical_history/presentation/cubit/medical_history_cubit.dart';
+import 'package:telemedicine/features/check_yourself/data/datasource/check_yourself_api_data_source.dart';
+import 'package:telemedicine/features/check_yourself/data/datasource/check_yourself_data_source.dart';
+import 'package:telemedicine/features/check_yourself/data/repo/check_yourself_repo.dart';
+import 'package:telemedicine/features/check_yourself/domain/repo/check_yourself_repo_imp.dart';
+import 'package:telemedicine/features/check_yourself/domain/usecases/send_message_usecase.dart';
+import 'package:telemedicine/features/check_yourself/presentation/cubit/check_yourself_cubit.dart';
 
 import '../../features/auth/data/data_source/auth_api_data_source.dart';
 import '../../features/auth/data/data_source/auth_remote_data_source.dart';
@@ -80,6 +86,9 @@ Future<void> init() async {
   sl.registerSingleton<MedicalHistoryDataSource>(
     MedicalHistoryApiDataSource(sl<APIServices>()),
   );
+  sl.registerSingleton<CheckYourselfDataSource>(
+    CheckYourselfApiDataSource(sl<Dio>()),
+  );
 
   //! Repository
   sl.registerSingleton<AuthRepository>(
@@ -95,6 +104,9 @@ Future<void> init() async {
   );
   sl.registerSingleton<MedicalHistoryRepo>(
     MedicalHistoryRepoImp(sl<MedicalHistoryDataSource>()),
+  );
+  sl.registerSingleton<CheckYourselfRepo>(
+    CheckYourselfRepoImp(sl<CheckYourselfDataSource>()),
   );
 
   //! UseCases
@@ -149,6 +161,10 @@ Future<void> init() async {
   sl.registerSingleton<RateDoctorUseCase>(
     RateDoctorUseCase(medicalHistoryRepo: sl<MedicalHistoryRepo>()),
   );
+  sl.registerSingleton<SendMessageUseCase>(
+    SendMessageUseCase(checkYourselfRepo: sl<CheckYourselfRepo>()),
+  );
+
   //! Cubit
   sl.registerFactory<AuthCubit>(
     () => AuthCubit(
@@ -200,5 +216,8 @@ Future<void> init() async {
       getMedicalHistoryUseCase: sl<GetMedicalHistoryUseCase>(),
       rateDoctorUseCase: sl<RateDoctorUseCase>(),
     ),
+  );
+  sl.registerFactory<CheckYourselfCubit>(
+    () => CheckYourselfCubit(sendMessageUseCase: sl<SendMessageUseCase>()),
   );
 }

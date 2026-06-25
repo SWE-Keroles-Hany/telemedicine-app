@@ -15,6 +15,7 @@ import 'package:telemedicine/features/home/presentation/cubit/home_cubit.dart';
 import 'package:telemedicine/features/patient_appointments/presentation/cubit/appointment_cubit.dart';
 import 'package:telemedicine/features/settings/presentation/cubit/settings_cubit.dart';
 import 'package:telemedicine/features/medical_history/presentation/cubit/medical_history_cubit.dart';
+import 'package:telemedicine/features/check_yourself/presentation/cubit/check_yourself_cubit.dart';
 import 'package:toastification/toastification.dart';
 import 'features/home/presentation/screens/home_screen.dart';
 
@@ -46,6 +47,7 @@ void main() async {
             create: (context) => sl<SettingsCubit>()..getUserProfile(),
           ),
           BlocProvider(create: (context) => sl<MedicalHistoryCubit>()),
+          BlocProvider(create: (context) => sl<CheckYourselfCubit>()),
         ],
         child: const Telemedicine(),
       ),

@@ -4,6 +4,7 @@ import 'package:telemedicine/core/shared_models/user/entities/user_entity.dart';
 extension UserEntityMapper on UserEntity {
   UserModel toModel() {
     return UserModel(
+      id: id,
       imgURL: imgURL,
       dateOfBirth: dateOfBirth,
       phoneNumber: phoneNumber,
@@ -24,6 +25,7 @@ extension UserEntityMapper on UserEntity {
 extension UserModelMapper on UserModel {
   UserEntity toEntity() {
     return UserEntity(
+      id: id,
       dateOfBirth: dateOfBirth,
       imgURL: imgURL,
       phoneNumber: phoneNumber,

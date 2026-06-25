@@ -14,7 +14,7 @@ import 'package:telemedicine/features/medical_history/presentation/screens/medic
 
 import '../../features/auth/presentation/screens/login_screen.dart';
 import '../../features/auth/presentation/screens/signup_screen.dart';
-import '../../features/check ur self/presentation/screens/check_your_self_screen.dart';
+import '../../features/check_yourself/presentation/screens/check_yourself_screen.dart';
 import '../../features/home/presentation/screens/home_screen.dart';
 
 class AppRoutes {
@@ -23,7 +23,7 @@ class AppRoutes {
     ForgotPasswordScreen.routeName: (context) => ForgotPasswordScreen(),
     SignUpScreen.routeName: (context) => SignUpScreen(),
     HomeScreen.routeName: (context) => HomeScreen(),
-    CheckYourSelfScreen.routeName: (context) => CheckYourSelfScreen(),
+    CheckYourselfScreen.routeName: (context) => CheckYourselfScreen(),
 
     DoctorProfileScreen.routeName: (context) => DoctorProfileScreen(),
 

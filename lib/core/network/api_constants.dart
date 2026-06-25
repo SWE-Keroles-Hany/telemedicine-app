@@ -1,6 +1,8 @@
 class ApiEndPoints {
   static const String baseURL =
       "https://telemedicineapp20260326150133-cvdyaqbdcucsfmfh.uaenorth-01.azurewebsites.net/api/";
+  static const String chatBaseURL = "http://13.48.148.90:8000/";
+  static const String chat = "chat";
   static const String login = "Auth/login";
   static const String registerPatient = "Auth/RegisterPatient";
   static const String bookDoctor = "Doctor/book";
