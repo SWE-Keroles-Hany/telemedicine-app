@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:telemedicine/core/theme/app_text_styles.dart';
 import 'package:telemedicine/core/theme/color_manger.dart';
 import 'package:telemedicine/features/book_doctor/domain/entities/doctor_schedule_entity.dart';
 
@@ -14,6 +15,8 @@ class WorkingDayesSection extends StatelessWidget {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
+          Text("Working ( Days - Time)", style: AppTextStyles.s17bold),
+          SizedBox(height: 10.h),
           Container(
             padding: EdgeInsets.all(8.r),
             decoration: BoxDecoration(

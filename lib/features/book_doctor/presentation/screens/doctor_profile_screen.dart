@@ -72,7 +72,7 @@ class _DoctorProfileScreenState extends State<DoctorProfileScreen> {
                       DoctorStatsRow(
                         reviewCount: doctor.rateCount,
                         experienceYears: doctor.yearsOfExperience,
-                        numberOfPatients: 10,
+                        // numberOfPatients: 10,
                         rate: doctor.rate,
                       ),
                       const SizedBox(height: 24),

@@ -5,7 +5,7 @@ import 'package:telemedicine/core/theme/color_manger.dart';
 
 class DoctorStatsRow extends StatelessWidget {
   final int experienceYears;
-  final int numberOfPatients;
+  // final int numberOfPatients;
   final num rate;
   final int reviewCount;
 
@@ -13,7 +13,7 @@ class DoctorStatsRow extends StatelessWidget {
     super.key,
     required this.reviewCount,
     required this.experienceYears,
-    required this.numberOfPatients,
+    // required this.numberOfPatients,
     required this.rate,
   });
 
@@ -30,11 +30,11 @@ class DoctorStatsRow extends StatelessWidget {
             value: '$experienceYears+',
             label: 'profile.experience'.tr(),
           ),
-          const SizedBox(width: 12),
-          _StatCard(
-            value: _fmt(numberOfPatients),
-            label: 'profile.patients'.tr(),
-          ),
+          // const SizedBox(width: 12),
+          // _StatCard(
+          //   value: _fmt(numberOfPatients),
+          //   label: 'profile.patients'.tr(),
+          // ),
           const SizedBox(width: 12),
           _StatCard(value: '$reviewCount', label: 'profile.reviews'.tr()),
         ],
