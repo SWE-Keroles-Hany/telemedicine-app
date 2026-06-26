@@ -17,4 +17,6 @@ abstract class AuthRemoteDataSource {
     required String newPassword,
     required String confirmPassword,
   });
+
+  Future<bool> isUserLogged();
 }

@@ -166,7 +166,8 @@ class _CheckYourselfScreenState extends State<CheckYourselfScreen> {
                   ChatInputField(
                     controller: _messageController,
                     selectedFiles: _selectedFiles,
-                    onSend: () => _sendMessage(patientId: 11),
+                    onSend: () =>
+                        _sendMessage(patientId: int.parse(user?.id ?? "1")),
                     onFilesSelected: _onFilesSelected,
                   ),
                 ],

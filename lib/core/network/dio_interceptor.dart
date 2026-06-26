@@ -1,9 +1,14 @@
 import 'dart:developer';
 
 import 'package:dio/dio.dart';
+import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+import 'package:telemedicine/features/auth/presentation/screens/login_screen.dart';
 
 class DioInterceptors extends Interceptor {
+  final GlobalKey<NavigatorState>? navigatorKey;
+
+  DioInterceptors({this.navigatorKey});
   @override
   void onRequest(
     RequestOptions options,
@@ -12,10 +17,24 @@ class DioInterceptors extends Interceptor {
     final SharedPreferences sharedPreferences =
         await SharedPreferences.getInstance();
     final token = sharedPreferences.getString("token");
-    // final token =
-    // "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6Imtsa2wxQGdtYWlsLmNvbSIsIm5hbWUiOiJrbGtsMUBnbWFpbC5jb20iLCJodHRwOi8vc2NoZW1hcy54bWxzb2FwLm9yZy93cy8yMDA1LzA1L2lkZW50aXR5L2NsYWltcy9uYW1laWRlbnRpZmllciI6Ijk5YTg1Y2EzLWY2MWQtNDc0ZC1hNTNlLWM0NWEzMjA2OTNlYyIsImh0dHA6Ly9zY2hlbWFzLm1pY3Jvc29mdC5jb20vd3MvMjAwOC8wNi9pZGVudGl0eS9jbGFpbXMvcm9sZSI6IlBhdGllbnQiLCJleHAiOjE3ODIyODQ5NjUsImlzcyI6IlRlbGVtZWRpY2luZUFwcCIsImF1ZCI6IlRlbGVtZWRpY2luZUFwcFVzZXJzIn0.C1VpkElPohC0jRZJ3_JERKjwAT-WzkfwwyZlb74DAvg";
-    log("token  $token");
     options.headers['Authorization'] = 'Bearer $token';
     super.onRequest(options, handler);
+  }
+
+  @override
+  void onError(DioException err, ErrorInterceptorHandler handler) async {
+    if (err.response?.statusCode == 401 || err.response?.statusCode == 403) {
+      final SharedPreferences sharedPreferences =
+          await SharedPreferences.getInstance();
+      await sharedPreferences.remove("token");
+
+      if (navigatorKey?.currentContext != null) {
+        navigatorKey?.currentState?.pushNamedAndRemoveUntil(
+          LoginScreen.routeName,
+          (route) => false,
+        );
+      }
+    }
+    super.onError(err, handler);
   }
 }

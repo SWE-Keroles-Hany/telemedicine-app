@@ -6,6 +6,7 @@ import 'package:dio/dio.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:telemedicine/core/error/failure.dart';
 import 'package:telemedicine/core/network/api_constants.dart';
+import 'package:telemedicine/core/utils/jwt_utils.dart';
 import '../../../../core/network/dio_services.dart';
 import '../../../../core/shared_models/user/models/user_model.dart';
 import 'auth_remote_data_source.dart';
@@ -113,5 +114,22 @@ class AuthAPIDataSource implements AuthRemoteDataSource {
     } catch (e) {
       throw Failure(message: e.toString());
     }
+  }
+
+  @override
+  Future<bool> isUserLogged() async {
+    SharedPreferences sharedPreferences = await SharedPreferences.getInstance();
+    final token = sharedPreferences.getString("token");
+
+    if (token == null || token.isEmpty) {
+      return false;
+    }
+
+    if (JwtUtils.isTokenExpired(token)) {
+      await sharedPreferences.remove("token");
+      return false;
+    }
+
+    return true;
   }
 }

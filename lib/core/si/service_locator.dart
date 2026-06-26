@@ -1,4 +1,5 @@
 import 'package:dio/dio.dart';
+import 'package:flutter/material.dart';
 import 'package:get_it/get_it.dart';
 import 'package:telemedicine/features/book_doctor/data/datasource/doctors_api_data_source.dart';
 import 'package:telemedicine/features/book_doctor/data/datasource/doctors_data_source.dart';
@@ -51,6 +52,7 @@ import '../../features/auth/domain/use_cases/register.dart';
 import '../../features/auth/domain/use_cases/forgot_password_send_code.dart';
 import '../../features/auth/domain/use_cases/forgot_password_verify_code.dart';
 import '../../features/auth/domain/use_cases/forgot_password_reset.dart';
+import '../../features/auth/domain/use_cases/is_user_logged.dart';
 import '../../features/auth/presentation/cubit/auth_cubit.dart';
 import '../../features/settings/data/data_source/settings_api_data_source.dart';
 import '../../features/settings/data/data_source/settings_remote_data_source.dart';
@@ -63,10 +65,17 @@ import '../network/api_services.dart';
 import '../network/dio_services.dart';
 
 final sl = GetIt.instance;
-Future<void> init() async {
+GlobalKey<NavigatorState> navigatorKey = GlobalKey<NavigatorState>();
+
+Future<void> init({GlobalKey<NavigatorState>? key}) async {
+  if (key != null) {
+    navigatorKey = key;
+  }
   //! Core
   sl.registerSingleton<Dio>(Dio());
-  sl.registerSingleton<DioServices>(DioServices(sl<Dio>()));
+  sl.registerSingleton<DioServices>(
+    DioServices(sl<Dio>(), navigatorKey: navigatorKey),
+  );
   sl.registerSingleton<APIServices>(sl<DioServices>());
 
   //! Data Source
@@ -121,6 +130,9 @@ Future<void> init() async {
   sl.registerSingleton<ForgotPasswordResetUseCase>(
     ForgotPasswordResetUseCase(sl<AuthRepository>()),
   );
+  sl.registerSingleton<IsUserLoggedUseCase>(
+    IsUserLoggedUseCase(sl<AuthRepository>()),
+  );
   sl.registerSingleton<GetAllDoctorsUseCase>(
     GetAllDoctorsUseCase(doctorsRepo: sl<DoctorsRepo>()),
   );
@@ -173,6 +185,7 @@ Future<void> init() async {
       forgotPasswordSendCodeUseCase: sl<ForgotPasswordSendCodeUseCase>(),
       forgotPasswordVerifyCodeUseCase: sl<ForgotPasswordVerifyCodeUseCase>(),
       forgotPasswordResetUseCase: sl<ForgotPasswordResetUseCase>(),
+      isUserLoggedUseCase: sl<IsUserLoggedUseCase>(),
     ),
   );
   sl.registerSingleton<GetDoctorByNameUseCase>(

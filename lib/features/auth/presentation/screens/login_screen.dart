@@ -15,12 +15,26 @@ import 'package:telemedicine/features/auth/presentation/widgets/custom_button.da
 import 'package:telemedicine/features/auth/presentation/widgets/custom_input_field.dart';
 import 'package:telemedicine/features/home/presentation/screens/home_screen.dart';
 
-class LoginScreen extends StatelessWidget {
+class LoginScreen extends StatefulWidget {
   static const String routeName = "LoginScreen";
-  LoginScreen({super.key});
+  const LoginScreen({super.key});
+
+  @override
+  State<LoginScreen> createState() => _LoginScreenState();
+}
+
+class _LoginScreenState extends State<LoginScreen> {
   final TextEditingController emailController = TextEditingController();
   final TextEditingController passwordController = TextEditingController();
   final globalKey = GlobalKey<FormState>();
+
+  @override
+  void dispose() {
+    emailController.dispose();
+    passwordController.dispose();
+    super.dispose();
+  }
+
   @override
   Widget build(BuildContext context) {
     final textTheme = Theme.of(context).textTheme;

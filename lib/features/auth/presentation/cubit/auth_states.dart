@@ -86,3 +86,22 @@ class ForgotPasswordResetError extends ForgotPasswordResetState {
 
   ForgotPasswordResetError(this.message);
 }
+
+// ----- IS USER LOGGED STATES -----
+abstract class IsUserLoggedState extends AuthState {}
+
+class IsUserLoggedInitial extends IsUserLoggedState {}
+
+class IsUserLoggedLoading extends IsUserLoggedState {}
+
+class IsUserLoggedSuccess extends IsUserLoggedState {
+  final bool isLoggedIn;
+
+  IsUserLoggedSuccess(this.isLoggedIn);
+}
+
+class IsUserLoggedError extends IsUserLoggedState {
+  final String message;
+
+  IsUserLoggedError(this.message);
+}

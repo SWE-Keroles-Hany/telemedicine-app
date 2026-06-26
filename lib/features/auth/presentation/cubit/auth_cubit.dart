@@ -6,6 +6,7 @@ import 'package:telemedicine/features/auth/domain/use_cases/register.dart';
 import 'package:telemedicine/features/auth/domain/use_cases/forgot_password_send_code.dart';
 import 'package:telemedicine/features/auth/domain/use_cases/forgot_password_verify_code.dart';
 import 'package:telemedicine/features/auth/domain/use_cases/forgot_password_reset.dart';
+import 'package:telemedicine/features/auth/domain/use_cases/is_user_logged.dart';
 import 'package:telemedicine/features/auth/presentation/cubit/auth_states.dart';
 
 import '../../../../core/shared_models/user/entities/user_entity.dart';
@@ -16,6 +17,7 @@ class AuthCubit extends Cubit<AuthState> {
   final ForgotPasswordSendCodeUseCase forgotPasswordSendCodeUseCase;
   final ForgotPasswordVerifyCodeUseCase forgotPasswordVerifyCodeUseCase;
   final ForgotPasswordResetUseCase forgotPasswordResetUseCase;
+  final IsUserLoggedUseCase isUserLoggedUseCase;
 
   AuthCubit({
     required this.loginUseCase,
@@ -23,6 +25,7 @@ class AuthCubit extends Cubit<AuthState> {
     required this.forgotPasswordSendCodeUseCase,
     required this.forgotPasswordVerifyCodeUseCase,
     required this.forgotPasswordResetUseCase,
+    required this.isUserLoggedUseCase,
   }) : super(LoginInitial());
 
   //! LOGIN
@@ -98,6 +101,18 @@ class AuthCubit extends Cubit<AuthState> {
     result.fold(
       (failure) => emit(ForgotPasswordResetError(failure.message)),
       (_) => emit(ForgotPasswordResetSuccess()),
+    );
+  }
+
+  //! IS USER LOGGED
+  Future<void> isUserLogged() async {
+    emit(IsUserLoggedLoading());
+
+    final result = await isUserLoggedUseCase();
+
+    result.fold(
+      (failure) => emit(IsUserLoggedError(failure.message)),
+      (isLoggedIn) => emit(IsUserLoggedSuccess(isLoggedIn)),
     );
   }
 }

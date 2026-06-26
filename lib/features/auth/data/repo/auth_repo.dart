@@ -23,4 +23,6 @@ abstract class AuthRepository {
     required String newPassword,
     required String confirmPassword,
   });
+
+  Future<Either<Failure, bool>> isUserLogged();
 }

@@ -16,12 +16,18 @@ import 'package:telemedicine/features/settings/presentation/cubit/settings_cubit
 import 'package:telemedicine/features/medical_history/presentation/cubit/medical_history_cubit.dart';
 import 'package:telemedicine/features/check_yourself/presentation/cubit/check_yourself_cubit.dart';
 import 'package:toastification/toastification.dart';
+import 'package:telemedicine/features/auth/presentation/widgets/auth_wrapper.dart';
+
+import 'features/auth/presentation/screens/login_screen.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await EasyLocalization.ensureInitialized();
-  await init();
   Bloc.observer = MyBlocObserver();
+  
+  final navigatorKey = GlobalKey<NavigatorState>();
+  await init(key: navigatorKey);
+  
   runApp(
     EasyLocalization(
       supportedLocales: [Locale('en'), Locale('ar')],
@@ -47,14 +53,17 @@ void main() async {
           BlocProvider(create: (context) => sl<MedicalHistoryCubit>()),
           BlocProvider(create: (context) => sl<CheckYourselfCubit>()),
         ],
-        child: const Telemedicine(),
+        child: Telemedicine(navigatorKey: navigatorKey),
       ),
     ),
   );
 }
 
 class Telemedicine extends StatelessWidget {
-  const Telemedicine({super.key});
+  final GlobalKey<NavigatorState> navigatorKey;
+
+  const Telemedicine({super.key, required this.navigatorKey});
+  
   @override
   Widget build(BuildContext context) {
     return ScreenUtilInit(
@@ -63,6 +72,7 @@ class Telemedicine extends StatelessWidget {
       splitScreenMode: true,
       builder: (_, _) => ToastificationWrapper(
         child: MaterialApp(
+          navigatorKey: navigatorKey,
           localizationsDelegates: context.localizationDelegates,
           supportedLocales: context.supportedLocales,
           locale: context.locale,
@@ -70,6 +80,9 @@ class Telemedicine extends StatelessWidget {
           debugShowCheckedModeBanner: false,
           routes: AppRoutes.routes,
           initialRoute: LoginScreen.routeName,
+          onGenerateInitialRoutes: (initialRoute) {
+            return [MaterialPageRoute(builder: (context) => AuthWrapper())];
+          },
         ),
       ),
     );

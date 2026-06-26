@@ -10,13 +10,15 @@ import 'api_constants.dart';
 
 class DioServices implements APIServices {
   final Dio dio;
-  DioServices(this.dio) {
+  final GlobalKey<NavigatorState>? navigatorKey;
+
+  DioServices(this.dio, {this.navigatorKey}) {
     dio.options.baseUrl = ApiEndPoints.baseURL;
     dio.options.headers = {
       'Accept': 'application/json',
       'Content-Type': 'application/json',
     };
-    dio.interceptors.add(DioInterceptors());
+    dio.interceptors.add(DioInterceptors(navigatorKey: navigatorKey));
   }
 
   @override
