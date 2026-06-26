@@ -49,7 +49,7 @@ class _ForgotPasswordScreenState extends State<ForgotPasswordScreen> {
       child: Scaffold(
         backgroundColor: ColorManager.backGroundColor,
         body: Padding(
-          padding: EdgeInsets.all(18.r),
+          padding: EdgeInsets.all(22.r),
           child: SingleChildScrollView(
             child: Form(
               key: globalKey,

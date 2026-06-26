@@ -110,7 +110,9 @@ class _CheckYourselfScreenState extends State<CheckYourselfScreen> {
                         ? Center(
                             child: Text(
                               'Start a conversation',
-                              style: textTheme.bodyMedium,
+                              style: textTheme.titleLarge!.copyWith(
+                                color: ColorManager.white,
+                              ),
                             ),
                           )
                         : ListView.separated(
@@ -143,7 +145,9 @@ class _CheckYourselfScreenState extends State<CheckYourselfScreen> {
                                         SizedBox(width: 8.w),
                                         Text(
                                           'Typing...',
-                                          style: textTheme.bodyMedium,
+                                          style: textTheme.bodyMedium!.copyWith(
+                                            color: ColorManager.white,
+                                          ),
                                         ),
                                       ],
                                     ),

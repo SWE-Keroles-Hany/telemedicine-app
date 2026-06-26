@@ -57,7 +57,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
       child: Scaffold(
         backgroundColor: ColorManager.backGroundColor,
         body: Padding(
-          padding: EdgeInsets.all(18.r),
+          padding: EdgeInsets.all(22.r),
           child: SingleChildScrollView(
             child: Form(
               key: globalKey,
@@ -73,7 +73,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                     UiUtils.hideLoading(context);
                     Navigator.of(
                       context,
-                    ).pushReplacementNamed(HomeScreen.routeName);
+                    ).pushReplacementNamed(LoginScreen.routeName);
                   } else if (state is RegisterLoading) {
                     UiUtils.showLoadingIndicator(context);
                   }
@@ -204,8 +204,10 @@ class _SignUpScreenState extends State<SignUpScreen> {
                         bgColor: ColorManager.aquaMint,
                         width: double.infinity,
                       ),
+                      SizedBox(height: 10.h),
 
                       Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
                         children: [
                           Text(
                             'signup.have_account'.tr(),
@@ -222,12 +224,14 @@ class _SignUpScreenState extends State<SignUpScreen> {
                             child: Text(
                               'signup.login'.tr(),
                               style: textTheme.titleLarge!.copyWith(
+                                fontWeight: FontWeight.bold,
                                 color: ColorManager.aquaMint,
                               ),
                             ),
                           ),
                         ],
                       ),
+                      SizedBox(height: 25.h),
                     ],
                   ),
                 ),
@@ -245,7 +249,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
         user: UserEntity(
           imgURL: "",
           allergies: "",
-          dateOfBirth: "2024/01/22",
+          dateOfBirth: "2004/01/22",
           existingConditions: "",
           address: addressController.text.trim(),
           bloodType: selectedBloodType!,

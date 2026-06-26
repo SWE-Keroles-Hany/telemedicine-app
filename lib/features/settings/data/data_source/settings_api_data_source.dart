@@ -20,7 +20,8 @@ class SettingsAPIDataSource implements SettingsRemoteDataSource {
       final response = await dioServices.get(
         endPoint: ApiEndPoints.patientProfile,
       );
-      log(response.toString());
+      log("==> $response");
+      // log(response.toString());
       return UserModel.fromJson(response);
     } on Failure catch (error) {
       log("here1 ${error.message}");

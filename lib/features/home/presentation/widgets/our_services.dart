@@ -37,7 +37,7 @@ class OurServices extends StatelessWidget {
       physics: NeverScrollableScrollPhysics(),
       gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
         crossAxisCount: 2,
-        crossAxisSpacing: 10.h,
+        crossAxisSpacing: 15.h,
       ),
       // crossAxisAlignment: CrossAxisAlignment.stretch,
       children: List.generate(

@@ -10,10 +10,7 @@ class SectionHeader extends StatelessWidget {
     return Row(
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: [
-        Text(
-          'booking.nearby_specialists'.tr(),
-          style: AppTextStyles.bookingSectionTitle,
-        ),
+        Text('Doctors'.tr(), style: AppTextStyles.bookingSectionTitle),
       ],
     );
   }

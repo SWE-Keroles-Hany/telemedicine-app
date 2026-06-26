@@ -1,15 +1,17 @@
+import 'dart:developer';
+
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:telemedicine/core/constants/constants_text.dart';
 import 'package:telemedicine/core/theme/color_manger.dart';
 import 'package:telemedicine/core/widgets/custom_app_label.dart';
 import 'package:telemedicine/features/home/presentation/cubit/home_cubit.dart';
 import 'package:telemedicine/features/home/presentation/cubit/home_states.dart';
 import 'package:telemedicine/features/home/presentation/widgets/home_app_bar.dart';
 import 'package:telemedicine/features/home/presentation/widgets/our_services.dart';
-import 'package:telemedicine/features/home/presentation/widgets/top_doctors_and_view_all_row.dart';
+import 'package:telemedicine/features/settings/presentation/cubit/settings_cubit.dart';
+import 'package:telemedicine/features/settings/presentation/cubit/settings_states.dart';
 
 import '../widgets/top_doctors.dart';
 
@@ -26,6 +28,7 @@ class _HomeScreenState extends State<HomeScreen> {
   void initState() {
     super.initState();
     context.read<HomeCubit>().getTopDoctors();
+    context.read<SettingsCubit>().getUserProfile();
   }
 
   @override
@@ -35,18 +38,31 @@ class _HomeScreenState extends State<HomeScreen> {
         backgroundColor: ColorManager.backGroundColor,
         appBar: PreferredSize(
           preferredSize: Size.fromHeight(56.h),
-          child: const HomeAppBar(),
+          child: BlocBuilder<SettingsCubit, SettingsState>(
+            builder: (context, state) {
+              String userName = "...";
+              String imgURL = "";
+              // String imgURL;
+              final haveUser = state is GetUserProfileSuccess;
+              if (haveUser) {
+                userName = state.userProfile.fullName ?? "...";
+                imgURL = state.userProfile.imgURL ?? "";
+              }
+              log("==> $imgURL");
+              return HomeAppBar(imgURL: imgURL, userName: userName);
+            },
+          ),
         ),
         body: ListView(
-          padding: EdgeInsets.all(16.r),
+          padding: EdgeInsets.all(22.r),
           children: [
             CustomAppLabel(label: 'home.our_services'.tr()),
             SizedBox(height: 10.h),
-            SizedBox(height: 300.h, child: OurServices()),
-            TopDoctorsAndViewAllRow(),
+            SizedBox(height: 270.h, child: OurServices()),
+            CustomAppLabel(label: 'home.top_doctors'.tr()),
             SizedBox(height: 10.h),
             SizedBox(
-              height: 210.h,
+              height: 200.h,
               child: BlocBuilder<HomeCubit, HomeState>(
                 builder: (context, state) {
                   if (state is GetTopDoctorsLoading) {

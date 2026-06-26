@@ -13,7 +13,6 @@ class TopDoctorsAndViewAllRow extends StatelessWidget {
     return Row(
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: [
-        CustomAppLabel(label: 'home.top_doctors'.tr()),
         InkWell(
           onTap: () {},
           child: Text(

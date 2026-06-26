@@ -8,7 +8,6 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:telemedicine/features/auth/presentation/cubit/auth_cubit.dart';
 import 'package:telemedicine/core/si/service_locator.dart';
 import 'package:telemedicine/features/auth/presentation/screens/login_screen.dart';
-import 'package:telemedicine/features/auth/presentation/screens/signup_screen.dart';
 import 'package:telemedicine/features/book_doctor/presentation/cubit/doctors_cubit.dart';
 import 'package:telemedicine/features/book_doctor/presentation/cubit/specialties_cubit.dart';
 import 'package:telemedicine/features/home/presentation/cubit/home_cubit.dart';
@@ -17,7 +16,6 @@ import 'package:telemedicine/features/settings/presentation/cubit/settings_cubit
 import 'package:telemedicine/features/medical_history/presentation/cubit/medical_history_cubit.dart';
 import 'package:telemedicine/features/check_yourself/presentation/cubit/check_yourself_cubit.dart';
 import 'package:toastification/toastification.dart';
-import 'features/home/presentation/screens/home_screen.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();

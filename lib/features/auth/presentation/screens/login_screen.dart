@@ -29,7 +29,7 @@ class LoginScreen extends StatelessWidget {
       child: Scaffold(
         backgroundColor: ColorManager.backGroundColor,
         body: Padding(
-          padding: EdgeInsets.all(18.r),
+          padding: EdgeInsets.all(22.r),
           child: SingleChildScrollView(
             child: Form(
               key: globalKey,
@@ -38,7 +38,6 @@ class LoginScreen extends StatelessWidget {
                   if (state is LoginError) {
                     log(state.message);
                     UiUtils.hideLoading(context);
-
                     UiUtils.showMessage(
                       message: state.message,
                       isErrorMessage: true,
@@ -92,6 +91,7 @@ class LoginScreen extends StatelessWidget {
                       SizedBox(height: 15.h),
 
                       CustomInputField(
+                        isPasswordField: true,
                         title: 'login.enter_password'.tr(),
                         controller: passwordController,
                         validator: (value) =>
@@ -100,7 +100,7 @@ class LoginScreen extends StatelessWidget {
                       SizedBox(height: 8.h),
 
                       Align(
-                        alignment: AlignmentGeometry.centerLeft,
+                        alignment: AlignmentGeometry.centerRight,
                         child: GestureDetector(
                           onTap: () {
                             Navigator.of(
@@ -118,9 +118,6 @@ class LoginScreen extends StatelessWidget {
                       SizedBox(height: 20.h),
                       CustomButton(
                         onPressed: () async {
-                          log("email : ${emailController.text}");
-                          log("email : ${passwordController.text}");
-
                           if (globalKey.currentState!.validate()) {
                             await context.read<AuthCubit>().login(
                               emailController.text,
@@ -136,6 +133,7 @@ class LoginScreen extends StatelessWidget {
                       SizedBox(height: 20.h),
 
                       Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
                         children: [
                           Text(
                             'login.dont_have_account'.tr(),
@@ -153,6 +151,7 @@ class LoginScreen extends StatelessWidget {
                             child: Text(
                               'login.signup'.tr(),
                               style: textTheme.titleLarge!.copyWith(
+                                fontWeight: FontWeight.bold,
                                 color: ColorManager.aquaMint,
                                 fontSize: 20.sp,
                               ),

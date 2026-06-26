@@ -128,11 +128,11 @@ class _UserProfileScreenState extends State<UserProfileScreen> {
                   ProfileMenuSectionWidget(
                     title: 'settings.preferences'.tr(),
                     items: [
-                      ProfileMenuItemWidget(
-                        icon: Icons.notifications_none_rounded,
-                        title: 'settings.notifications'.tr(),
-                        onTap: () {},
-                      ),
+                      // ProfileMenuItemWidget(
+                      //   icon: Icons.notifications_none_rounded,
+                      //   title: 'settings.notifications'.tr(),
+                      //   onTap: () {},
+                      // ),
                       ProfileMenuItemWidget(
                         icon: Icons.language_rounded,
                         title: 'settings.language'.tr(),
@@ -172,9 +172,9 @@ class _UserProfileScreenState extends State<UserProfileScreen> {
                   BlocListener<SettingsCubit, SettingsState>(
                     listener: (BuildContext context, state) {
                       if (state is LogoutSuccess) {
-                        UiUtils.showMessage(
-                          message: "Logged out successfully!",
-                        );
+                        // UiUtils.showMessage(
+                        //   message: "Logged out successfully!",
+                        // );
                         Navigator.of(context).pushNamedAndRemoveUntil(
                           LoginScreen.routeName,
                           (route) => false,

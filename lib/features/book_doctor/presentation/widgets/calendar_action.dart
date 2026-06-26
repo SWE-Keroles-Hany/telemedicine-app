@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:telemedicine/core/theme/color_manger.dart';
+import 'package:telemedicine/features/patient_appointments/presentation/screens/patient_appointments_screen.dart';
 
 class CalendarAction extends StatelessWidget {
   const CalendarAction({super.key});
@@ -12,7 +13,11 @@ class CalendarAction extends StatelessWidget {
         color: ColorManager.bookingTextPrimary,
         size: 20,
       ),
-      onPressed: () {},
+      onPressed: () {
+        Navigator.of(
+          context,
+        ).pushReplacementNamed(PatientAppointmentsScreen.routeName);
+      },
     );
   }
 }

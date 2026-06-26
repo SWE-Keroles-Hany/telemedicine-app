@@ -12,7 +12,7 @@ class TopDoctorCard extends StatelessWidget {
   Widget build(BuildContext context) {
     final TextTheme textTheme = Theme.of(context).textTheme;
     return Container(
-      width: MediaQuery.sizeOf(context).width * 0.45,
+      width: MediaQuery.sizeOf(context).width * 0.42,
       padding: EdgeInsets.all(16),
       decoration: BoxDecoration(
         border: Border.all(color: ColorManager.darkGray),
@@ -27,8 +27,7 @@ class TopDoctorCard extends StatelessWidget {
             child: Image.network(
               errorBuilder: (context, error, stackTrace) => Image.network(
                 ConstantAssetImages.defaultDoctorImage,
-                fit: BoxFit.fitWidth,
-                width: MediaQuery.sizeOf(context).width * 0.35,
+                fit: BoxFit.fitHeight,
                 height: 100.h,
               ),
               fit: BoxFit.fitWidth,
@@ -52,7 +51,7 @@ class TopDoctorCard extends StatelessWidget {
             ),
           ),
 
-          SizedBox(height: 4.h),
+          SizedBox(height: 6.h),
 
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,

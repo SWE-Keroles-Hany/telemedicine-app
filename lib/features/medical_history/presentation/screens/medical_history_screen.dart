@@ -45,14 +45,14 @@ class _MedicalHistoryScreenState extends State<MedicalHistoryScreen> {
                 return Center(
                   child: Text(
                     'No medical history records found',
-                    style: Theme.of(context).textTheme.bodyMedium!.copyWith(
-                      color: ColorManager.mediumGray,
-                    ),
+                    style: Theme.of(
+                      context,
+                    ).textTheme.titleLarge!.copyWith(color: ColorManager.white),
                   ),
                 );
               }
               return ListView(
-                padding: EdgeInsets.all(16.r),
+                padding: EdgeInsets.all(22.r),
                 children: state.medicalHistory
                     .map((record) => MedicalHistoryCard(record: record))
                     .toList(),

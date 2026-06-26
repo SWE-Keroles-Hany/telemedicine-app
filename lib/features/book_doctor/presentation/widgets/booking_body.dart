@@ -18,14 +18,21 @@ class BookingBody extends StatefulWidget {
 }
 
 class _BookingBodyState extends State<BookingBody> {
+  @override
+  void initState() {
+    super.initState();
+    context.read<DoctorsCubit>().getAllDoctors();
+  }
+
   String selectedCategory = "All";
   @override
   Widget build(BuildContext context) {
     final cubit = context.read<DoctorsCubit>();
     return CustomScrollView(
+      physics: NeverScrollableScrollPhysics(),
       slivers: [
         SliverPadding(
-          padding: const EdgeInsets.fromLTRB(16, 12, 16, 0),
+          padding: const EdgeInsets.all(22),
           sliver: SliverList(
             delegate: SliverChildListDelegate([
               //! search

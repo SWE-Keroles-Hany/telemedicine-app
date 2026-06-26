@@ -40,12 +40,18 @@ class _DoctorProfileScreenState extends State<DoctorProfileScreen> {
 
   @override
   Widget build(BuildContext context) {
-    final cubit = context.read<DoctorsCubit>();
     final doctor = ModalRoute.of(context)!.settings.arguments as DoctorEntity;
 
     return SafeArea(
       child: Scaffold(
         appBar: AppBar(
+          leading: IconButton(
+            onPressed: () {
+              Navigator.of(context).pop();
+              context.read<DoctorsCubit>().getAllDoctors();
+            },
+            icon: Icon(Icons.arrow_back),
+          ),
           backgroundColor: ColorManager.background,
           foregroundColor: ColorManager.white,
         ),
@@ -54,40 +60,44 @@ class _DoctorProfileScreenState extends State<DoctorProfileScreen> {
           children: [
             Expanded(
               child: SingleChildScrollView(
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    DoctorHeroHeader(imageAsset: doctor.profilePictureUrl!),
-                    const SizedBox(height: 16),
-                    DoctorInfoCard(doctor: doctor),
-                    const SizedBox(height: 16),
-                    DoctorStatsRow(
-                      reviewCount: doctor.rateCount,
-                      experienceYears: doctor.yearsOfExperience,
-                      //! TODO: Get actual number of patients
-                      numberOfPatients: 10,
-                      rate: doctor.rate,
-                    ),
-                    const SizedBox(height: 24),
-                    AboutDoctorSection(text: doctor.bio),
-                    const SizedBox(height: 24),
-                    BlocBuilder<DoctorsCubit, DoctorsState>(
-                      builder: (context, state) {
-                        log("state: $state");
-                        if (state is GetDoctorScheduleSuccess) {
-                          return WorkingDayesSection(
-                            schedules: state.schedules,
-                          );
-                        } else if (state is GetDoctorScheduleLoading) {
-                          return Center(child: CircularProgressIndicator());
-                        } else if (state is GetDoctorScheduleError) {
-                          return Center(child: Text('Failed to load schedule'));
-                        }
-                        return WorkingDayesSection(schedules: []);
-                      },
-                    ),
-                    const SizedBox(height: 24),
-                  ],
+                child: Padding(
+                  padding: const EdgeInsets.all(16),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      DoctorHeroHeader(imageAsset: doctor.profilePictureUrl!),
+                      const SizedBox(height: 16),
+                      DoctorInfoCard(doctor: doctor),
+                      const SizedBox(height: 16),
+                      DoctorStatsRow(
+                        reviewCount: doctor.rateCount,
+                        experienceYears: doctor.yearsOfExperience,
+                        numberOfPatients: 10,
+                        rate: doctor.rate,
+                      ),
+                      const SizedBox(height: 24),
+                      AboutDoctorSection(text: doctor.bio),
+                      const SizedBox(height: 24),
+                      BlocBuilder<DoctorsCubit, DoctorsState>(
+                        builder: (context, state) {
+                          log("state: $state");
+                          if (state is GetDoctorScheduleSuccess) {
+                            return WorkingDayesSection(
+                              schedules: state.schedules,
+                            );
+                          } else if (state is GetDoctorScheduleLoading) {
+                            return Center(child: CircularProgressIndicator());
+                          } else if (state is GetDoctorScheduleError) {
+                            return Center(
+                              child: Text('Failed to load schedule'),
+                            );
+                          }
+                          return WorkingDayesSection(schedules: []);
+                        },
+                      ),
+                      const SizedBox(height: 24),
+                    ],
+                  ),
                 ),
               ),
             ),
@@ -116,6 +126,9 @@ class _DoctorProfileScreenState extends State<DoctorProfileScreen> {
                   });
                 } else if (state is BookDoctorError) {
                   UiUtils.hideLoading(context);
+                  context.read<DoctorsCubit>().getDoctorSchedule(
+                    doctorId: int.parse(doctor.id),
+                  );
                   UiUtils.showMessage(
                     message: state.message,
                     isErrorMessage: true,

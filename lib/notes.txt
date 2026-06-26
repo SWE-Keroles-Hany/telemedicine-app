@@ -1,0 +1,7 @@
+1- network
+2- keep login 
+3- logic chat ai 
+--
+- ui improve 
+- translate 
+- padding 

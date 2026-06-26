@@ -23,14 +23,9 @@ class ChatMessageBubble extends StatelessWidget {
       alignment: isUser ? Alignment.centerRight : Alignment.centerLeft,
       child: Container(
         margin: EdgeInsets.symmetric(vertical: 6.h),
-        padding: EdgeInsets.symmetric(
-          horizontal: 16.w,
-          vertical: 12.h,
-        ),
+        padding: EdgeInsets.symmetric(horizontal: 16.w, vertical: 12.h),
         decoration: BoxDecoration(
-          color: isUser
-              ? ColorManager.aquaMint
-              : ColorManager.lightGray,
+          color: isUser ? ColorManager.aquaMint : ColorManager.lightGray,
           borderRadius: BorderRadius.only(
             topLeft: Radius.circular(16.r),
             topRight: Radius.circular(16.r),
@@ -38,9 +33,7 @@ class ChatMessageBubble extends StatelessWidget {
             bottomRight: isUser ? Radius.zero : Radius.circular(16.r),
           ),
         ),
-        constraints: BoxConstraints(
-          maxWidth: 0.75.sw,
-        ),
+        constraints: BoxConstraints(maxWidth: 0.75.sw),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
@@ -67,7 +60,7 @@ class ChatMessageBubble extends StatelessWidget {
               Text(
                 text,
                 style: textTheme.bodyMedium?.copyWith(
-                  color: isUser ? ColorManager.white : ColorManager.black,
+                  color: ColorManager.black,
                 ),
               ),
           ],
