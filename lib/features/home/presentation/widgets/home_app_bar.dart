@@ -16,17 +16,17 @@ class HomeAppBar extends StatelessWidget {
     final TextTheme textTheme = Theme.of(context).textTheme;
     return AppBar(
       backgroundColor: ColorManager.backGroundColor,
-      actionsPadding: EdgeInsets.only(top: 6.h, right: 16.w),
+      actionsPadding: EdgeInsets.only(top: 15.h, right: 16.w),
       actions: [
         IconButton(
           onPressed: () {
             Navigator.of(context).pushNamed(UserProfileScreen.routeName);
           },
-          icon: Icon(Icons.settings, size: 28.r, color: ColorManager.white),
+          icon: Icon(Icons.settings, size: 30.r, color: ColorManager.white),
         ),
       ],
       title: Padding(
-        padding: EdgeInsets.only(top: 4.h),
+        padding: EdgeInsets.only(top: 15.h),
         child: Text(
           "Hi, $userName".tr(),
           style: textTheme.titleLarge!.copyWith(color: ColorManager.aquaMint),
@@ -34,7 +34,7 @@ class HomeAppBar extends StatelessWidget {
       ),
       primary: true,
       leading: Padding(
-        padding: EdgeInsets.only(left: 16.w, top: 4.h),
+        padding: EdgeInsets.only(left: 16.w, top: 15.h),
         child: CircleAvatar(backgroundImage: NetworkImage(imgURL)),
       ),
     );

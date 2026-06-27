@@ -2,6 +2,8 @@ import 'package:telemedicine/core/shared_models/medical_history/models/attachmen
 
 class MedicalHistoryEntity {
   final int recordId;
+  final int doctorId;
+
   final String doctorName;
   final String doctorSpecialty;
   final String diagnosis;
@@ -11,6 +13,7 @@ class MedicalHistoryEntity {
   final int? patientRating;
 
   const MedicalHistoryEntity({
+    required this.doctorId,
     required this.recordId,
     required this.doctorName,
     required this.doctorSpecialty,

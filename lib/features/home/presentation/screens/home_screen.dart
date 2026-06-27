@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:telemedicine/core/constants/constants_assets.dart';
+import 'package:telemedicine/core/theme/app_text_styles.dart';
 import 'package:telemedicine/core/theme/color_manger.dart';
 import 'package:telemedicine/core/widgets/custom_app_label.dart';
 import 'package:telemedicine/features/home/presentation/cubit/home_cubit.dart';
@@ -25,6 +26,8 @@ class HomeScreen extends StatefulWidget {
 }
 
 class _HomeScreenState extends State<HomeScreen> {
+  int? userId;
+
   @override
   void initState() {
     super.initState();
@@ -43,7 +46,6 @@ class _HomeScreenState extends State<HomeScreen> {
             builder: (context, state) {
               String userName = "...";
               String imgURL = "";
-              // String imgURL;
               final haveUser = state is GetUserProfileSuccess;
               if (haveUser) {
                 userName = state.userProfile.fullName ?? "...";
@@ -60,7 +62,32 @@ class _HomeScreenState extends State<HomeScreen> {
           children: [
             CustomAppLabel(label: 'home.our_services'.tr()),
             SizedBox(height: 10.h),
-            SizedBox(height: 270.h, child: OurServices()),
+            BlocBuilder<SettingsCubit, SettingsState>(
+              builder: (context, state) {
+                if (state is GetUserProfileSuccess) {
+                  return SizedBox(
+                    height: 270.h,
+                    child: OurServices(
+                      userId: state.userProfile.patientId ?? 00,
+                    ),
+                  );
+                } else if (state is GetUserProfileLoading) {
+                  return SizedBox(
+                    height: 270.h,
+                    child: Center(
+                      child: CircularProgressIndicator(
+                        color: ColorManager.primary,
+                      ),
+                    ),
+                  );
+                } else if (state is GetUserProfileError) {
+                  return Center(
+                    child: Text(state.message, style: AppTextStyles.s20bold),
+                  );
+                }
+                return SizedBox();
+              },
+            ),
             CustomAppLabel(label: 'home.top_doctors'.tr()),
             SizedBox(height: 10.h),
             SizedBox(

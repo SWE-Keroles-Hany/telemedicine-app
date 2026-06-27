@@ -36,9 +36,13 @@ class ChatResponseModel {
   factory ChatResponseModel.fromJson(Map<String, dynamic> json) {
     return ChatResponseModel(
       id: json['id']?.toString(),
-      response: json['response']?.toString(),
+      response: json['response'] != null
+          ? json['response']['text']?.toString()
+          : null,
       messageCount: json['message_count'] as int?,
-      summary: json['summary']?.toString(),
+      summary: json['summary'] != null
+          ? json['summary']['text']?.toString()
+          : null,
       suggestedDoctorIds: json['suggested_doctor_ids'] != null
           ? List<dynamic>.from(json['suggested_doctor_ids'])
           : null,

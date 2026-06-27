@@ -4,6 +4,7 @@ import 'package:telemedicine/features/medical_history/domain/entities/medical_hi
 
 extension MedicalHistoryModelMapper on MedicalHistoryModel {
   MedicalHistoryEntity get toEntity => MedicalHistoryEntity(
+    doctorId: doctorId,
     patientRating: patientRating,
     recordId: recordId,
     doctorName: doctorName,

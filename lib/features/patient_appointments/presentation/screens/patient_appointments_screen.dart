@@ -65,9 +65,9 @@ class _PatientAppointmentsScreenState extends State<PatientAppointmentsScreen> {
       case 'confirmed':
         return 2;
       case 'cancelled':
-        return 3;
-      case 'completed':
         return 4;
+      case 'completed':
+        return 3;
       default:
         return 1;
     }

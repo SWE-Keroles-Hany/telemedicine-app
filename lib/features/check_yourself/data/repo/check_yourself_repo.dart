@@ -10,4 +10,5 @@ abstract class CheckYourselfRepo {
     required String route,
     List<File>? files,
   });
+  Future<Either<Failure, void>> deleteHistory({required int patientId});
 }

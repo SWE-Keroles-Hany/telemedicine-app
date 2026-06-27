@@ -38,7 +38,7 @@ class CustomDropDown extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             DropdownMenu<String>(
-              width: width * 0.4,
+              width: width,
               initialSelection: fieldState.value,
               textStyle: textTheme.titleMedium!.copyWith(
                 color: ColorManager.white,

@@ -2,6 +2,7 @@ import 'attachment_model.dart';
 
 class MedicalHistoryModel {
   final int recordId;
+  final int doctorId;
   final String doctorName;
   final String doctorSpecialty;
   final String diagnosis;
@@ -19,6 +20,7 @@ class MedicalHistoryModel {
     required this.dateCreated,
     required this.attachments,
     this.patientRating,
+    required this.doctorId,
   });
 
   factory MedicalHistoryModel.fromJson(Map<String, dynamic> json) {
@@ -28,6 +30,7 @@ class MedicalHistoryModel {
         .toList();
 
     return MedicalHistoryModel(
+      doctorId: json['doctorId'],
       patientRating: json['patientRating'],
       recordId: json['recordId'] ?? 0,
       doctorName: json['doctorName'] ?? '',
@@ -41,6 +44,7 @@ class MedicalHistoryModel {
 
   Map<String, dynamic> toJson() {
     return {
+      'doctorId': doctorId,
       'patientRating': patientRating,
       'recordId': recordId,
       'doctorName': doctorName,

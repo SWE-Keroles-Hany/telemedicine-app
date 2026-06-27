@@ -95,9 +95,6 @@ class _StatValueWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Text(
-      value,
-      style: isAccent ? AppTextStyles.s18boldTeal : AppTextStyles.s18bold,
-    );
+    return Text(value, style: AppTextStyles.s18boldTeal);
   }
 }

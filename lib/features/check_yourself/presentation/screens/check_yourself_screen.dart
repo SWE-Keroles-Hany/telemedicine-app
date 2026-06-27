@@ -14,7 +14,8 @@ import 'package:telemedicine/features/settings/presentation/cubit/settings_state
 
 class CheckYourselfScreen extends StatefulWidget {
   static const String routeName = "CheckYourselfScreen";
-  const CheckYourselfScreen({super.key});
+  final int? patientId;
+  const CheckYourselfScreen({super.key, this.patientId});
 
   @override
   State<CheckYourselfScreen> createState() => _CheckYourselfScreenState();
@@ -30,7 +31,12 @@ class _CheckYourselfScreenState extends State<CheckYourselfScreen> {
   @override
   void initState() {
     super.initState();
+    log("=>in check screen patientId ${widget.patientId}");
+
     WidgetsBinding.instance.addPostFrameCallback((_) {
+      context.read<CheckYourselfCubit>().deleteHistory(
+        recordId: widget.patientId ?? 00,
+      );
       context.read<SettingsCubit>().getUserProfile();
     });
   }
@@ -38,7 +44,16 @@ class _CheckYourselfScreenState extends State<CheckYourselfScreen> {
   void _sendMessage({required int patientId}) async {
     String text = _messageController.text.trim();
     if (text.isEmpty && _selectedFiles.isEmpty) return;
-
+    final filesToSend = List<File>.from(_selectedFiles);
+    if (filesToSend.isNotEmpty) {
+      setState(() {
+        _currentRoute = "medical_records";
+      });
+    } else {
+      setState(() {
+        _currentRoute = "chat";
+      });
+    }
     setState(() {
       _messages.add(
         ChatMessage(text: text, isUser: true, files: List.from(_selectedFiles)),
@@ -47,26 +62,14 @@ class _CheckYourselfScreenState extends State<CheckYourselfScreen> {
       _selectedFiles.clear();
       _isLoading = true;
     });
-    if (_selectedFiles.isNotEmpty) {
-      text = text.isEmpty ? "" : text;
-      _currentRoute = "medical_records";
-      log("before $_currentRoute");
+    log("3)before sending ...${_selectedFiles.length}");
 
-      setState(() {});
-      log("after $_currentRoute");
-    }
     await context.read<CheckYourselfCubit>().sendMessage(
       patientId: patientId,
-      message: text.isEmpty ? "" : text,
+      message: text.isEmpty ? "check this image" : text,
       route: _currentRoute,
-      files: _selectedFiles.isEmpty ? null : List.from(_selectedFiles),
+      files: filesToSend,
     );
-  }
-
-  void _onFilesSelected(List<File> files) {
-    setState(() {
-      _selectedFiles = files;
-    });
   }
 
   @override
@@ -174,37 +177,28 @@ class _CheckYourselfScreenState extends State<CheckYourselfScreen> {
                   ChatInputField(
                     controller: _messageController,
                     selectedFiles: _selectedFiles,
-                    onSend: () =>
-                        _sendMessage(patientId: int.parse(user?.id ?? "1")),
-                    onFilesSelected: _onFilesSelected,
+                    onSend: () {
+                      log("user id =>${user?.patientId}");
+                      log(
+                        "4)before sending (on send button)...${_selectedFiles.length}",
+                      );
+                      _sendMessage(patientId: user?.patientId ?? 00);
+                    },
+
+                    onFilesSelected: (files) {
+                      if (files.isEmpty) return;
+                      log("1) on select selected files ");
+                      setState(() {
+                        _currentRoute = "medical_records";
+                        _selectedFiles = files;
+                        log("the file selected => * $_selectedFiles");
+                      });
+                    },
                   ),
                 ],
               );
             },
           ),
-        ),
-      ),
-    );
-  }
-
-  Widget _buildRouteChip(String label, String route) {
-    bool isSelected = _currentRoute == route;
-    return GestureDetector(
-      onTap: () {
-        setState(() {
-          _currentRoute = route;
-        });
-      },
-      child: Chip(
-        label: Text(label),
-        backgroundColor: isSelected
-            ? ColorManager.aquaMint
-            : ColorManager.white,
-        labelStyle: TextStyle(
-          color: isSelected ? ColorManager.white : ColorManager.black,
-        ),
-        shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.circular(16.r),
         ),
       ),
     );

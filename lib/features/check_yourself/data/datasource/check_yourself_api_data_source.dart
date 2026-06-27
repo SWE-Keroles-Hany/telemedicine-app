@@ -3,6 +3,7 @@ import 'dart:io';
 import 'package:dio/dio.dart';
 import 'package:telemedicine/core/error/failure.dart';
 import 'package:telemedicine/core/network/api_constants.dart';
+import 'package:telemedicine/core/network/api_services.dart';
 import 'package:telemedicine/features/check_yourself/data/datasource/check_yourself_data_source.dart';
 import 'package:telemedicine/features/check_yourself/data/models/chat_response_model.dart';
 
@@ -24,6 +25,10 @@ class CheckYourselfApiDataSource implements CheckYourselfDataSource {
         "message": message,
         "route": route,
       });
+      log(message);
+      log(patientId.toString());
+      log(route);
+      log(files?.length.toString() ?? "null");
 
       if (files != null && files.isNotEmpty) {
         for (File file in files) {
@@ -43,7 +48,6 @@ class CheckYourselfApiDataSource implements CheckYourselfDataSource {
         "${ApiEndPoints.chatBaseURL}${ApiEndPoints.chat}",
         data: formData,
       );
-      log("sendMessage: ${response.data['response']}");
 
       return ChatResponseModel.fromJson(response.data);
     } on DioException catch (exception) {
@@ -52,6 +56,20 @@ class CheckYourselfApiDataSource implements CheckYourselfDataSource {
           exception.message ??
           "Something went wrong";
       throw Failure(message: message);
+    } catch (e) {
+      throw Failure(message: e.toString());
+    }
+  }
+
+  @override
+  Future<void> deleteHistory({required int patientId}) async {
+    try {
+      final response = await _dio.delete(
+        "${ApiEndPoints.chatBaseURL}${ApiEndPoints.deleteHistory}/$patientId",
+      );
+      log("delete res => $response");
+    } on DioException catch (exception) {
+      throw Failure(message: exception.message ?? "Some Thing Went Wrong");
     } catch (e) {
       throw Failure(message: e.toString());
     }

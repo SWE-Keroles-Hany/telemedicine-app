@@ -1,8 +1,10 @@
+- chat (flow logic - delete history - json -\n .. handle all these)
+==== 
+- translate (egpyt علم )
+====
+- change password, reset 
+===
 1- network
-
-2- logic chat ai  : 
-json -\n .. handle all these 
-
-3- keyboard apear in (logic , register)
-4- translate 
-5- padding 
+6- check data in profile 
+8- canclled appointment (patinet , doctor )
+- check code clean 

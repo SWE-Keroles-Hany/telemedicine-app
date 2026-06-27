@@ -31,4 +31,16 @@ class CheckYourselfRepoImp implements CheckYourselfRepo {
       return Left(Failure(message: e.toString()));
     }
   }
+
+  @override
+  Future<Either<Failure, void>> deleteHistory({required int patientId}) async {
+    try {
+      await _checkYourselfDataSource.deleteHistory(patientId: patientId);
+      return Right(null);
+    } on Failure catch (exception) {
+      return Left(Failure(message: exception.message));
+    } catch (e) {
+      return Left(Failure(message: e.toString()));
+    }
+  }
 }

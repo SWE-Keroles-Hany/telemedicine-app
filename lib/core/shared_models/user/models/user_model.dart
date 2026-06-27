@@ -1,5 +1,5 @@
 class UserModel {
-  final String? id;
+  final int? patientId;
   final String? fullName;
   final String? email;
   final String? password;
@@ -15,8 +15,8 @@ class UserModel {
   final double? weight;
 
   UserModel({
-    this.id,
-    required this.imgURL,
+    this.patientId,
+    this.imgURL,
     this.dateOfBirth,
     this.email,
     this.fullName,
@@ -34,7 +34,7 @@ class UserModel {
   // fromJson
   factory UserModel.fromJson(Map<String, dynamic> json) {
     return UserModel(
-      id: json['id']?.toString(),
+      patientId: json['patientId'],
       imgURL: json['pictureUrl'],
       dateOfBirth: json['dateOfBirth'],
       fullName: json['fullName'],
@@ -53,7 +53,7 @@ class UserModel {
   // toJson
   Map<String, dynamic> toJson() {
     return {
-      'id': id,
+      'patientId': patientId,
       'height': height,
       'weight': weight,
       'fullName': fullName,

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:telemedicine/core/theme/color_manger.dart';
 
 class AppTextStyles {
@@ -14,9 +15,9 @@ class AppTextStyles {
     fontWeight: FontWeight.bold,
   );
 
-  static TextStyle get s16bold => const TextStyle(
+  static TextStyle get s16bold => TextStyle(
     color: ColorManager.teal,
-    fontSize: 16,
+    fontSize: 16.sp,
     fontWeight: FontWeight.bold,
   );
 
@@ -32,11 +33,10 @@ class AppTextStyles {
     fontWeight: FontWeight.w500,
   );
 
-  static TextStyle get s14regular => const TextStyle(
+  static TextStyle get s14regular => TextStyle(
     color: ColorManager.textSecondary,
-    fontSize: 14,
+    fontSize: 14.sp,
     fontWeight: FontWeight.w400,
-    height: 1.6,
   );
 
   static TextStyle get s13medium => const TextStyle(

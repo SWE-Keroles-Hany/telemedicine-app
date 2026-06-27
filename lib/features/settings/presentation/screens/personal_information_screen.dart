@@ -158,7 +158,7 @@ class _PersonalInformationScreenState extends State<PersonalInformationScreen> {
                     // blood type
                     CustomDropDown(
                       label: 'signup.choose_blood_type'.tr(),
-                      items: ['A+', 'A-', 'B+', 'B-', 'AB+', 'AB-', 'o+', 'o-'],
+                      items: ['A+', 'A-', 'B+', 'B-', 'AB+', 'AB-', 'O+', 'O-'],
                       key: ValueKey(selectedBloodType),
                       value: selectedBloodType,
                       onChanged: (value) {

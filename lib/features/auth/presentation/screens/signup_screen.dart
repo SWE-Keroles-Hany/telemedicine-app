@@ -164,34 +164,38 @@ class _SignUpScreenState extends State<SignUpScreen> {
 
                       Row(
                         children: [
-                          CustomDropDown(
-                            label: 'Blood Type'.tr(),
-                            items: [
-                              'A+',
-                              'A-',
-                              'B+',
-                              'B-',
-                              'AB+',
-                              'AB-',
-                              'O+',
-                              'O-',
-                            ],
-                            key: ValueKey(selectedBloodType),
-                            value: selectedBloodType,
-                            onChanged: (value) {
-                              setState(() => selectedBloodType = value);
-                            },
+                          Expanded(
+                            child: CustomDropDown(
+                              label: 'Blood Type'.tr(),
+                              items: [
+                                'A+',
+                                'A-',
+                                'B+',
+                                'B-',
+                                'AB+',
+                                'AB-',
+                                'O+',
+                                'O-',
+                              ],
+                              key: ValueKey(selectedBloodType),
+                              value: selectedBloodType,
+                              onChanged: (value) {
+                                setState(() => selectedBloodType = value);
+                              },
+                            ),
                           ),
                           SizedBox(width: 15.w),
-                          CustomDropDown(
-                            label: 'Gender'.tr(),
+                          Expanded(
+                            child: CustomDropDown(
+                              label: 'Gender'.tr(),
 
-                            items: ['Male', 'Female'],
-                            key: ValueKey(selectedGender ?? ""),
-                            value: selectedGender,
-                            onChanged: (value) {
-                              setState(() => selectedGender = value);
-                            },
+                              items: ['Male', 'Female'],
+                              key: ValueKey(selectedGender ?? ""),
+                              value: selectedGender,
+                              onChanged: (value) {
+                                setState(() => selectedGender = value);
+                              },
+                            ),
                           ),
                         ],
                       ),

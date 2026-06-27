@@ -4,6 +4,7 @@ import 'package:intl/intl.dart';
 import 'package:telemedicine/core/theme/app_text_styles.dart';
 import 'package:telemedicine/core/theme/color_manger.dart';
 import 'package:telemedicine/core/utils/ui_utils.dart';
+import 'package:telemedicine/features/home/presentation/cubit/home_cubit.dart';
 import 'package:telemedicine/features/medical_history/domain/entities/medical_history_entity.dart';
 import 'package:telemedicine/features/medical_history/presentation/cubit/medical_history_cubit.dart';
 import 'package:telemedicine/features/medical_history/presentation/cubit/medical_history_states.dart';
@@ -62,6 +63,7 @@ class _MedicalRecordDetailsScreenState
                   backgroundColor: Colors.red,
                 ),
               );
+              context.read<MedicalHistoryCubit>().getMedicalHistory();
             }
           },
           child: ListView(
@@ -278,7 +280,7 @@ class _MedicalRecordDetailsScreenState
         children: [
           Text(
             'Rate Doctor',
-            style: textTheme.titleMedium!.copyWith(color: ColorManager.white),
+            style: textTheme.titleMedium!.copyWith(color: ColorManager.primary),
           ),
           SizedBox(height: 16.h),
           Row(
@@ -313,9 +315,13 @@ class _MedicalRecordDetailsScreenState
                         : () {
                             context.read<MedicalHistoryCubit>().rateDoctor(
                               medicalRecordId: widget.record.recordId,
-                              doctorId: 11,
+                              doctorId: widget.record.doctorId,
                               starts: _selectedRating,
                             );
+                            final isRated = state is RateDoctorSuccess;
+                            if (isRated) {
+                              context.read<HomeCubit>().getTopDoctors();
+                            }
                           },
                     style: ElevatedButton.styleFrom(
                       backgroundColor: ColorManager.teal,

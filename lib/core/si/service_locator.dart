@@ -13,6 +13,8 @@ import 'package:telemedicine/features/book_doctor/domain/usecases/get_doctors_by
 import 'package:telemedicine/features/book_doctor/domain/usecases/get_specialties.dart';
 import 'package:telemedicine/features/book_doctor/presentation/cubit/doctors_cubit.dart';
 import 'package:telemedicine/features/book_doctor/presentation/cubit/specialties_cubit.dart';
+import 'package:telemedicine/features/check_yourself/domain/usecases/delete_history_usecase.dart';
+import 'package:telemedicine/features/check_yourself/presentation/cubit/check_yourself_cubit.dart';
 import 'package:telemedicine/features/patient_appointments/data/data_source/appointment_api_data_source.dart';
 import 'package:telemedicine/features/patient_appointments/data/data_source/appointment_remote_data_source.dart';
 import 'package:telemedicine/features/patient_appointments/data/repo/appointment_repo.dart';
@@ -41,7 +43,6 @@ import 'package:telemedicine/features/check_yourself/data/datasource/check_yours
 import 'package:telemedicine/features/check_yourself/data/repo/check_yourself_repo.dart';
 import 'package:telemedicine/features/check_yourself/domain/repo/check_yourself_repo_imp.dart';
 import 'package:telemedicine/features/check_yourself/domain/usecases/send_message_usecase.dart';
-import 'package:telemedicine/features/check_yourself/presentation/cubit/check_yourself_cubit.dart';
 
 import '../../features/auth/data/data_source/auth_api_data_source.dart';
 import '../../features/auth/data/data_source/auth_remote_data_source.dart';
@@ -176,6 +177,9 @@ Future<void> init({GlobalKey<NavigatorState>? key}) async {
   sl.registerSingleton<SendMessageUseCase>(
     SendMessageUseCase(checkYourselfRepo: sl<CheckYourselfRepo>()),
   );
+  sl.registerSingleton<DeleteHistoryUsecase>(
+    DeleteHistoryUsecase(checkYourselfRepo: sl<CheckYourselfRepo>()),
+  );
 
   //! Cubit
   sl.registerFactory<AuthCubit>(
@@ -231,6 +235,9 @@ Future<void> init({GlobalKey<NavigatorState>? key}) async {
     ),
   );
   sl.registerFactory<CheckYourselfCubit>(
-    () => CheckYourselfCubit(sendMessageUseCase: sl<SendMessageUseCase>()),
+    () => CheckYourselfCubit(
+      deleteHistoryUsecase: sl<DeleteHistoryUsecase>(),
+      sendMessageUseCase: sl<SendMessageUseCase>(),
+    ),
   );
 }

@@ -8,4 +8,5 @@ abstract class CheckYourselfDataSource {
     required String route,
     List<File>? files,
   });
+  Future<void> deleteHistory({required int patientId});
 }

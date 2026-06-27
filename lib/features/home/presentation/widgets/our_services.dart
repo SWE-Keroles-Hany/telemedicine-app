@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:easy_localization/easy_localization.dart';
@@ -8,7 +10,8 @@ import 'package:telemedicine/features/medical_history/presentation/screens/medic
 import 'package:telemedicine/features/patient_appointments/presentation/screens/patient_appointments_screen.dart';
 
 class OurServices extends StatelessWidget {
-  const OurServices({super.key});
+  final int userId;
+  const OurServices({super.key, required this.userId});
   @override
   Widget build(BuildContext context) {
     final List<ServiceData> services = [
@@ -47,7 +50,14 @@ class OurServices extends StatelessWidget {
           child: GestureDetector(
             onTap: () {
               if (index == 0) {
-                Navigator.of(context).pushNamed(CheckYourselfScreen.routeName);
+                log("in nav $userId");
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (_) => CheckYourselfScreen(patientId: userId),
+                  ),
+                );
+                // Navigator.of(context).pushNamed(CheckYourselfScreen.routeName);
               } else if (index == 1) {
                 Navigator.of(
                   context,

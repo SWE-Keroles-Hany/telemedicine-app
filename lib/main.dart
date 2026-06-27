@@ -22,7 +22,6 @@ void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await EasyLocalization.ensureInitialized();
   Bloc.observer = MyBlocObserver();
-
   final navigatorKey = GlobalKey<NavigatorState>();
   await init(key: navigatorKey);
 
@@ -59,7 +58,6 @@ void main() async {
 
 class Telemedicine extends StatelessWidget {
   final GlobalKey<NavigatorState> navigatorKey;
-
   const Telemedicine({super.key, required this.navigatorKey});
 
   @override

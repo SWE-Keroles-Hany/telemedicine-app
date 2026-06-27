@@ -17,3 +17,7 @@ class CheckYourselfError extends CheckYourselfState {
 
   CheckYourselfError(this.message);
 }
+
+class DeleteHsitorySuccess extends CheckYourselfState {
+  DeleteHsitorySuccess();
+}

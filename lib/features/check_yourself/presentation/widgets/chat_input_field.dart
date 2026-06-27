@@ -1,3 +1,4 @@
+import 'dart:developer';
 import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -21,14 +22,13 @@ class ChatInputField extends StatelessWidget {
 
   Future<void> _pickFiles(BuildContext context) async {
     final ImagePicker picker = ImagePicker();
-    final List<XFile>? pickedFiles = await picker.pickMultiImage(
+    final List<XFile> pickedFiles = await picker.pickMultiImage(
       imageQuality: 80,
     );
 
-    if (pickedFiles != null) {
-      final files = pickedFiles.map((xfile) => File(xfile.path)).toList();
-      onFilesSelected(files);
-    }
+    final files = pickedFiles.map((xfile) => File(xfile.path)).toList();
+    log("len => ${files.length}");
+    onFilesSelected(files);
   }
 
   void _removeFile(int index) {
@@ -55,10 +55,7 @@ class ChatInputField extends StatelessWidget {
           // Preview files
           if (selectedFiles.isNotEmpty)
             Padding(
-              padding: EdgeInsets.symmetric(
-                horizontal: 16.w,
-                vertical: 8.h,
-              ),
+              padding: EdgeInsets.symmetric(horizontal: 16.w, vertical: 8.h),
               child: SizedBox(
                 height: 100.h,
                 child: ListView.separated(
@@ -75,18 +72,12 @@ class ChatInputField extends StatelessWidget {
               ),
             ),
           Padding(
-            padding: EdgeInsets.symmetric(
-              horizontal: 16.w,
-              vertical: 8.h,
-            ),
+            padding: EdgeInsets.symmetric(horizontal: 16.w, vertical: 8.h),
             child: Row(
               children: [
                 IconButton(
                   onPressed: () => _pickFiles(context),
-                  icon: Icon(
-                    Icons.attach_file,
-                    color: ColorManager.aquaMint,
-                  ),
+                  icon: Icon(Icons.attach_file, color: ColorManager.aquaMint),
                 ),
                 SizedBox(width: 8.w),
                 Expanded(
@@ -111,10 +102,7 @@ class ChatInputField extends StatelessWidget {
                 SizedBox(width: 8.w),
                 IconButton(
                   onPressed: onSend,
-                  icon: Icon(
-                    Icons.send,
-                    color: ColorManager.aquaMint,
-                  ),
+                  icon: Icon(Icons.send, color: ColorManager.aquaMint),
                 ),
               ],
             ),

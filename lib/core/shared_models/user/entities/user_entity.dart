@@ -1,5 +1,5 @@
 class UserEntity {
-  String? id;
+  int? patientId;
   String? fullName;
   String? email;
   String? password;
@@ -15,7 +15,7 @@ class UserEntity {
   double? weight;
 
   UserEntity({
-    this.id,
+    this.patientId,
     this.imgURL,
     this.dateOfBirth,
     this.email,
