@@ -107,6 +107,7 @@ class _PersonalInformationScreenState extends State<PersonalInformationScreen> {
 
                     // email
                     CustomInputField(
+                      readOnly: true,
                       title: 'personal_info.email'.tr(),
                       controller: _emailController,
                       keyboardType: TextInputType.emailAddress,

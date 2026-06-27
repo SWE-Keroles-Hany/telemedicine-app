@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:telemedicine/core/constants/constants_assets.dart';
 import 'package:telemedicine/core/shared_models/user/entities/user_entity.dart';
 import 'package:telemedicine/core/theme/color_manger.dart';
 import 'package:image_picker/image_picker.dart';
@@ -32,7 +33,7 @@ class _UserProfileScreenState extends State<UserProfileScreen> {
   @override
   void initState() {
     super.initState();
-    context.read<SettingsCubit>().getUserProfile();
+    // context.read<SettingsCubit>().getUserProfile();
   }
 
   @override
@@ -57,7 +58,9 @@ class _UserProfileScreenState extends State<UserProfileScreen> {
               user.fullName = state.userProfile.fullName;
               user.email = state.userProfile.email;
               user.phoneNumber = state.userProfile.phoneNumber;
-              user.imgURL = state.userProfile.imgURL;
+              user.imgURL =
+                  state.userProfile.imgURL ??
+                  ConstantAssetImages.defaultUserImage;
               user.address = state.userProfile.address;
               user.bloodType = state.userProfile.bloodType;
               user.gender = state.userProfile.gender;

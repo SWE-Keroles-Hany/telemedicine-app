@@ -1,7 +1,8 @@
 1- network
-2- keep login 
-3- logic chat ai 
---
-- ui improve 
-- translate 
-- padding 
+
+2- logic chat ai  : 
+json -\n .. handle all these 
+
+3- keyboard apear in (logic , register)
+4- translate 
+5- padding 

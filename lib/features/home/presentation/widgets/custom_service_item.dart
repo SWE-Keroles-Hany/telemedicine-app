@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:telemedicine/core/theme/color_manger.dart';
 
 class CustomServiceItem extends StatelessWidget {
@@ -17,7 +18,7 @@ class CustomServiceItem extends StatelessWidget {
   Widget build(BuildContext context) {
     final textTheme = Theme.of(context).textTheme;
     return Container(
-      padding: EdgeInsets.all(16),
+      padding: EdgeInsets.all(16.r),
       decoration: BoxDecoration(
         border: Border.all(color: ColorManager.darkGray),
         borderRadius: BorderRadius.circular(32),
@@ -25,19 +26,20 @@ class CustomServiceItem extends StatelessWidget {
       ),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.center,
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
-          Icon(icon, color: ColorManager.aquaMint, size: 40),
-          SizedBox(height: 5),
+          Icon(icon, color: ColorManager.aquaMint, size: 30.r),
+          // SizedBox(height: 5),
           Text(
             textAlign: TextAlign.center,
             serviceTitle,
-            style: textTheme.titleLarge!.copyWith(
+            style: textTheme.titleMedium!.copyWith(
               color: ColorManager.white,
-              fontSize: 18,
+              fontSize: 16.sp,
             ),
           ),
-          SizedBox(height: 8),
 
+          // SizedBox(height: 8),
           Text(
             textAlign: TextAlign.center,
             serviceDescription,

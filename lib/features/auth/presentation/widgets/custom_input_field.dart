@@ -13,10 +13,12 @@ class CustomInputField extends StatefulWidget {
     required this.controller,
     required this.validator,
     this.maxLines = 1,
+    this.readOnly = false,
   });
   final TextEditingController controller;
   final bool isPasswordField;
   final bool isTabedEnabed;
+  final bool readOnly;
 
   final String title;
   final String? Function(String?)? validator;
@@ -32,6 +34,7 @@ class _CustomInputFieldState extends State<CustomInputField> {
   Widget build(BuildContext context) {
     final TextTheme textTheme = Theme.of(context).textTheme;
     return TextFormField(
+      readOnly: widget.readOnly,
       onTap: () => pickDate(context, widget.isTabedEnabed),
       keyboardType: widget.keyboardType,
       // autofocus:keyboardTypez true,

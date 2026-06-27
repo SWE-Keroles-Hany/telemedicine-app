@@ -4,6 +4,7 @@ import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:telemedicine/core/constants/constants_assets.dart';
 import 'package:telemedicine/core/theme/color_manger.dart';
 import 'package:telemedicine/core/widgets/custom_app_label.dart';
 import 'package:telemedicine/features/home/presentation/cubit/home_cubit.dart';
@@ -46,9 +47,10 @@ class _HomeScreenState extends State<HomeScreen> {
               final haveUser = state is GetUserProfileSuccess;
               if (haveUser) {
                 userName = state.userProfile.fullName ?? "...";
-                imgURL = state.userProfile.imgURL ?? "";
+                imgURL =
+                    state.userProfile.imgURL ??
+                    ConstantAssetImages.defaultUserImage;
               }
-              log("==> $imgURL");
               return HomeAppBar(imgURL: imgURL, userName: userName);
             },
           ),

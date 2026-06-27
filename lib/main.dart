@@ -18,16 +18,14 @@ import 'package:telemedicine/features/check_yourself/presentation/cubit/check_yo
 import 'package:toastification/toastification.dart';
 import 'package:telemedicine/features/auth/presentation/widgets/auth_wrapper.dart';
 
-import 'features/auth/presentation/screens/login_screen.dart';
-
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await EasyLocalization.ensureInitialized();
   Bloc.observer = MyBlocObserver();
-  
+
   final navigatorKey = GlobalKey<NavigatorState>();
   await init(key: navigatorKey);
-  
+
   runApp(
     EasyLocalization(
       supportedLocales: [Locale('en'), Locale('ar')],
@@ -63,7 +61,7 @@ class Telemedicine extends StatelessWidget {
   final GlobalKey<NavigatorState> navigatorKey;
 
   const Telemedicine({super.key, required this.navigatorKey});
-  
+
   @override
   Widget build(BuildContext context) {
     return ScreenUtilInit(

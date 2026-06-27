@@ -1,3 +1,4 @@
+import 'dart:developer';
 import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -35,7 +36,7 @@ class _CheckYourselfScreenState extends State<CheckYourselfScreen> {
   }
 
   void _sendMessage({required int patientId}) async {
-    final text = _messageController.text.trim();
+    String text = _messageController.text.trim();
     if (text.isEmpty && _selectedFiles.isEmpty) return;
 
     setState(() {
@@ -46,10 +47,17 @@ class _CheckYourselfScreenState extends State<CheckYourselfScreen> {
       _selectedFiles.clear();
       _isLoading = true;
     });
+    if (_selectedFiles.isNotEmpty) {
+      text = text.isEmpty ? "" : text;
+      _currentRoute = "medical_records";
+      log("before $_currentRoute");
 
+      setState(() {});
+      log("after $_currentRoute");
+    }
     await context.read<CheckYourselfCubit>().sendMessage(
       patientId: patientId,
-      message: text,
+      message: text.isEmpty ? "" : text,
       route: _currentRoute,
       files: _selectedFiles.isEmpty ? null : List.from(_selectedFiles),
     );
