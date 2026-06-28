@@ -31,7 +31,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
   final TextEditingController phoneNumberController = TextEditingController();
   final TextEditingController heightController = TextEditingController();
   final TextEditingController weightController = TextEditingController();
-  final TextEditingController dateOfBirth = TextEditingController();
+  final TextEditingController _dateOfBirthController = TextEditingController();
 
   final globalKey = GlobalKey<FormState>();
   String? selectedBloodType;
@@ -46,7 +46,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
     passwordController.dispose();
     heightController.dispose();
     weightController.dispose();
-    dateOfBirth.dispose();
+    _dateOfBirthController.dispose();
     super.dispose();
   }
 
@@ -71,6 +71,9 @@ class _SignUpScreenState extends State<SignUpScreen> {
                     );
                   } else if (state is RegisterSuccess) {
                     UiUtils.hideLoading(context);
+                    UiUtils.showMessage(
+                      message: "Registered successfully,please Login",
+                    );
                     Navigator.of(
                       context,
                     ).pushReplacementNamed(LoginScreen.routeName);
@@ -137,6 +140,16 @@ class _SignUpScreenState extends State<SignUpScreen> {
                             AppValidations.phoneNumberValidator(email),
                       ),
                       SizedBox(height: 15.h),
+                      CustomInputField(
+                        title: 'personal_info.date_of_birth'.tr(),
+                        controller: _dateOfBirthController,
+                        isTabedEnabed: true,
+                        validator: (value) {
+                          return null;
+                        },
+                      ),
+                      SizedBox(height: 15.h),
+
                       Row(
                         children: [
                           Expanded(
@@ -253,7 +266,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
         user: UserEntity(
           imgURL: "",
           allergies: "",
-          dateOfBirth: "2004/01/22",
+          dateOfBirth: _dateOfBirthController.text,
           existingConditions: "",
           address: addressController.text.trim(),
           bloodType: selectedBloodType!,

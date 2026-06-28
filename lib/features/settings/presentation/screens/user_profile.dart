@@ -175,9 +175,9 @@ class _UserProfileScreenState extends State<UserProfileScreen> {
                   BlocListener<SettingsCubit, SettingsState>(
                     listener: (BuildContext context, state) {
                       if (state is LogoutSuccess) {
-                        // UiUtils.showMessage(
-                        //   message: "Logged out successfully!",
-                        // );
+                        UiUtils.showMessage(
+                          message: "Logged out successfully!",
+                        );
                         Navigator.of(context).pushNamedAndRemoveUntil(
                           LoginScreen.routeName,
                           (route) => false,

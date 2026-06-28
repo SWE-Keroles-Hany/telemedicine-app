@@ -34,7 +34,7 @@ class _CustomInputFieldState extends State<CustomInputField> {
   Widget build(BuildContext context) {
     final TextTheme textTheme = Theme.of(context).textTheme;
     return TextFormField(
-      readOnly: widget.readOnly,
+      readOnly: widget.readOnly || widget.isTabedEnabed,
       onTap: () => pickDate(context, widget.isTabedEnabed),
       keyboardType: widget.keyboardType,
       // autofocus:keyboardTypez true,
@@ -47,6 +47,9 @@ class _CustomInputFieldState extends State<CustomInputField> {
       controller: widget.controller,
       obscureText: showPassword,
       decoration: InputDecoration(
+        prefixIcon: widget.isTabedEnabed
+            ? Icon(Icons.date_range, color: ColorManager.primary)
+            : null,
         errorStyle: textTheme.labelMedium!.copyWith(
           fontSize: 16.sp,
           fontWeight: FontWeight.w500,
@@ -56,7 +59,7 @@ class _CustomInputFieldState extends State<CustomInputField> {
             ? IconButton(
                 icon: Icon(
                   showPassword ? Icons.visibility_off : Icons.visibility,
-                  color: ColorManager.red,
+                  color: ColorManager.primary,
                 ),
                 onPressed: () {
                   setState(() {

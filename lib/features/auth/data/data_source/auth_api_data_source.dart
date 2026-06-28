@@ -44,7 +44,7 @@ class AuthAPIDataSource implements AuthRemoteDataSource {
         "Password": user.password,
         "PhoneNumber": user.phoneNumber,
         "Gender": user.gender,
-        "DateOfBirth": "2000-01-01", // format depends on backend
+        "DateOfBirth": user.dateOfBirth, // format depends on backend
         "Address": user.address,
         "BloodType": user.bloodType,
         "Height": user.height,

@@ -31,8 +31,8 @@ class AppValidations {
   }
 
   static String? phoneNumberValidator(String? value) {
-    if (value == null || value.trim().isEmpty || value.length < 11) {
-      return "Must Enter Phone Number";
+    if (value == null || value.trim().isEmpty || value.length != 11) {
+      return "Invalid Phone Number";
     }
     return null;
   }

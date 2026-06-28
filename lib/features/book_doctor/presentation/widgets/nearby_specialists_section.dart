@@ -22,7 +22,7 @@ class DoctorsSection extends StatelessWidget {
         SectionHeader(),
         const SizedBox(height: 12),
         SizedBox(
-          height: height * 0.8,
+          height: height * 0.65,
           child: DoctorList(doctors: doctors),
         ),
         SizedBox(height: 12.h),

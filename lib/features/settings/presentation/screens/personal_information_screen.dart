@@ -45,7 +45,6 @@ class _PersonalInformationScreenState extends State<PersonalInformationScreen> {
     _addressController.text = widget.user.address ?? "null";
     _emailController.text = widget.user.email ?? "null";
     DateTime dateTime = DateTime.parse(widget.user.dateOfBirth ?? "");
-
     _dateOfBirthController.text = DateFormat('yyyy-MM-dd').format(dateTime);
 
     selectedBloodType = widget.user.bloodType ?? "";
@@ -96,12 +95,7 @@ class _PersonalInformationScreenState extends State<PersonalInformationScreen> {
                     CustomInputField(
                       title: 'personal_info.full_name'.tr(),
                       controller: _nameController,
-                      validator: (value) {
-                        if (value == null || value.isEmpty) {
-                          return 'personal_info.full_name'.tr();
-                        }
-                        return null;
-                      },
+                      validator: (value) => AppValidations.nameValidator(value),
                     ),
                     SizedBox(height: 20.h),
 
@@ -175,17 +169,19 @@ class _PersonalInformationScreenState extends State<PersonalInformationScreen> {
                         return CustomButton(
                           bgColor: ColorManager.bookingBottomNavActive,
                           onPressed: () async {
-                            await context.read<SettingsCubit>().updateProfile(
-                              userProfile: UserEntity(
-                                address: _addressController.text,
-                                bloodType: selectedBloodType,
-                                dateOfBirth: _dateOfBirthController.text,
-                                email: _emailController.text,
-                                fullName: _nameController.text,
-                                gender: selectedGender,
-                                phoneNumber: _phoneController.text,
-                              ),
-                            );
+                            if (_formKey.currentState!.validate()) {
+                              await context.read<SettingsCubit>().updateProfile(
+                                userProfile: UserEntity(
+                                  address: _addressController.text,
+                                  bloodType: selectedBloodType,
+                                  dateOfBirth: _dateOfBirthController.text,
+                                  email: _emailController.text,
+                                  fullName: _nameController.text,
+                                  gender: selectedGender,
+                                  phoneNumber: _phoneController.text,
+                                ),
+                              );
+                            }
                           },
                           width: double.infinity,
                           radiusNumber: 20.r,

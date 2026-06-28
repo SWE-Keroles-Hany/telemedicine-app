@@ -78,8 +78,7 @@ class _BookingBodyState extends State<BookingBody> {
                   return SizedBox();
                 },
               ),
-              // const SizedBox(height: 16),
-              //  AvailableTodayToggle(value: true, onChanged: (selected) {}),
+
               const SizedBox(height: 20),
 
               BlocBuilder<DoctorsCubit, DoctorsState>(
