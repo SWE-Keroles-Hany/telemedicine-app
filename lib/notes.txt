@@ -1,7 +1,10 @@
 1- translate - work - (egpyt علم )
-2- network
 3- after make rate ?
 4- validation in (login , signup, any palce type)
 5- add date of birth 
-6- check clean code 
 7- last test (chat - book - appointment )
+
+
+after grad ...
+- check code 
+- if no internet

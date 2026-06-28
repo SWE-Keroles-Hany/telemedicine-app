@@ -54,7 +54,7 @@ class _BookingBodyState extends State<BookingBody> {
                   if (state is GetSpecialtiesLoading) {
                     return Center(
                       child: CircularProgressIndicator(
-                        color: ColorManager.yellow,
+                        color: ColorManager.primary,
                       ),
                     );
                   } else if (state is GetSpecialtiesError) {
@@ -87,7 +87,7 @@ class _BookingBodyState extends State<BookingBody> {
                   if (state is GetDoctorsLoading) {
                     return Center(
                       child: CircularProgressIndicator(
-                        color: ColorManager.yellow,
+                        color: ColorManager.primary,
                       ),
                     );
                   } else if (state is GetDoctorsError) {

@@ -1,6 +1,7 @@
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:get_it/get_it.dart';
+import 'package:telemedicine/core/check_internet/internet_cubit.dart';
 import 'package:telemedicine/features/book_doctor/data/datasource/doctors_api_data_source.dart';
 import 'package:telemedicine/features/book_doctor/data/datasource/doctors_data_source.dart';
 import 'package:telemedicine/features/book_doctor/data/repo/doctors_repo.dart';
@@ -240,4 +241,5 @@ Future<void> init({GlobalKey<NavigatorState>? key}) async {
       sendMessageUseCase: sl<SendMessageUseCase>(),
     ),
   );
+  sl.registerFactory<InternetCubit>(() => InternetCubit());
 }

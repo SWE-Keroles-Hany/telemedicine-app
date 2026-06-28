@@ -11,7 +11,7 @@ class AppointmentsLoadingWidget extends StatelessWidget {
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
           CircularProgressIndicator(
-            color: ColorManager.bookingPrimary,
+            color: ColorManager.primary,
             strokeWidth: 3,
           ),
           const SizedBox(height: 16),

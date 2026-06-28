@@ -203,6 +203,7 @@ class _MedicalRecordDetailsScreenState
                               if (loadingProgress == null) return child;
                               return Center(
                                 child: CircularProgressIndicator(
+                                  color: ColorManager.primary,
                                   strokeWidth: 2,
                                   value:
                                       loadingProgress.expectedTotalBytes != null

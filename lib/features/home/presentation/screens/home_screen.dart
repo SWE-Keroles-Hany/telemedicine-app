@@ -51,15 +51,6 @@ class _HomeScreenState extends State<HomeScreen> {
                       ConstantAssetImages.defaultUserImage,
                   userName: state.userProfile.fullName ?? "...",
                 );
-              } else if (state is GetUserProfileError) {
-                return Center(
-                  child: Text(
-                    state.message,
-                    style: AppTextStyles.s16bold.copyWith(
-                      color: ColorManager.white,
-                    ),
-                  ),
-                );
               }
               return HomeAppBar(
                 imgURL: ConstantAssetImages.defaultUserImage,
@@ -93,7 +84,11 @@ class _HomeScreenState extends State<HomeScreen> {
                   );
                 } else if (state is GetUserProfileError) {
                   return Center(
-                    child: Text(state.message, style: AppTextStyles.s20bold),
+                    child: Icon(
+                      Icons.error,
+                      size: 60.r,
+                      color: ColorManager.red,
+                    ),
                   );
                 }
                 return SizedBox();
@@ -111,9 +106,10 @@ class _HomeScreenState extends State<HomeScreen> {
                     return TopDoctors(topDoctors: state.topDoctors);
                   } else if (state is GetTopDoctorsError) {
                     return Center(
-                      child: Text(
-                        'Error: ${state.message}',
-                        style: TextStyle(color: Colors.red),
+                      child: Icon(
+                        Icons.error,
+                        size: 60.r,
+                        color: ColorManager.red,
                       ),
                     );
                   } else {

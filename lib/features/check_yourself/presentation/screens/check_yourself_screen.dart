@@ -150,7 +150,7 @@ class _CheckYourselfScreenState extends State<CheckYourselfScreen> {
                                           height: 20.h,
                                           child: CircularProgressIndicator(
                                             strokeWidth: 2,
-                                            color: ColorManager.aquaMint,
+                                            color: ColorManager.primary,
                                           ),
                                         ),
                                         SizedBox(width: 8.w),

@@ -6,6 +6,8 @@ class ColorManager {
   static const Color deepTealGreen = Color(0xFF133532);
 
   static const white = Colors.white;
+  static const green = Colors.green;
+
   static const black = Colors.black;
   static const yellow = Colors.yellow;
   static const red = Colors.red;

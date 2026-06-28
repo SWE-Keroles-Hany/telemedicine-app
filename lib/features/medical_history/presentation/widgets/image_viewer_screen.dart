@@ -20,9 +20,9 @@ class ImageViewerScreen extends StatelessWidget {
         backgroundColor: Colors.black,
         title: Text(
           title,
-          style: Theme.of(context).textTheme.titleLarge!.copyWith(
-                color: ColorManager.white,
-              ),
+          style: Theme.of(
+            context,
+          ).textTheme.titleLarge!.copyWith(color: ColorManager.white),
         ),
         centerTitle: true,
         iconTheme: IconThemeData(color: ColorManager.white),
@@ -48,8 +48,8 @@ class ImageViewerScreen extends StatelessWidget {
                     Text(
                       'Failed to load image',
                       style: Theme.of(context).textTheme.bodyMedium!.copyWith(
-                            color: ColorManager.white,
-                          ),
+                        color: ColorManager.white,
+                      ),
                     ),
                   ],
                 ),
@@ -59,11 +59,11 @@ class ImageViewerScreen extends StatelessWidget {
               if (loadingProgress == null) return child;
               return Center(
                 child: CircularProgressIndicator(
-                  color: ColorManager.white,
+                  color: ColorManager.primary,
                   strokeWidth: 3,
                   value: loadingProgress.expectedTotalBytes != null
                       ? loadingProgress.cumulativeBytesLoaded /
-                          loadingProgress.expectedTotalBytes!
+                            loadingProgress.expectedTotalBytes!
                       : null,
                 ),
               );
