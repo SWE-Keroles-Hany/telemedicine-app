@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:easy_localization/easy_localization.dart';
@@ -13,6 +15,7 @@ class HomeAppBar extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    log("good img $imgURL");
     final TextTheme textTheme = Theme.of(context).textTheme;
     return AppBar(
       backgroundColor: ColorManager.backGroundColor,

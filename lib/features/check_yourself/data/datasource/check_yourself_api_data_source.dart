@@ -1,3 +1,4 @@
+import 'dart:convert';
 import 'dart:developer';
 import 'dart:io';
 import 'package:dio/dio.dart';
@@ -48,8 +49,9 @@ class CheckYourselfApiDataSource implements CheckYourselfDataSource {
         "${ApiEndPoints.chatBaseURL}${ApiEndPoints.chat}",
         data: formData,
       );
+      final data = response.data;
 
-      return ChatResponseModel.fromJson(response.data);
+      return ChatResponseModel.fromJson(data);
     } on DioException catch (exception) {
       final message =
           exception.response?.data['description']?.toString() ??

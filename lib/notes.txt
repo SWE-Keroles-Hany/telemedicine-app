@@ -1,10 +1,7 @@
-- chat (flow logic - delete history - json -\n .. handle all these)
-==== 
-- translate (egpyt علم )
-====
-- change password, reset 
-===
-1- network
-6- check data in profile 
-8- canclled appointment (patinet , doctor )
-- check code clean 
+1- translate - work - (egpyt علم )
+2- network
+3- after make rate ?
+4- validation in (login , signup, any palce type)
+5- add date of birth 
+6- check clean code 
+7- last test (chat - book - appointment )

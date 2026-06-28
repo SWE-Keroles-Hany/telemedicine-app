@@ -8,6 +8,7 @@ import 'package:telemedicine/core/theme/app_text_styles.dart';
 import 'package:telemedicine/core/utils/ui_utils.dart';
 import 'package:telemedicine/features/auth/presentation/widgets/custom_button.dart';
 import 'package:telemedicine/features/auth/presentation/widgets/custom_input_field.dart';
+import 'package:telemedicine/features/home/presentation/cubit/home_cubit.dart';
 import 'package:telemedicine/features/settings/presentation/cubit/settings_cubit.dart';
 import 'package:telemedicine/features/settings/presentation/cubit/settings_states.dart';
 import 'package:toastification/toastification.dart';
@@ -94,6 +95,9 @@ class _ChangePasswordScreenState extends State<ChangePasswordScreen> {
                       UiUtils.showLoadingIndicator(context);
                     } else if (state is ChangePasswordSuccess) {
                       UiUtils.hideLoading(context);
+                      Navigator.pop(context);
+                      cubit.getUserProfile();
+                      context.read<HomeCubit>().getTopDoctors();
                       UiUtils.showMessage(
                         message: 'change_password.password_changed_successfully'
                             .tr(),

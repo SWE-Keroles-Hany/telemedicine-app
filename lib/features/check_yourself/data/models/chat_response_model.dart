@@ -1,4 +1,6 @@
 import 'dart:convert';
+import 'dart:developer';
+
 import 'package:telemedicine/features/check_yourself/domain/entities/chat_response_entity.dart';
 
 class ChatResponseModel {
@@ -18,44 +20,25 @@ class ChatResponseModel {
     this.route,
   });
 
-  // Helper to parse nested JSON strings (with single quotes)
-  String? _parseNestedText(String? raw) {
-    if (raw == null || raw.isEmpty) return null;
-    try {
-      final normalized = raw.replaceAll("'", '"');
-      final decoded = jsonDecode(normalized);
-      if (decoded is Map && decoded['text'] is String) {
-        return decoded['text'];
-      }
-    } catch (_) {
-      // Fallback if parsing fails
-    }
-    return raw;
-  }
-
   factory ChatResponseModel.fromJson(Map<String, dynamic> json) {
+    final responseData = json['response'];
+    final summaryData = json['summary'];
     return ChatResponseModel(
       id: json['id']?.toString(),
-      response: json['response'] != null
-          ? json['response']['text']?.toString()
-          : null,
+
+      response: responseData,
+
       messageCount: json['message_count'] as int?,
-      summary: json['summary'] != null
-          ? json['summary']['text']?.toString()
-          : null,
+
+      summary: summaryData is Map
+          ? summaryData['text']?.toString()
+          : summaryData?.toString(),
+
       suggestedDoctorIds: json['suggested_doctor_ids'] != null
           ? List<dynamic>.from(json['suggested_doctor_ids'])
           : null,
+
       route: json['route']?.toString(),
     );
   }
-
-  ChatResponseEntity get toEntity => ChatResponseEntity(
-    id: id,
-    response: _parseNestedText(response),
-    messageCount: messageCount,
-    summary: _parseNestedText(summary),
-    suggestedDoctorIds: suggestedDoctorIds,
-    route: route,
-  );
 }

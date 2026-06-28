@@ -130,6 +130,9 @@ class _PatientAppointmentsScreenState extends State<PatientAppointmentsScreen> {
                       backgroundColor: Colors.green,
                     ),
                   );
+                  context.read<AppointmentCubit>().getMyAppointments(
+                    statusNumber: 1,
+                  );
                 } else if (state is CancelAppointmentError) {
                   ScaffoldMessenger.of(context).showSnackBar(
                     SnackBar(

@@ -1,7 +1,9 @@
+import 'dart:developer';
 import 'dart:io';
 import 'package:dartz/dartz.dart';
 import 'package:telemedicine/core/error/failure.dart';
 import 'package:telemedicine/features/check_yourself/data/datasource/check_yourself_data_source.dart';
+import 'package:telemedicine/features/check_yourself/data/mapper/chat_response_mapper.dart';
 import 'package:telemedicine/features/check_yourself/data/repo/check_yourself_repo.dart';
 import 'package:telemedicine/features/check_yourself/domain/entities/chat_response_entity.dart';
 
@@ -24,7 +26,7 @@ class CheckYourselfRepoImp implements CheckYourselfRepo {
         route: route,
         files: files,
       );
-      return Right(chatResponseModel.toEntity);
+      return Right(chatResponseModel.toEntity());
     } on Failure catch (exception) {
       return Left(Failure(message: exception.message));
     } catch (e) {

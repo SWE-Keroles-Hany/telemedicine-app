@@ -44,16 +44,27 @@ class _HomeScreenState extends State<HomeScreen> {
           preferredSize: Size.fromHeight(56.h),
           child: BlocBuilder<SettingsCubit, SettingsState>(
             builder: (context, state) {
-              String userName = "...";
-              String imgURL = "";
-              final haveUser = state is GetUserProfileSuccess;
-              if (haveUser) {
-                userName = state.userProfile.fullName ?? "...";
-                imgURL =
-                    state.userProfile.imgURL ??
-                    ConstantAssetImages.defaultUserImage;
+              if (state is GetUserProfileSuccess) {
+                return HomeAppBar(
+                  imgURL:
+                      state.userProfile.imgURL ??
+                      ConstantAssetImages.defaultUserImage,
+                  userName: state.userProfile.fullName ?? "...",
+                );
+              } else if (state is GetUserProfileError) {
+                return Center(
+                  child: Text(
+                    state.message,
+                    style: AppTextStyles.s16bold.copyWith(
+                      color: ColorManager.white,
+                    ),
+                  ),
+                );
               }
-              return HomeAppBar(imgURL: imgURL, userName: userName);
+              return HomeAppBar(
+                imgURL: ConstantAssetImages.defaultUserImage,
+                userName: "...",
+              );
             },
           ),
         ),
